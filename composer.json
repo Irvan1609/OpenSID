@@ -12,5 +12,7 @@
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "1.1.*"
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
