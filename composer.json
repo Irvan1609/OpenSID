@@ -8,7 +8,7 @@
 		"sistem-informasi-desa"
 	],
 	"require": {
-		"php": "^7.3",
+		"php": "^7.3"
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "1.1.*"
