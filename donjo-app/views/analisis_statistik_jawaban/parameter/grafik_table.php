@@ -18,6 +18,7 @@
 					text:''
 				},
 				categories: [
+<<<<<<< HEAD
 				<?php $i=0; foreach ($main as $data) {
 				    $i++; ?>
 				 <?php if ($data['nilai'] != "-") {
@@ -25,6 +26,17 @@
 				 } ?>
 				<?php
 				}?>
+=======
+				<?php $i = 0;
+
+foreach ($main as $data) {
+    $i++; ?>
+				 <?php if ($data['nilai'] != '-') {
+        echo "'{$data['jawaban']}',";
+    } ?>
+				<?php
+}?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 				]
 			},
 			yAxis: {
@@ -50,8 +62,13 @@
 				border:0,
 				data: [
 				<?php foreach ($main as $data) {?>
+<<<<<<< HEAD
 				 <?php if ($data['jawaban'] != "TOTAL") {?>
 				 <?php if ($data['nilai'] != "-") {?>
+=======
+				 <?php if ($data['jawaban'] != 'TOTAL') {?>
+				 <?php if ($data['nilai'] != '-') {?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 						<?= $data['nilai']?>,
 					<?php }?>
 					<?php }?>
@@ -70,8 +87,8 @@
 		<h1>Statistik Jawaban</h1>
 		<ol class="breadcrumb">
 		<li><a href="<?=site_url('hom_sid')?>"><i class="fa fa-home"></i> Home</a></li>
-			<li><a href="<?=site_url('analisis_master')?>"> Master Analisis</a></li>
-			<li><a href="<?=site_url()?>analisis_statistik_jawaban/leave"><?= $analisis_master['nama']?></a></li>
+			<li><a href="<?=site_url('analisis_master/clear')?>"> Master Analisis</a></li>
+			<li><a href="<?= site_url('analisis_master/leave'); ?>"><?= $analisis_master['nama']; ?></a></li>
 			<li><a href="<?=site_url()?>analisis_statistik_jawaban">Laporan Per Indikator</a></li>
 			<li class="active">Statistik Jawaban</li>
 		</ol>
@@ -80,33 +97,33 @@
 		<form id="mainform" name="mainform" method="post">
 			<div class="row">
 				<div class="col-md-3">
-					<?php $this->load->view('analisis_master/left', $data);?>
+					<?php $this->load->view('analisis_master/left', $data); ?>
 				</div>
 				<div class="col-md-9">
 					<div class="box box-info">
 						<div class="box-body">
 							<div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 								<div class="col-sm-12">
-									<select class="form-control input-sm " name="dusun" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/dusun3/$analisis_statistik_jawaban[id]")?>')">
+									<select class="form-control input-sm " name="dusun" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/dusun3/{$analisis_statistik_jawaban['id']}")?>')">
 										<option value="">Pilih <?= ucwords($this->setting->sebutan_dusun)?></option>
 										<?php foreach ($list_dusun as $data): ?>
 											<option value="<?= $data['dusun']?>" <?php if ($dusun == $data['dusun']): ?>selected<?php endif ?>><?= strtoupper($data['dusun'])?></option>
-										<?php endforeach;?>
+										<?php endforeach; ?>
 									</select>
 									<?php if ($dusun): ?>
-										<select class="form-control input-sm" name="rw" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/rw3/$analisis_statistik_jawaban[id]")?>')" >
+										<select class="form-control input-sm" name="rw" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/rw3/{$analisis_statistik_jawaban['id']}")?>')" >
 											<option value="">RW</option>
 											<?php foreach ($list_rw as $data): ?>
 												<option value="<?= $data['rw']?>" <?php if ($rw == $data['rw']): ?>selected<?php endif ?>><?= $data['rw']?></option>
-											<?php endforeach;?>
+											<?php endforeach; ?>
 										</select>
 									<?php endif; ?>
 									<?php if ($rw): ?>
-										<select class="form-control input-sm" name="rt" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/rt3/$analisis_statistik_jawaban[id]")?>')">
+										<select class="form-control input-sm" name="rt" onchange="formAction('mainform','<?= site_url("analisis_statistik_jawaban/rt3/{$analisis_statistik_jawaban['id']}")?>')">
 											<option value="">RT</option>
 											<?php foreach ($list_rt as $data): ?>
 												<option value="<?= $data['rt']?>" <?php if ($rt == $data['rt']): ?>selected<?php endif ?>><?= $data['rt']?></option>
-											<?php endforeach;?>
+											<?php endforeach; ?>
 										</select>
 									<?php endif; ?>
 									<a href="<?= site_url()?>analisis_statistik_jawaban" class="btn btn-social btn-flat btn-info btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><i class="fa fa-arrow-circle-left "></i> Kembali Ke Laporan Per Indikator</a>

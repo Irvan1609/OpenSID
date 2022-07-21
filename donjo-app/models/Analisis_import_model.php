@@ -1,7 +1,51 @@
 <?php
+<<<<<<< HEAD
 require_once IRVAN . 'vendor/google-api-php-client/vendor/autoload.php';
 
 class Analisis_import_Model extends CI_Model
+=======
+
+/*
+ *
+ * File ini bagian dari:
+ *
+ * OpenSID
+ *
+ * Sistem informasi desa sumber terbuka untuk memajukan desa
+ *
+ * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
+ *
+ * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ *
+ * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
+ * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
+ * tanpa batasan, termasuk hak untuk menggunakan, menyalin, mengubah dan/atau mendistribusikan,
+ * asal tunduk pada syarat berikut:
+ *
+ * Pemberitahuan hak cipta di atas dan pemberitahuan izin ini harus disertakan dalam
+ * setiap salinan atau bagian penting Aplikasi Ini. Barang siapa yang menghapus atau menghilangkan
+ * pemberitahuan ini melanggar ketentuan lisensi Aplikasi Ini.
+ *
+ * PERANGKAT LUNAK INI DISEDIAKAN "SEBAGAIMANA ADANYA", TANPA JAMINAN APA PUN, BAIK TERSURAT MAUPUN
+ * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
+ * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
+ *
+ * @package   OpenSID
+ * @author    Tim Pengembang OpenDesa
+ * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
+ * @link      https://github.com/OpenSID/OpenSID
+ *
+ */
+
+defined('BASEPATH') || exit('No direct script access allowed');
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
+class Analisis_import_model extends CI_Model
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 {
     public function __construct()
     {
@@ -15,6 +59,7 @@ class Analisis_import_Model extends CI_Model
         $this->load->library('Spreadsheet_Excel_Reader');
     }
 
+<<<<<<< HEAD
     public function import_excel($file='', $kode='00000', $jenis=2)
     {
         if (empty($file)) {
@@ -111,10 +156,230 @@ class Analisis_import_Model extends CI_Model
         status_sukses($outp); //Tampilkan Pesan
 
         return $id_master;
+=======
+    private function upload_file_analisis()
+    {
+        $this->load->library('upload');
+
+        $config['upload_path']   = sys_get_temp_dir();
+        $config['allowed_types'] = 'xlsx|xlsm';
+
+        $this->upload->initialize($config);
+        if (! $this->upload->do_upload('userfile')) {
+            $this->session->error_msg = $this->upload->display_errors();
+            $this->session->success   = -1;
+
+            return;
+        }
+        $upload = $this->upload->data();
+
+        return $upload['full_path'];
+    }
+
+    public function impor_analisis($file = '', $kode = '00000', $jenis = 2)
+    {
+        $this->session->success = 1;
+
+        if (empty($file)) {
+            $file = $this->upload_file_analisis();
+        }
+        if (empty($file)) {
+            return;
+        }
+
+        $reader = ReaderEntityFactory::createReaderFromFile($file);
+        $reader->open($file);
+
+        foreach ($reader->getSheetIterator() as $sheet) {
+            switch ($sheet->getName()) {
+                case 'master':
+                    $id_master = $this->impor_master($sheet, $kode, $jenis);
+                    break;
+
+                case 'pertanyaan':
+                    $this->impor_pertanyaan($sheet, $id_master);
+                    break;
+
+                case 'jawaban':
+                    $this->impor_jawaban($sheet, $id_master);
+                    break;
+
+                case 'klasifikasi':
+                    $this->impor_klasifikasi($sheet, $id_master);
+                    break;
+
+                default:
+                    $this->session->success   = -1;
+                    $this->session->error_msg = 'Bukan file impor master analisis';
+                    break;
+            }
+            if ($this->session->success == -1) {
+                $reader->close();
+
+                return;
+            }
+        }
+        $reader->close();
+    }
+
+    private function impor_master($sheet, $kode, $jenis)
+    {
+        $master = [];
+
+        foreach ($sheet->getRowIterator() as $index => $row) {
+            $cells = $row->getCells();
+
+            switch ($index) {
+                case 1: // Nama analisis
+                    $master['nama'] = $cells[1]->getValue();
+                    break;
+
+                case 2: // Subjek
+                    $master['subjek_tipe'] = $cells[1]->getValue();
+                    break;
+
+                case 3: // Status
+                    $master['lock'] = $cells[1]->getValue();
+                    break;
+
+                case 4: // Bilangan Pembagi
+                    $master['pembagi'] = $cells[1]->getValue();
+                    break;
+
+                case 5: // Deskripsi Analisis
+                    $master['deskripsi']   = $cells[1]->getValue();
+                    $periode['keterangan'] = $cells[1]->getValue();
+                    break;
+
+                case 6: // Nama Periode
+                    $periode['nama'] = $cells[1]->getValue();
+                    break;
+
+                case 7: // Tahun Pendataan
+                    $periode['tahun_pelaksanaan'] = $cells[1]->getValue();
+                    break;
+            }
+        }
+        $master['kode_analisis'] = $kode;
+        $master['jenis']         = $jenis;
+
+        if (! $this->db->insert('analisis_master', $master)) {
+            return $this->impor_error();
+        }
+        $id_master = $this->db->insert_id();
+
+        $periode['id_master'] = $id_master;
+        $periode['aktif']     = 1;
+        if (! $this->db->insert('analisis_periode', $periode)) {
+            return $this->impor_error();
+        }
+
+        return $id_master;
+    }
+
+    private function impor_error()
+    {
+        $error                    = $this->db->error();
+        $this->session->success   = -1;
+        $this->session->error_msg = $error['message'];
+    }
+
+    private function impor_pertanyaan($sheet, $id_master)
+    {
+        foreach ($sheet->getRowIterator() as $index => $row) {
+            if ($index == 1) {
+                continue;
+            } // Abaikan baris judul
+            $cells = $row->getCells();
+            // Tambahkan indikator
+            $indikator                 = [];
+            $indikator['id_master']    = $id_master;
+            $indikator['nomor']        = $cells[0]->getValue();
+            $indikator['pertanyaan']   = $cells[1]->getValue();
+            $indikator['id_kategori']  = $this->get_id_kategori($cells[2]->getValue(), $id_master);
+            $indikator['id_tipe']      = $cells[3]->getValue();
+            $indikator['bobot']        = $cells[4]->getValue() ?? 0;
+            $indikator['act_analisis'] = $cells[5]->getValue() ?? 2;
+            if (! $this->db->insert('analisis_indikator', $indikator)) {
+                return $this->impor_error();
+            }
+        }
+    }
+
+    private function get_id_kategori($kategori, $id_master)
+    {
+        $ada_kategori = $this->db
+            ->select('id')
+            ->from('analisis_kategori_indikator')
+            ->where('kategori', $kategori)
+            ->where('id_master', $id_master)
+            ->get();
+        if ($ada_kategori->num_rows()) {
+            return $ada_kategori->row()->id;
+        }
+
+        if (! $this->db
+            ->set('id_master', $id_master)
+            ->set('kategori', $kategori)
+            ->insert('analisis_kategori_indikator')) {
+            return $this->impor_error();
+        }
+
+        return $this->db->insert_id();
+    }
+
+    private function impor_jawaban($sheet, $id_master)
+    {
+        foreach ($sheet->getRowIterator() as $index => $row) {
+            if ($index == 1) {
+                continue;
+            } // Abaikan baris judul
+            $cells = $row->getCells();
+            // Tambahkan parameter
+            $parameter                 = [];
+            $parameter['id_indikator'] = $this->get_id_indikator($cells[0]->getValue(), $id_master);
+            $parameter['kode_jawaban'] = $cells[1]->getValue();
+            $parameter['jawaban']      = $cells[2]->getValue();
+            $parameter['nilai']        = $cells[3]->getValue();
+            if (! $this->db->insert('analisis_parameter', $parameter)) {
+                return $this->impor_error();
+            }
+        }
+    }
+
+    private function get_id_indikator($kode_pertanyaan, $id_master)
+    {
+        return $this->db
+            ->select('id')
+            ->where('id_master', $id_master)
+            ->where('nomor', $kode_pertanyaan)
+            ->get('analisis_indikator')
+            ->row()->id;
+    }
+
+    private function impor_klasifikasi($sheet, $id_master)
+    {
+        foreach ($sheet->getRowIterator() as $index => $row) {
+            if ($index == 1) {
+                continue;
+            } // Abaikan baris judul
+            $cells = $row->getCells();
+            // Tambahkan parameter
+            $klasifikasi              = [];
+            $klasifikasi['id_master'] = $id_master;
+            $klasifikasi['nama']      = $cells[0]->getValue();
+            $klasifikasi['minval']    = $cells[1]->getValue();
+            $klasifikasi['maxval']    = $cells[2]->getValue();
+            if (! $this->db->insert('analisis_klasifikasi', $klasifikasi)) {
+                return $this->impor_error();
+            }
+        }
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function save_import_gform()
     {
+<<<<<<< HEAD
         $list_error = array();
 
         // SIMPAN ANALISIS MASTER
@@ -139,12 +404,42 @@ class Analisis_import_Model extends CI_Model
         $list_kategori = $this->input->post('kategori');
         $temp_unique_kategori = array();
         $list_unique_kategori = array();
+=======
+        $list_error = [];
+
+        // SIMPAN ANALISIS MASTER
+        $data_analisis_master = [
+            'nama'              => $this->input->post('nama_form') == '' ? 'Response Google Form ' . date('dmY_His') : $this->input->post('nama_form'),
+            'subjek_tipe'       => $this->input->post('subjek_analisis') == 0 ? 1 : $this->input->post('subjek_analisis'),
+            'id_kelompok'       => 0,
+            'lock'              => 1,
+            'format_impor'      => 0,
+            'pembagi'           => 1,
+            'id_child'          => 0,
+            'deskripsi'         => '',
+            'gform_id'          => $this->input->post('gform-form-id'),
+            'gform_nik_item_id' => $this->input->post('gform-id-nik-kk'),
+            'gform_last_sync'   => date('Y-m-d H:i:s'),
+        ];
+
+        $outp      = $this->db->insert('analisis_master', $data_analisis_master);
+        $id_master = $this->db->insert_id();
+
+        // SIMPAN KATEGORI ANALISIS
+        $list_kategori        = $this->input->post('kategori');
+        $temp_unique_kategori = [];
+        $list_unique_kategori = [];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         // Get Unique Value dari Kategori
         foreach ($list_kategori as $key => $val) {
             if ($this->input->post('is_selected')[$key] == 'true') {
                 if (! in_array($val, $temp_unique_kategori)) {
+<<<<<<< HEAD
                     array_push($temp_unique_kategori, $val);
+=======
+                    $temp_unique_kategori[] = $val;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 }
             }
         }
@@ -152,12 +447,21 @@ class Analisis_import_Model extends CI_Model
         // Simpan Unique Value dari Kategori
         foreach ($temp_unique_kategori as $key => $val) {
             $data_kategori = [
+<<<<<<< HEAD
                 'id_master'		=> $id_master,
                 'kategori' 		=> $val,
                 'kategori_kode'	=> ""
             ];
 
             $outp = $this->db->insert('analisis_kategori_indikator', $data_kategori);
+=======
+                'id_master'     => $id_master,
+                'kategori'      => $val,
+                'kategori_kode' => '',
+            ];
+
+            $outp        = $this->db->insert('analisis_kategori_indikator', $data_kategori);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             $id_kategori = $this->db->insert_id();
 
             $list_unique_kategori[$id_kategori] = $val;
@@ -165,6 +469,7 @@ class Analisis_import_Model extends CI_Model
 
         // SIMPAN PERTANYAAN/INDIKATOR ANALISIS
         $id_column_nik_kk = $this->input->post('id-row-nik-kk');
+<<<<<<< HEAD
         $count_indikator = 1;
         $db_idx_parameter = array();
         $db_idx_indikator = array();
@@ -191,10 +496,39 @@ class Analisis_import_Model extends CI_Model
                 }
 
                 $outp = $this->db->insert('analisis_indikator', $data_indikator);
+=======
+        $count_indikator  = 1;
+        $db_idx_parameter = [];
+        $db_idx_indikator = [];
+
+        foreach ($this->input->post('pertanyaan') as $key => $val) {
+            $temp_idx_parameter = [];
+            $id_indikator       = 0;
+            if ($this->input->post('is_selected')[$key] == 'true' && $key != $id_column_nik_kk) {
+                $data_indikator = [
+                    'id_master'    => $id_master,
+                    'nomor'        => $count_indikator,
+                    'pertanyaan'   => $val,
+                    'id_tipe'      => $this->input->post('tipe')[$key],
+                    'bobot'        => $this->input->post('bobot')[$key],
+                    'act_analisis' => 0,
+                    'id_kategori'  => array_search($this->input->post('kategori')[$key], $list_unique_kategori, true),
+                    'is_publik'    => 0,
+                    'is_teks'      => 0,
+                ];
+
+                if ($data_indikator['id_tipe'] != 1) {
+                    $data_indikator['act_analisis'] = 2;
+                    $data_indikator['bobot']        = 0;
+                }
+
+                $outp         = $this->db->insert('analisis_indikator', $data_indikator);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $id_indikator = $this->db->insert_id();
 
                 // Simpan Parameter untuk setiap unique value pada masing-masing indikator
                 foreach ($this->input->post('unique-param-value-' . $key) as $param_key => $param_val) {
+<<<<<<< HEAD
                     $param_nilai = ($this->input->post('unique-param-nilai-' . $key)[$param_key] == "") ? 0 : $this->input->post('unique-param-nilai-' . $key)[$param_key];
 
                     $data_parameter = [
@@ -214,10 +548,32 @@ class Analisis_import_Model extends CI_Model
             }
             $db_idx_indikator[$id_indikator] = $key;
             array_push($db_idx_parameter, $temp_idx_parameter);
+=======
+                    $param_nilai = ($this->input->post('unique-param-nilai-' . $key)[$param_key] == '') ? 0 : $this->input->post('unique-param-nilai-' . $key)[$param_key];
+
+                    $data_parameter = [
+                        'id_indikator' => $id_indikator,
+                        'jawaban'      => $this->input->post('unique-param-value-' . $key)[$param_key],
+                        'nilai'        => $param_nilai,
+                        'kode_jawaban' => ($param_key + 1),
+                        'asign'        => 0,
+                    ];
+
+                    $outp                              = $this->db->insert('analisis_parameter', $data_parameter);
+                    $id_parameter                      = $this->db->insert_id();
+                    $temp_idx_parameter[$id_parameter] = $param_val;
+                }
+
+                $count_indikator++;
+            }
+            $db_idx_indikator[$id_indikator] = $key;
+            $db_idx_parameter[]              = $temp_idx_parameter;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         // SIMPAN PERIODE ANALISIS
         $data_periode = [
+<<<<<<< HEAD
             'id_master' 		=> $id_master,
             'nama' 				=> "Pendataan " . date('dmY_His'),
             'id_state' 			=> 1,
@@ -227,6 +583,17 @@ class Analisis_import_Model extends CI_Model
         ];
 
         $outp = $this->db->insert('analisis_periode', $data_periode);
+=======
+            'id_master'         => $id_master,
+            'nama'              => 'Pendataan ' . date('dmY_His'),
+            'id_state'          => 1,
+            'aktif'             => 1,
+            'keterangan'        => 0,
+            'tahun_pelaksanaan' => $this->input->post('tahun_pendataan') == '' ? date('Y') : $this->input->post('tahun_pendataan'),
+        ];
+
+        $outp       = $this->db->insert('analisis_periode', $data_periode);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $id_periode = $this->db->insert_id();
 
         // SIMPAN RESPON ANALISIS
@@ -241,22 +608,37 @@ class Analisis_import_Model extends CI_Model
                 $id_subject = $this->penduduk_model->get_penduduk_by_nik($nik_kk_subject)['id'];
             }
 
+<<<<<<< HEAD
             if ($id_subject != null && $id_subject != "") {
+=======
+            if ($id_subject != null && $id_subject != '') {
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 // Iterasi untuk setiap indikator / jawaban dari subjek
                 foreach ($this->input->post('pertanyaan') as $key_pertanyaan => $val_pertanyaan) {
                     if ($this->input->post('is_selected')[$key_pertanyaan] == 'true' && $key_pertanyaan != $id_column_nik_kk) {
                         $data_respon = [
+<<<<<<< HEAD
                             'id_indikator'	=> array_search($key_pertanyaan, $db_idx_indikator),
                             'id_parameter'	=> array_search($val_jawaban[$key_pertanyaan], $db_idx_parameter[$key_pertanyaan]),
                             'id_subjek' 	=> $id_subject,
                             'id_periode' 	=> $id_periode
+=======
+                            'id_indikator' => array_search($key_pertanyaan, $db_idx_indikator, true),
+                            'id_parameter' => array_search($val_jawaban[$key_pertanyaan], $db_idx_parameter[$key_pertanyaan], true),
+                            'id_subjek'    => $id_subject,
+                            'id_periode'   => $id_periode,
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         ];
 
                         $outp = $this->db->insert('analisis_respon', $data_respon);
                     }
                 }
             } else {
+<<<<<<< HEAD
                 array_push($list_error, 'NIK / No. KK data ke-' . ($key_jawaban+1) . " (" . $nik_kk_subject . ") " . $id_subject . " tidak valid");
+=======
+                $list_error[] = 'NIK / No. KK data ke-' . ($key_jawaban + 1) . ' (' . $nik_kk_subject . ') ' . $id_subject . ' tidak valid';
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             }
         }
 
@@ -272,14 +654,26 @@ class Analisis_import_Model extends CI_Model
         } elseif (empty($this->setting->api_gform_redirect_uri)) {
             $api_gform_credential = config_item('api_gform_credential');
         }
+<<<<<<< HEAD
         return json_decode(str_replace('\"', '"', $api_gform_credential), true);
     }
 
     public function import_gform($redirect_link = "")
+=======
+
+        return json_decode(str_replace('\"', '"', $api_gform_credential), true);
+    }
+
+    public function import_gform($redirect_link = '')
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     {
         // Check Credential File
         if (! $oauth_credentials = $this->getOAuthCredentialsFile()) {
             echo 'ERROR - File Credential Not Found';
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             return;
         }
 
@@ -289,8 +683,13 @@ class Analisis_import_Model extends CI_Model
         $client = new Google\Client();
         $client->setAuthConfig($oauth_credentials);
         $client->setRedirectUri($redirect_uri);
+<<<<<<< HEAD
         $client->addScope("https://www.googleapis.com/auth/forms");
         $client->addScope("https://www.googleapis.com/auth/spreadsheets");
+=======
+        $client->addScope('https://www.googleapis.com/auth/forms');
+        $client->addScope('https://www.googleapis.com/auth/spreadsheets');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $service = new Google_Service_Script($client);
 
         // API script id
@@ -314,7 +713,11 @@ class Analisis_import_Model extends CI_Model
         }
 
         // set the access token as part of the client
+<<<<<<< HEAD
         if (!empty($_SESSION['upload_token'])) {
+=======
+        if (! empty($_SESSION['upload_token'])) {
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             $client->setAccessToken($_SESSION['upload_token']);
             if ($client->isAccessTokenExpired()) {
                 unset($_SESSION['upload_token']);
@@ -327,7 +730,11 @@ class Analisis_import_Model extends CI_Model
         $request = new Google_Service_Script_ExecutionRequest();
         $request->setFunction('getFormItems');
         $form_id = $this->session->google_form_id;
+<<<<<<< HEAD
         if ($form_id == "") {
+=======
+        if ($form_id == '') {
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             $form_id = $this->session->gform_id;
         }
         $request->setParameters($form_id);
@@ -335,8 +742,13 @@ class Analisis_import_Model extends CI_Model
         try {
             if (isset($authUrl) && $_SESSION['inside_retry'] != true) {
                 // If no authentication before
+<<<<<<< HEAD
                 $this->session->gform_id = $form_id;
                 $this->session->inside_retry = true;
+=======
+                $this->session->gform_id             = $form_id;
+                $this->session->inside_retry         = true;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $this->session->inside_redirect_link = $redirect_link;
                 header('Location: ' . $authUrl);
             } else {
@@ -356,7 +768,12 @@ class Analisis_import_Model extends CI_Model
 
                     if (array_key_exists('scriptStackTraceElements', $error)) {
                         // There may not be a stacktrace if the script didn't start executing.
+<<<<<<< HEAD
                         print "Script error stacktrace:\n";
+=======
+                        echo "Script error stacktrace:\n";
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         foreach ($error['scriptStackTraceElements'] as $trace) {
                             printf("\t%s: %d\n", $trace['function'], $trace['lineNumber']);
                         }
@@ -364,6 +781,10 @@ class Analisis_import_Model extends CI_Model
                 } else {
                     // Get Response
                     $resp = $response->getResponse();
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                     return $resp['result'];
                 }
             }
@@ -375,7 +796,11 @@ class Analisis_import_Model extends CI_Model
         return '0';
     }
 
+<<<<<<< HEAD
     public function update_import_gform($id=0, $variabel)
+=======
+    public function update_import_gform($id, $variabel)
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     {
         // Get data analisis master
         $master_data = $this->analisis_master_model->get_analisis_master($id);
@@ -385,6 +810,7 @@ class Analisis_import_Model extends CI_Model
 
         // Get existing respon
         $id_periode_aktif = $this->analisis_periode_model->get_id_periode_aktif($id);
+<<<<<<< HEAD
         $existing_respon = $this->analisis_respon_model->get_respon_by_id_periode($id_periode_aktif, $master_data['subjek_tipe']);
 
         $id_column_nik_kk = 0;
@@ -393,6 +819,16 @@ class Analisis_import_Model extends CI_Model
 
         $deleted_responden = array();
         $deleted_jawaban = array();
+=======
+        $existing_respon  = $this->analisis_respon_model->get_respon_by_id_periode($id_periode_aktif, $master_data['subjek_tipe']);
+
+        $id_column_nik_kk = 0;
+        $list_error       = [];
+        $list_pertanyaan  = [];
+
+        $deleted_responden = [];
+        $deleted_jawaban   = [];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         foreach ($variabel['pertanyaan'] as $key_pertanyaan => $val_pertanyaan) {
             // Mencari kolom NIK/No. KK pada form
@@ -403,18 +839,31 @@ class Analisis_import_Model extends CI_Model
 
         // Cek keberadaan existing indikator pada data terkini, jika SALAH SATU SAJA hilang maka proses tidak dapat dilanjutkan
         foreach ($existing_data['indikator'] as $key_indikator => $val_indikator) {
+<<<<<<< HEAD
             if (! array_search($val_indikator, array_column($variabel['pertanyaan'], 'title'))) {
                 array_push($list_error, 'Terdapat kolom yang hilang pada hasil response Google Form terkini (' . $val_indikator . ')');
+=======
+            if (! array_search($val_indikator, array_column($variabel['pertanyaan'], 'title'), true)) {
+                $list_error[] = 'Terdapat kolom yang hilang pada hasil response Google Form terkini (' . $val_indikator . ')';
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             }
         }
 
         if (! empty($list_error)) {
             $this->session->list_error = $list_error;
+<<<<<<< HEAD
             status_sukses(-1, true, "Beberapa data gagal disimpan");
             return 0;
         }
 
 
+=======
+            status_sukses(-1, true, 'Beberapa data gagal disimpan');
+
+            return 0;
+        }
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         // Mencari nilai untuk pertanyaan-pertanyaan yang dimasukkan sebelumnya
         foreach ($existing_data['indikator'] as $key_indikator => $val_indikator) {
             foreach ($variabel['pertanyaan'] as $key_pertanyaan => $val_pertanyaan) {
@@ -424,12 +873,19 @@ class Analisis_import_Model extends CI_Model
 
                     // Cek jawaban yang tidak terpakai
                     $deleted_jawaban[$key_indikator] = $existing_data['parameter'][$key_indikator];
+<<<<<<< HEAD
                     foreach ($existing_data['parameter'][$key_indikator] as $key_param => $val_param) {
                         if (array_search($val_param, $val_pertanyaan['choices'])) {
+=======
+
+                    foreach ($existing_data['parameter'][$key_indikator] as $key_param => $val_param) {
+                        if (array_search($val_param, $val_pertanyaan['choices'], true)) {
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                             unset($deleted_jawaban[$key_indikator][$key_param]);
                         }
                     }
 
+<<<<<<< HEAD
                     $new_parameter = array();
                     // Insert jawaban baru
                     foreach ($val_pertanyaan['choices'] as $key_choice => $val_choice) {
@@ -446,6 +902,24 @@ class Analisis_import_Model extends CI_Model
                             $outp = $this->db->insert('analisis_parameter', $data_parameter);
                             $id_parameter = $this->db->insert_id();
                             $data_parameter['id'] = $id_parameter;
+=======
+                    $new_parameter = [];
+                    // Insert jawaban baru
+                    foreach ($val_pertanyaan['choices'] as $key_choice => $val_choice) {
+                        // Jika nilai belum ada di database, maka tambahkan data parameter baru
+                        if (! (array_search($val_choice, $existing_data['parameter'][$key_indikator], true))) {
+                            $data_parameter = [
+                                'id_indikator' => $key_indikator,
+                                'jawaban'      => $val_choice,
+                                'nilai'        => 0,
+                                'kode_jawaban' => 0,
+                                'asign'        => 0,
+                            ];
+
+                            $outp                         = $this->db->insert('analisis_parameter', $data_parameter);
+                            $id_parameter                 = $this->db->insert_id();
+                            $data_parameter['id']         = $id_parameter;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                             $new_parameter[$id_parameter] = $val_choice;
                         }
                     }
@@ -459,7 +933,11 @@ class Analisis_import_Model extends CI_Model
         }
 
         foreach ($existing_respon as $key_respon => $val_respon) {
+<<<<<<< HEAD
             if (array_search($key_respon, array_column($variabel['jawaban'], $id_column_nik_kk)) === false) {
+=======
+            if (array_search($key_respon, array_column($variabel['jawaban'], $id_column_nik_kk), true) === false) {
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $deleted_responden[$key_respon] = $val_respon;
             }
         }
@@ -472,12 +950,21 @@ class Analisis_import_Model extends CI_Model
                 $id_subject = $this->penduduk_model->get_penduduk_by_nik($nik_kk)['id'];
             }
 
+<<<<<<< HEAD
             if ($id_subject != null && $id_subject != "") { // Jika NIK valid
                 foreach ($val_responden as $key_jawaban => $val_jawaban) {
                     $id_indikator = array_search($variabel['pertanyaan'][$key_jawaban], $list_pertanyaan); // Cek apakah kolom yang telah ada
 
                     if ($id_indikator) {
                         $id_parameter = array_search($val_jawaban, $existing_data['parameter'][$id_indikator]); // Jawaban terkini
+=======
+            if ($id_subject != null && $id_subject != '') { // Jika NIK valid
+                foreach ($val_responden as $key_jawaban => $val_jawaban) {
+                    $id_indikator = array_search($variabel['pertanyaan'][$key_jawaban], $list_pertanyaan, true); // Cek apakah kolom yang telah ada
+
+                    if ($id_indikator) {
+                        $id_parameter = array_search($val_jawaban, $existing_data['parameter'][$id_indikator], true); // Jawaban terkini
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
                         if (isset($existing_respon[$val_responden[$id_column_nik_kk]])) {
                             // Jika Responden sudah pernah disimpan
@@ -486,16 +973,28 @@ class Analisis_import_Model extends CI_Model
                             if ($obj_respon['id_parameter'] != $id_parameter) {
                                 $where = [
                                     'id_indikator' => $id_indikator,
+<<<<<<< HEAD
                                     'id_subjek' => $obj_respon['id_subjek'],
                                     'id_periode' => $obj_respon['id_periode']
+=======
+                                    'id_subjek'    => $obj_respon['id_subjek'],
+                                    'id_periode'   => $obj_respon['id_periode'],
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                                 ];
                                 $this->db->delete('analisis_respon', $where);
 
                                 $data_respon = [
+<<<<<<< HEAD
                                     'id_indikator'	=> $id_indikator,
                                     'id_parameter'	=> $id_parameter,
                                     'id_subjek' 	=> $obj_respon['id_subjek'],
                                     'id_periode' 	=> $obj_respon['id_periode']
+=======
+                                    'id_indikator' => $id_indikator,
+                                    'id_parameter' => $id_parameter,
+                                    'id_subjek'    => $obj_respon['id_subjek'],
+                                    'id_periode'   => $obj_respon['id_periode'],
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                                 ];
 
                                 $outp = $this->db->insert('analisis_respon', $data_respon);
@@ -503,10 +1002,17 @@ class Analisis_import_Model extends CI_Model
                         } else {
                             // Jika Responden belum pernah disimpan (Responden Baru)
                             $data_respon = [
+<<<<<<< HEAD
                                 'id_indikator'	=> $id_indikator,
                                 'id_parameter'	=> $id_parameter,
                                 'id_subjek' 	=> $id_subject,
                                 'id_periode' 	=> $id_periode_aktif
+=======
+                                'id_indikator' => $id_indikator,
+                                'id_parameter' => $id_parameter,
+                                'id_subjek'    => $id_subject,
+                                'id_periode'   => $id_periode_aktif,
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                             ];
 
                             $outp = $this->db->insert('analisis_respon', $data_respon);
@@ -514,7 +1020,11 @@ class Analisis_import_Model extends CI_Model
                     }
                 }
             } else {
+<<<<<<< HEAD
                 array_push($list_error, 'NIK / No. KK data ke-' . ($key_responden+1) . " (" . $nik_kk . ") tidak valid");
+=======
+                $list_error[] = 'NIK / No. KK data ke-' . ($key_responden + 1) . ' (' . $nik_kk . ') tidak valid';
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             }
         }
 
@@ -527,23 +1037,37 @@ class Analisis_import_Model extends CI_Model
             }
 
             $where = [
+<<<<<<< HEAD
                 'id_subjek' => $id_subject,
                 'id_periode' => $id_periode_aktif
+=======
+                'id_subjek'  => $id_subject,
+                'id_periode' => $id_periode_aktif,
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             ];
             $this->db->delete('analisis_respon', $where);
         }
 
         // Update gform_last_sync
         $update_data = [
+<<<<<<< HEAD
             'gform_last_sync' => date('Y-m-d H:i:s')
+=======
+            'gform_last_sync' => date('Y-m-d H:i:s'),
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         ];
 
         $this->db->where('id', $id);
         $outp = $this->db->update('analisis_master', $update_data);
 
         $this->session->list_error = $list_error;
+<<<<<<< HEAD
         if (!empty($list_error)) {
             status_sukses(-1, false, "Beberapa data gagal disimpan");
+=======
+        if (! empty($list_error)) {
+            status_sukses(-1, false, 'Beberapa data gagal disimpan');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         } else {
             status_sukses(1);
         }

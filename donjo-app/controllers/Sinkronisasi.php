@@ -1,18 +1,13 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
 
+=======
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 /*
- *  File ini:
  *
- * Controller untuk modul Sinkronasi
- *
- * donjo-app/controllers/sinkronasi.php
- *
- */
-
-/*
- *  File ini bagian dari:
+ * File ini bagian dari:
  *
  * OpenSID
  *
@@ -21,7 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -36,15 +31,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ * @package   OpenSID
+ * @author    Tim Pengembang OpenDesa
+ * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
+ * @link      https://github.com/OpenSID/OpenSID
+ *
  */
 
+<<<<<<< HEAD
 require_once IRVAN . 'vendor/spout/src/Spout/Autoloader/autoload.php';
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 
@@ -53,7 +53,11 @@ class Sinkronisasi extends Admin_Controller
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
         $this->modul_ini = 11;
+=======
+        $this->modul_ini     = 11;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->sub_modul_ini = 326;
         $this->load->library('zip');
         $this->load->model('export_model');
@@ -63,10 +67,17 @@ class Sinkronisasi extends Admin_Controller
     public function index()
     {
         $data = [
+<<<<<<< HEAD
             'kirim_data' => ['Penduduk']
         ];
 
         $this->render("$this->controller/index", $data);
+=======
+            'kirim_data' => ['Penduduk', 'Laporan Penduduk', 'Laporan APBDes'],
+        ];
+
+        $this->render("{$this->controller}/index", $data);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function sterilkan()
@@ -85,9 +96,26 @@ class Sinkronisasi extends Admin_Controller
 
         switch ($modul) {
             case 'penduduk':
+<<<<<<< HEAD
                 // Data Penduduk
                 $this->sinkronisasi_data_penduduk();
                 break;
+=======
+                // Penduduk
+                $this->sinkronisasi_data_penduduk();
+                break;
+
+            case 'laporan-penduduk':
+                // Laporan Penduduk
+                redirect('laporan_penduduk');
+                break;
+
+            case 'laporan-apbdes':
+                // Laporan APBDes
+                redirect('laporan_apbdes');
+                break;
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             default:
                 // Data Lainnya
                 break;
@@ -104,6 +132,10 @@ class Sinkronisasi extends Admin_Controller
                 $filename = $this->data_penduduk();
                 ambilBerkas($filename, null, null, LOKASI_DOKUMEN);
                 break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             default:
                 // Data Lainnya
                 break;
@@ -117,7 +149,11 @@ class Sinkronisasi extends Admin_Controller
         $writer = WriterEntityFactory::createXLSXWriter();
 
         //Nama File
+<<<<<<< HEAD
         $tgl =  date('d_m_Y');
+=======
+        $tgl    = date('d_m_Y');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $lokasi = LOKASI_DOKUMEN . 'penduduk_' . $tgl . '_opendk.xlsx';
         $writer->openToFile($lokasi);
 
@@ -158,10 +194,17 @@ class Sinkronisasi extends Admin_Controller
             ['Hamil', 'hamil'],
             ['KTP-el', 'ktp_el'],
             ['Status Rekam', 'status_rekam'],
+<<<<<<< HEAD
             ['Alamat Sekarang', 'alamat_sekarang']
         ];
         $judul = array_column($daftar_kolom, 1);
         
+=======
+            ['Alamat Sekarang', 'alamat_sekarang'],
+        ];
+        $judul = array_column($daftar_kolom, 1);
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         // Kolom tambahan khusus OpenDK
         $judul[] = 'id';
         $judul[] = 'foto';
@@ -174,8 +217,14 @@ class Sinkronisasi extends Admin_Controller
         $writer->addRow($header);
 
         $get = $this->export_model->tambah_penduduk_sinkronasi_opendk();
+<<<<<<< HEAD
         foreach ($get as $row) {
             $penduduk = array(
+=======
+
+        foreach ($get as $row) {
+            $penduduk = [
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $row->alamat,
                 $row->dusun,
                 $row->rw,
@@ -218,7 +267,11 @@ class Sinkronisasi extends Admin_Controller
                 $row->created_at,
                 $row->updated_at,
                 kode_wilayah($this->header['desa']['kode_desa']),
+<<<<<<< HEAD
             );
+=======
+            ];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
             $file_foto = LOKASI_USER_PICT . $row->foto;
             if (is_file($file_foto)) {
@@ -245,11 +298,16 @@ class Sinkronisasi extends Admin_Controller
 
         //Tambah/Ubah Data
         $curl = curl_init();
+<<<<<<< HEAD
         curl_setopt_array($curl, array(
+=======
+        curl_setopt_array($curl, [
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             CURLOPT_URL => "{$this->setting->api_opendk_server}/api/v1/penduduk/storedata",
             // Jika http gunakan url ini :
             //CURLOPT_URL => $this->setting->api_opendk_server."/api/v1/penduduk/storedata?token=".$this->setting->api_opendk_key,
             CURLOPT_RETURNTRANSFER => true,
+<<<<<<< HEAD
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
@@ -264,6 +322,22 @@ class Sinkronisasi extends Admin_Controller
         ));
 
         $response = json_decode(curl_exec($curl));
+=======
+            CURLOPT_ENCODING       => '',
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_TIMEOUT        => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST  => 'POST',
+            CURLOPT_POSTFIELDS     => ['file' => new CURLFILE(LOKASI_DOKUMEN . $filename)],
+            CURLOPT_HTTPHEADER     => [
+                'content-Type: multipart/form-data',
+                "Authorization: Bearer {$this->setting->api_opendk_key}",
+            ],
+        ]);
+
+        $response  = json_decode(curl_exec($curl));
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         curl_close($curl);
@@ -271,11 +345,16 @@ class Sinkronisasi extends Admin_Controller
 
         //Hapus Data
         $curl = curl_init();
+<<<<<<< HEAD
         curl_setopt_array($curl, array(
+=======
+        curl_setopt_array($curl, [
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             CURLOPT_URL => "{$this->setting->api_opendk_server}/api/v1/penduduk",
             // Jika http gunakan url ini :
             //CURLOPT_URL => $this->setting->api_opendk_server."/api/v1/penduduk?token=".$this->setting->api_opendk_key,
             CURLOPT_RETURNTRANSFER => true,
+<<<<<<< HEAD
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
@@ -291,22 +370,51 @@ class Sinkronisasi extends Admin_Controller
         ));
 
         $response = json_decode(curl_exec($curl));
+=======
+            CURLOPT_ENCODING       => '',
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_TIMEOUT        => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST  => 'POST',
+            CURLOPT_POSTFIELDS     => json_encode($this->export_model->hapus_penduduk_sinkronasi_opendk()),
+            CURLOPT_HTTPHEADER     => [
+                'Accept: application/json',
+                'Content-Type: application/json',
+                "Authorization: Bearer {$this->setting->api_opendk_key}",
+            ],
+        ]);
+
+        $response  = json_decode(curl_exec($curl));
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if (curl_errno($curl) || $http_code === 422) {
             $notif = [
                 'status' => 'danger',
+<<<<<<< HEAD
                 'pesan' => "<b> " . curl_error($curl) . "</b><br/>{$response->message}<br/>{$response->errors}"
+=======
+                'pesan'  => '<b> ' . curl_error($curl) . "</b><br/>{$response->message}<br/>{$response->errors}",
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             ];
         } else {
             $notif = [
                 'status' => $response->status,
+<<<<<<< HEAD
                 'pesan' => $response->message
+=======
+                'pesan'  => $response->message,
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             ];
         }
 
         curl_close($curl);
         $this->session->unset_userdata(['success', 'error_msg']);
+<<<<<<< HEAD
         $this->session->set_flashdata("notif", $notif);
+=======
+        $this->session->set_flashdata('notif', $notif);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 }

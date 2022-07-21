@@ -15,6 +15,7 @@
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
+$db['default']['port']     = 3306;
 $db['default']['database'] = 'umum';
 
 /*
@@ -22,4 +23,3 @@ $db['default']['database'] = 'umum';
 | Sesuaikan dengan ketentuan hosting
 */
 $db['default']['stricton'] = TRUE;
-?>

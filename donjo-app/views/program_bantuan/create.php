@@ -16,7 +16,7 @@
 			</div>
 			<form id="validasi" action="<?= $form_action?>" method="POST" enctype="multipart/form-data" class="form-horizontal">
 				<div class="box-body">
-					<?php $cid = @$_REQUEST["cid"]; ?>
+					<?php $cid = @$_REQUEST['cid']; ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Sasaran Program</label>
 						<div class="col-sm-3">

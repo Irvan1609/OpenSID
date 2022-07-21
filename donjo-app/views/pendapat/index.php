@@ -1,18 +1,20 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
-/**
+/*
  * File ini:
  *
  * View Modul Layanan Mandiri > Pendapat
  *
  * donjo-app/views/pendapat/index.php
- *
  */
 
-/**
- *
+/*
  * File ini bagian dari:
  *
  * OpenSID
@@ -37,12 +39,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @copyright	  Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright	  Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ *
+ * @see 	https://github.com/OpenSID/OpenSID
  */
 ?>
 
@@ -77,11 +78,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="row">
 						<div class="col-md-12">
 							<?php foreach ($list_pendapat as $key => $value) : ?>
-								<?php $key =  "pilihan_$key" ?>
+								<?php $key = "pilihan_{$key}" ?>
 								<div class="col-sm-3 col-xs-6">
 									<div class="description-block border-left border-right">
 										<img src="<?= base_url(PENDAPAT . underscore(strtolower($value)) . '.png'); ?>">
-										<h5 class="description-header"><?= persen($$key/$main['total']); ?></h5>
+										<h5 class="description-header"><?= persen(${$key} / $main['total']); ?></h5>
 										<span class="description-text"><?= $value; ?></span>
 									</div>
 								</div>
@@ -152,7 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					categories: [
 					<?php foreach ($list_pendapat as $key => $value): ?>
 						['<?= $value; ?>', ],
-					<?php endforeach;?>
+					<?php endforeach; ?>
 					]
 				},
 				yAxis: {
@@ -178,8 +179,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					border:1,
 					data: [
 					<?php foreach ($list_pendapat as $key => $value): ?>
+<<<<<<< HEAD
 						<?php $jml =  "pilihan_$key"; ?>
 						['<?= $key; ?>', <?= $$jml; ?>],
+=======
+						<?php $jml = "pilihan_{$key}"; ?>
+						['<?= $key; ?>', <?= ${$jml}; ?>],
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 					<?php endforeach; ?>
 					]
 				}]

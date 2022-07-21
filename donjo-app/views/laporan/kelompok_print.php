@@ -37,7 +37,7 @@
 						<tr>
 							<td>Laporan Bulan</td>
 							<td width="3%">:</td>
-							<?php $bln = date("m");?>
+							<?php $bln = date('m'); ?>
 							<td><?= $bln?> </td>
 							<td width="40%"></td>
 						</tr>
@@ -56,7 +56,7 @@
 				<br>
 				<table class="border thick">
 					<thead>
-						<?php if ($_SESSION['dusun']!=''): ?>
+						<?php if ($_SESSION['dusun'] != ''): ?>
 							<tr>
 								<h3>DATA PILAH <?= strtoupper($this->setting->sebutan_dusun)?> <?= $_SESSION['dusun'] ?></h3>
 							</tr>
@@ -86,6 +86,7 @@
 					</thead>
 					<tbody>
 						<?php
+<<<<<<< HEAD
                             $bayi=0;
 		$balita=0;
 		$sd=0;
@@ -97,6 +98,19 @@
 		$sakit_P=0;
 		$hamil=0;
 		?>
+=======
+                            $bayi    = 0;
+                            $balita  = 0;
+                            $sd      = 0;
+                            $smp     = 0;
+                            $sma     = 0;
+                            $lansia  = 0;
+                            $cacat   = 0;
+                            $sakit_L = 0;
+                            $sakit_P = 0;
+                            $hamil   = 0;
+                        ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 						<?php foreach ($main as $data): ?>
 							<tr>
 								<td align="right"><?= $data['dusunnya']?></td>
@@ -115,6 +129,7 @@
 								<td align="right"><?= $data['sakit_P']?></td>
 								<td align="right"><?= $data['hamil']?></td>
 								<?php
+<<<<<<< HEAD
 		            $bayi=$bayi+$data['bayi'];
 						    $balita=$balita+$data['balita'];
 						    $sd=$sd+$data['sd'];
@@ -126,6 +141,19 @@
 						    $sakit_P=$sakit_P+$data['sakit_P'];
 						    $hamil=$hamil+$data['hamil'];
 						    ?>
+=======
+                                    $bayi    = $bayi + $data['bayi'];
+                                    $balita  = $balita + $data['balita'];
+                                    $sd      = $sd + $data['sd'];
+                                    $smp     = $smp + $data['smp'];
+                                    $sma     = $sma + $data['sma'];
+                                    $lansia  = $lansia + $data['lansia'];
+                                    $cacat   = $cacat + $data['cacat'];
+                                    $sakit_L = $sakit_L + $data['sakit_L'];
+                                    $sakit_P = $sakit_P + $data['sakit_P'];
+                                    $hamil   = $hamil + $data['hamil'];
+                                ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -133,16 +161,16 @@
 					<thead>
 						<tr>
 							<th colspan="5" align="center"><div align="center">Total</div></th>
-							<th><div align="right"><?= $bayi;?></div></th>
-							<th><div align="right"><?= $balita;?></div></th>
-							<th><div align="right"><?= $sd;?></div></th>
-							<th><div align="right"><?= $smp;?></div></th>
-							<th><div align="right"><?= $sma;?></div></th>
-							<th><div align="right"><?= $lansia;?></div></th>
-							<th><div align="right"><?= $cacat;?></div></th>
-							<th><div align="right"><?= $sakit_L;?></div></th>
-							<th><div align="right"><?= $sakit_P;?></div></th>
-							<th><div align="right"><?= $hamil;?></div></th>
+							<th><div align="right"><?= $bayi; ?></div></th>
+							<th><div align="right"><?= $balita; ?></div></th>
+							<th><div align="right"><?= $sd; ?></div></th>
+							<th><div align="right"><?= $smp; ?></div></th>
+							<th><div align="right"><?= $sma; ?></div></th>
+							<th><div align="right"><?= $lansia; ?></div></th>
+							<th><div align="right"><?= $cacat; ?></div></th>
+							<th><div align="right"><?= $sakit_L; ?></div></th>
+							<th><div align="right"><?= $sakit_P; ?></div></th>
+							<th><div align="right"><?= $hamil; ?></div></th>
 						</tr>
 					</thead>
 				</table>
@@ -151,7 +179,7 @@
 				<p>&nbsp;</p>
     	</div>
 		</div>
-   	<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date("Y m d"))?>
+   	<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 	</div>
 
 </body></html>

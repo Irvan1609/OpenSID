@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
+=======
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 <?php defined('THEME_VERSION') or define('THEME_VERSION', 'v4.5') ?>
 <?php $desa_title =  ucwords($this->setting->sebutan_desa) . ' '. $desa['nama_desa'] . ' '. ucwords($this->setting->sebutan_kecamatan) . ' '. $desa['nama_kecamatan'] . ' '. ucwords($this->setting->sebutan_kabupaten) . ' '. $desa['nama_kabupaten']; ?>
 
@@ -24,6 +29,7 @@
 
 <?php	$favicon = LOKASI_LOGO_DESA . 'favicon.ico'; ?>
 <link rel="shortcut icon" href="<?= base_url(is_file($favicon) ? $favicon : 'favicon.ico') ?>"/>
+<<<<<<< HEAD
 <link rel="stylesheet" href="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/assets/css/bootstrap.min.css"); ?>">
 <link rel="stylesheet" href="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/assets/css/font-awesome.min.css"); ?>">
 <link rel="stylesheet" href="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/assets/css/animate.css"); ?>">
@@ -33,13 +39,29 @@
 <link rel="stylesheet" href="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/assets/css/custom.css"); ?>">
 <link rel='stylesheet' href="<?= base_url(IRVAN . 'assets/css/font-awesome.min.css'); ?>"/>
 <link rel="stylesheet" href="<?= base_url(IRVAN . 'assets/css/leaflet.css'); ?>"/>
+=======
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/bootstrap.min.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/font-awesome.min.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/animate.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/slick.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/theme.min.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/style.min.css"); ?>">
+<link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/custom.css"); ?>">
+<link rel='stylesheet' href="<?= base_url('assets/css/font-awesome.min.css'); ?>"/>
+<link rel="stylesheet" href="<?= base_url('assets/css/leaflet.css'); ?>"/>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
 <link rel="stylesheet" href="<?= base_url(IRVAN . 'assets/css/mapbox-gl.css'); ?>"/>
 <link rel="stylesheet" href="<?= base_url(IRVAN . 'assets/css/peta.css'); ?>">
 <link rel="stylesheet" href="<?= base_url(IRVAN . 'assets/bootstrap/css/dataTables.bootstrap.min.css'); ?>">
 
+<<<<<<< HEAD
 <?php if (isset($single_artikel)): ?>
 	<meta property="og:title" content="<?= htmlspecialchars($single_artikel["judul"]);?>"/>
+=======
+<?php if(isset($single_artikel)): ?>
+	<meta property="og:title" content="<?= htmlspecialchars($single_artikel["judul"]); ?>"/>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 	<meta property="og:url" content="<?= site_url('artikel/'.buat_slug($single_artikel))?>"/>
 	<meta property="og:image" content="<?= base_url(''); ?><?= LOKASI_FOTO_ARTIKEL?>sedang_<?= $single_artikel['gambar'];?>"/>
 	<meta property="og:description" content="<?= potong_teks($single_artikel['isi'], 300)?> ..."/>

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <?php if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 } ?>
+=======
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 <?php if (config_item('kode_kota')): ?>
 
 	<script>

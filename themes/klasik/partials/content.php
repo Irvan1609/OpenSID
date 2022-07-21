@@ -77,9 +77,8 @@
 				</ul>
 			</div>
 
-		<!--
-			Pengaturan halaman
-		-->
+		<?php $this->load->view("$folder_themes/commons/page"); ?>
+			
 		<?php else: ?>
 			<div class="artikel" id="artikel-blank">
 				<div class="box box-warning box-solid">
@@ -92,6 +91,7 @@
 			</div>
 		<?php endif; ?>
 	</div>
+<<<<<<< HEAD
 
 	<?php if ($artikel and $paging->num_rows > $paging->per_page): ?>
 		<div class="box-footer">
@@ -119,4 +119,6 @@
 			</ul>
 		</div>
 	<?php endif; ?>
+=======
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 </div>

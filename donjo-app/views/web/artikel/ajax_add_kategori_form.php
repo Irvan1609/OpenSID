@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
 <script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <form action="<?=$form_action?>" method="post" id="validasi">
+=======
+<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<form action="<?= $form_action?>" method="post" id="validasi">
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 	<div class='modal-body'>
 		<div class="row">
 			<div class="col-sm-12">

@@ -3,8 +3,13 @@
 	<head>
 		<title>Data Penduduk</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
+=======
+		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<?php if (is_file(LOKASI_LOGO_DESA . 'favicon.ico')): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
 			<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
@@ -82,7 +87,7 @@
 				</table>
 			</div>
 			<br>
-			<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date("Y m d"))?>
+			<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 		</div>
 	</body>
 </html>

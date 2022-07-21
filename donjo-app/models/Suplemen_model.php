@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
@@ -12,6 +13,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
  */
 
 /**
+=======
+/*
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
  *
  * File ini bagian dari:
  *
@@ -22,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -37,20 +41,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ * @package   OpenSID
+ * @author    Tim Pengembang OpenDesa
+ * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
+ * @link      https://github.com/OpenSID/OpenSID
+ *
  */
 
+<<<<<<< HEAD
 require_once IRVAN . 'vendor/spout/src/Spout/Autoloader/autoload.php';
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
+use Box\Spout\Common\Entity\Style\Border;
+use Box\Spout\Common\Entity\Style\Color;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
-use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
-use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Writer\Common\Creator\Style\BorderBuilder;
+<<<<<<< HEAD
 use Box\Spout\Common\Entity\Style\Color;
 use Box\Spout\Common\Entity\Row;
 use Box\Spout\Common\Entity\Style\Border;
@@ -67,16 +77,42 @@ class Suplemen_model extends MY_Model
         $data = $this->validasi($this->input->post());
         $hasil = $this->db->insert('suplemen', $data);
         $_SESSION["success"] = $hasil ? 1 : -1;
+=======
+use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
+use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
+
+class Suplemen_model extends MY_Model
+{
+    protected $table = 'suplemen';
+
+    public function create()
+    {
+        $data  = $this->validasi($this->input->post());
+        $hasil = $this->db->insert($this->table, $data);
+
+        status_sukses($hasil); //Tampilkan Pesan
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     private function validasi($post)
     {
+<<<<<<< HEAD
         $data = [];
         // Ambil dan bersihkan data input
         $data['sasaran'] = $post['sasaran'];
         $data['nama'] = nomor_surat_keputusan($post['nama']);
         $data['keterangan'] = htmlentities($post['keterangan']);
         return $data;
+=======
+        $nama = nomor_surat_keputusan($post['nama']);
+
+        return [
+            'sasaran'    => $post['sasaran'],
+            'nama'       => $nama,
+            'slug'       => unique_slug($this->table, $nama),
+            'keterangan' => htmlentities($post['keterangan']),
+        ];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function paging_suplemen($page_number = 1)
@@ -84,7 +120,11 @@ class Suplemen_model extends MY_Model
         $this->db->select('COUNT(DISTINCT s.id) AS jml');
         $this->list_data_sql();
 
+<<<<<<< HEAD
         $row = $this->db->get()->row_array();
+=======
+        $row      = $this->db->get()->row_array();
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $jml_data = $row['jml'];
 
         return $this->paginasi($page_number, $jml_data);
@@ -100,7 +140,11 @@ class Suplemen_model extends MY_Model
 
         $this->db
             ->from('suplemen s')
+<<<<<<< HEAD
             ->join('suplemen_terdata st', "s.id = st.id_suplemen", 'left');
+=======
+            ->join('suplemen_terdata st', 's.id = st.id_suplemen', 'left');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $this->search_sql();
     }
@@ -124,10 +168,15 @@ class Suplemen_model extends MY_Model
     public function list_sasaran($id, $sasaran)
     {
         $data = [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         switch ($sasaran) {
             // Sasaran Penduduk
             case '1':
                 $data['judul'] = 'NIK / Nama Penduduk';
+<<<<<<< HEAD
                 $data['data'] = $this->list_penduduk($id);
                 break;
 
@@ -139,6 +188,19 @@ class Suplemen_model extends MY_Model
                 // no break
             default:
                 # code...
+=======
+                $data['data']  = $this->list_penduduk($id);
+                break;
+
+            // Sasaran Keluarga
+            case '2':
+                $data['judul'] = 'No.KK / Nama Kepala Keluarga';
+                $data['data']  = $this->list_kk($id);
+
+                // no break
+            default:
+                // code...
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 break;
         }
 
@@ -163,7 +225,11 @@ class Suplemen_model extends MY_Model
         // Penduduk yang sudah terdata untuk suplemen ini
         $terdata = $this->get_id_terdata_penduduk($id);
         if ($terdata) {
+<<<<<<< HEAD
             $this->db->where("p.id NOT IN ($terdata)");
+=======
+            $this->db->where("p.id NOT IN ({$terdata})");
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         $data = $this->db->select('p.id as id, p.nik as nik, p.nama, w.rt, w.rw, w.dusun')
@@ -173,6 +239,7 @@ class Suplemen_model extends MY_Model
             ->result_array();
 
         $hasil = [];
+<<<<<<< HEAD
         foreach ($data as $item) {
             $penduduk = array(
                 'id' => $item['id'],
@@ -181,6 +248,18 @@ class Suplemen_model extends MY_Model
             );
             $hasil[] = $penduduk;
         }
+=======
+
+        foreach ($data as $item) {
+            $penduduk = [
+                'id'   => $item['id'],
+                'nama' => strtoupper($item['nama']) . ' [' . $item['nik'] . ']',
+                'info' => 'RT/RW ' . $item['rt'] . '/' . $item['rw'] . ' - ' . strtoupper($item['dusun']),
+            ];
+            $hasil[] = $penduduk;
+        }
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         return $hasil;
     }
 
@@ -202,7 +281,11 @@ class Suplemen_model extends MY_Model
         // Keluarga yang sudah terdata untuk suplemen ini
         $terdata = $this->get_id_terdata_kk($id);
         if ($terdata) {
+<<<<<<< HEAD
             $this->db->where("k.id NOT IN ($terdata)");
+=======
+            $this->db->where("k.id NOT IN ({$terdata})");
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         // Daftar keluarga, tidak termasuk keluarga yang sudah terdata
@@ -214,6 +297,7 @@ class Suplemen_model extends MY_Model
             ->result_array();
 
         $hasil = [];
+<<<<<<< HEAD
         foreach ($data as $item) {
             $item['id'] = preg_replace('/[^a-zA-Z0-9]/', '', $item['id']); //hapus non_alpha di no_kk
             $kk = array(
@@ -223,46 +307,85 @@ class Suplemen_model extends MY_Model
             );
             $hasil[] = $kk;
         }
+=======
+
+        foreach ($data as $item) {
+            $item['id'] = preg_replace('/[^a-zA-Z0-9]/', '', $item['id']); //hapus non_alpha di no_kk
+            $kk         = [
+                'id'   => $item['id'],
+                'nama' => strtoupper($item['nama']) . ' [' . $item['no_kk'] . ']',
+                'info' => 'RT/RW ' . $item['rt'] . '/' . $item['rw'] . ' - ' . strtoupper($item['dusun']),
+            ];
+            $hasil[] = $kk;
+        }
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         return $hasil;
     }
 
     public function get_suplemen($id)
     {
+<<<<<<< HEAD
         $data = $this->db
             ->select('s.*')
             ->select('COUNT(st.id) AS jml')
             ->from('suplemen s')
             ->join('suplemen_terdata st', "s.id = st.id_suplemen", 'left')
+=======
+        return $this->db
+            ->select('s.*')
+            ->select('COUNT(st.id) AS jml')
+            ->from('suplemen s')
+            ->join('suplemen_terdata st', 's.id = st.id_suplemen', 'left')
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             ->where('s.id', $id)
             ->group_by('s.id')
             ->get()
             ->row_array();
+<<<<<<< HEAD
 
         return $data;
+=======
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function get_rincian($p, $suplemen_id)
     {
+<<<<<<< HEAD
         $suplemen = $this->db->where('id', $suplemen_id)->get('suplemen')->row_array();
+=======
+        $suplemen = $this->db->where('id', $suplemen_id)->get($this->table)->row_array();
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         switch ($suplemen['sasaran']) {
             // Sasaran Penduduk
             case '1':
+<<<<<<< HEAD
                 $data = $this->get_penduduk_terdata($suplemen_id, $p);
+=======
+                $data                                = $this->get_penduduk_terdata($suplemen_id, $p);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $data['judul']['judul_terdata_info'] = 'No. KK';
                 $data['judul']['judul_terdata_plus'] = 'NIK Penduduk';
                 $data['judul']['judul_terdata_nama'] = 'Nama Penduduk';
                 break;
 
+<<<<<<< HEAD
                 // Sasaran Keluarga
             case '2':
                 $data = $this->get_kk_terdata($suplemen_id, $p);
+=======
+            // Sasaran Keluarga
+            case '2':
+                $data                                = $this->get_kk_terdata($suplemen_id, $p);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $data['judul']['judul_terdata_info'] = 'NIK KK';
                 $data['judul']['judul_terdata_plus'] = 'No. KK';
                 $data['judul']['judul_terdata_nama'] = 'Kepala Keluarga';
 
                 break;
 
+<<<<<<< HEAD
                 // Sasaran X
             default:
                 # code...
@@ -271,6 +394,16 @@ class Suplemen_model extends MY_Model
 
         $data['suplemen'] = $suplemen;
         $data['keyword'] = $this->autocomplete($suplemen['sasaran']);
+=======
+            // Sasaran X
+            default:
+                // code...
+                break;
+        }
+
+        $data[$this->table] = $suplemen;
+        $data['keyword']    = $this->autocomplete($suplemen['sasaran']);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         return $data;
     }
@@ -283,10 +416,18 @@ class Suplemen_model extends MY_Model
             ->row()->jumlah;
 
         $this->load->library('paging');
+<<<<<<< HEAD
         $cfg['page'] = $p;
         $cfg['per_page'] = $this->session->per_page;
         $cfg['num_rows'] = $jml_data;
         $this->paging->init($cfg);
+=======
+        $cfg['page']     = $p;
+        $cfg['per_page'] = $this->session->per_page;
+        $cfg['num_rows'] = $jml_data;
+        $this->paging->init($cfg);
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         return $this->paging;
     }
 
@@ -301,14 +442,23 @@ class Suplemen_model extends MY_Model
             ->where('s.id_suplemen', $suplemen_id);
     }
 
+<<<<<<< HEAD
     public function get_penduduk_terdata($suplemen_id, $p=0)
+=======
+    public function get_penduduk_terdata($suplemen_id, $p = 0)
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     {
         $hasil = [];
         // Paging
         if (! empty($this->session->per_page) && $this->session->per_page > 0) {
             $this->get_penduduk_terdata_sql($suplemen_id);
+<<<<<<< HEAD
             $hasil["paging"] = $this->paging($p);
             $this->db->limit($hasil["paging"]->per_page, $hasil["paging"]->offset);
+=======
+            $hasil['paging'] = $this->paging($p);
+            $this->db->limit($hasil['paging']->per_page, $hasil['paging']->offset);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         $this->get_penduduk_terdata_sql($suplemen_id);
@@ -320,6 +470,7 @@ class Suplemen_model extends MY_Model
 
         if ($query->num_rows() > 0) {
             $data = $query->result_array();
+<<<<<<< HEAD
             for ($i=0; $i<count($data); $i++) {
                 $data[$i]['terdata_info'] = $data[$i]['no_kk'];
                 $data[$i]['terdata_plus'] = $data[$i]['nik'];
@@ -328,6 +479,17 @@ class Suplemen_model extends MY_Model
                 $data[$i]['tanggal_lahir'] = tgl_indo($data[$i]['tanggallahir']);
                 $data[$i]['sex'] = ($data[$i]['sex'] == 1) ? "LAKI-LAKI" : "PEREMPUAN";
                 $data[$i]['info'] = strtoupper($data[$i]['alamat'] . " "  .  "RT/RW ". $data[$i]['rt']."/".$data[$i]['rw'] . " - " . $this->setting->sebutan_dusun . " " . $data[$i]['dusun']);
+=======
+
+            for ($i = 0; $i < count($data); $i++) {
+                $data[$i]['terdata_info']  = $data[$i]['no_kk'];
+                $data[$i]['terdata_plus']  = $data[$i]['nik'];
+                $data[$i]['terdata_nama']  = strtoupper($data[$i]['nama']);
+                $data[$i]['tempat_lahir']  = strtoupper($data[$i]['tempatlahir']);
+                $data[$i]['tanggal_lahir'] = tgl_indo($data[$i]['tanggallahir']);
+                $data[$i]['sex']           = ($data[$i]['sex'] == 1) ? 'LAKI-LAKI' : 'PEREMPUAN';
+                $data[$i]['info']          = strtoupper($data[$i]['alamat'] . ' ' . 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . $this->setting->sebutan_dusun . ' ' . $data[$i]['dusun']);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             }
             $hasil['terdata'] = $data;
         }
@@ -337,7 +499,11 @@ class Suplemen_model extends MY_Model
 
     private function get_kk_terdata_sql($suplemen_id)
     {
+<<<<<<< HEAD
         # Data KK
+=======
+        // Data KK
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->db
             ->from('suplemen_terdata s')
             ->join('tweb_keluarga o', 's.id_terdata = o.id', 'left')
@@ -346,15 +512,24 @@ class Suplemen_model extends MY_Model
             ->where('s.id_suplemen', $suplemen_id);
     }
 
+<<<<<<< HEAD
 
     public function get_kk_terdata($suplemen_id, $p=0)
+=======
+    public function get_kk_terdata($suplemen_id, $p = 0)
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     {
         $hasil = [];
         // Paging
         if (! empty($this->session->per_page) && $this->session->per_page > 0) {
             $this->get_kk_terdata_sql($suplemen_id);
+<<<<<<< HEAD
             $hasil["paging"] = $this->paging($p);
             $this->db->limit($hasil["paging"]->per_page, $hasil["paging"]->offset);
+=======
+            $hasil['paging'] = $this->paging($p);
+            $this->db->limit($hasil['paging']->per_page, $hasil['paging']->offset);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         $this->get_kk_terdata_sql($suplemen_id);
@@ -365,6 +540,7 @@ class Suplemen_model extends MY_Model
 
         if ($query->num_rows() > 0) {
             $data = $query->result_array();
+<<<<<<< HEAD
             for ($i=0; $i<count($data); $i++) {
                 $data[$i]['terdata_info'] = $data[$i]['nik'];
                 $data[$i]['terdata_plus'] = $data[$i]['no_kk'];
@@ -385,6 +561,29 @@ class Suplemen_model extends MY_Model
     public function get_terdata($id_terdata, $sasaran)
     {
         $this->load->model('surat_model');
+=======
+
+            for ($i = 0; $i < count($data); $i++) {
+                $data[$i]['terdata_info']  = $data[$i]['nik'];
+                $data[$i]['terdata_plus']  = $data[$i]['no_kk'];
+                $data[$i]['terdata_nama']  = strtoupper($data[$i]['nama']);
+                $data[$i]['tempat_lahir']  = strtoupper($data[$i]['tempatlahir']);
+                $data[$i]['tanggal_lahir'] = tgl_indo($data[$i]['tanggallahir']);
+                $data[$i]['sex']           = ($data[$i]['sex'] == 1) ? 'LAKI-LAKI' : 'PEREMPUAN';
+                $data[$i]['info']          = strtoupper($data[$i]['alamat'] . ' ' . 'RT/RW ' . $data[$i]['rt'] . '/' . $data[$i]['rw'] . ' - ' . $this->setting->sebutan_dusun . ' ' . $data[$i]['dusun']);
+            }
+            $hasil['terdata'] = $data;
+        }
+
+        return $hasil;
+    }
+
+    // Mengambil data individu terdata
+    public function get_terdata($id_terdata, $sasaran)
+    {
+        $this->load->model('surat_model');
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         switch ($sasaran) {
             // Sasaran Penduduk
             case 1:
@@ -404,6 +603,7 @@ class Suplemen_model extends MY_Model
 				left join tweb_keluarga k on u.id_kk = k.id
 				left join tweb_penduduk_warganegara f on u.warganegara_id = f.id
 				WHERE u.id = ?";
+<<<<<<< HEAD
                 $query = $this->db->query($sql, $id_terdata);
                 $data  = $query->row_array();
                 $data['terdata_info'] = $data['nik'];
@@ -419,11 +619,32 @@ class Suplemen_model extends MY_Model
                 $data['terdata_plus'] = $data['no_kk'];
                 $data['terdata_nama'] = $data['nama'];
                 $data['id'] = $data['id_kk']; // id_kk digunakan sebagai id terdata
+=======
+                $query                  = $this->db->query($sql, $id_terdata);
+                $data                   = $query->row_array();
+                $data['terdata_info']   = $data['nik'];
+                $data['terdata_plus']   = $data['no_kk'];
+                $data['terdata_nama']   = $data['nama'];
+                $data['alamat_wilayah'] = $this->surat_model->get_alamat_wilayah($data);
+                break;
+
+            // Sasaran Keluarga
+            case 2:
+                $data                 = $this->keluarga_model->get_kepala_kk($id_terdata);
+                $data['terdata_info'] = $data['nik'];
+                $data['terdata_plus'] = $data['no_kk'];
+                $data['terdata_nama'] = $data['nama'];
+                $data['id']           = $data['id_kk']; // id_kk digunakan sebagai id terdata
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 break;
 
             default:
                 break;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         return $data;
     }
 
@@ -432,19 +653,33 @@ class Suplemen_model extends MY_Model
         $ada = $this->db->where('id_suplemen', $id)
             ->get('suplemen_terdata')->num_rows();
         if ($ada) {
+<<<<<<< HEAD
             $this->session->success = '-1';
             $this->session->error_msg = ' --> Tidak bisa dihapus, karena masih digunakan';
             return;
         }
         $hasil = $this->db->where('id', $id)->delete('suplemen');
+=======
+            $this->session->success   = '-1';
+            $this->session->error_msg = ' --> Tidak bisa dihapus, karena masih digunakan';
+
+            return;
+        }
+        $hasil = $this->db->where('id', $id)->delete($this->table);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         status_sukses($hasil); //Tampilkan Pesan
     }
 
     public function update($id)
     {
+<<<<<<< HEAD
         $data = $this->validasi($this->input->post());
         $hasil = $this->db->where('id', $id)->update('suplemen', $data);
+=======
+        $data  = $this->validasi($this->input->post());
+        $hasil = $this->db->where('id', $id)->update($this->table, $data);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         status_sukses($hasil); //Tampilkan Pesan
     }
@@ -452,6 +687,7 @@ class Suplemen_model extends MY_Model
     public function add_terdata($post, $id)
     {
         $id_terdata = $post['id_terdata'];
+<<<<<<< HEAD
         $sasaran = $this->db->select('sasaran')->where('id', $id)->get('suplemen')->row()->sasaran;
         $hasil = $this->db->where('id_suplemen', $id)->where('id_terdata', $id_terdata)->get('suplemen_terdata');
         if ($hasil->num_rows() > 0) {
@@ -465,6 +701,22 @@ class Suplemen_model extends MY_Model
             );
             return $this->db->insert('suplemen_terdata', $data);
         }
+=======
+        $sasaran    = $this->db->select('sasaran')->where('id', $id)->get($this->table)->row()->sasaran;
+        $hasil      = $this->db->where('id_suplemen', $id)->where('id_terdata', $id_terdata)->get('suplemen_terdata');
+        if ($hasil->num_rows() > 0) {
+            return false;
+        }
+
+        $data = [
+            'id_suplemen' => $id,
+            'id_terdata'  => $id_terdata,
+            'sasaran'     => $sasaran,
+            'keterangan'  => substr(htmlentities($post['keterangan']), 0, 100), // Batasi 100 karakter
+        ];
+
+        return $this->db->insert('suplemen_terdata', $data);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function hapus_terdata($id_terdata)
@@ -481,18 +733,27 @@ class Suplemen_model extends MY_Model
         $this->db->update('suplemen_terdata', $data);
     }
 
+<<<<<<< HEAD
     /*
         Mengambil data individu terdata menggunakan id tabel suplemen_terdata
     */
+=======
+    // Mengambil data individu terdata menggunakan id tabel suplemen_terdata
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     public function get_suplemen_terdata_by_id($id)
     {
         $data = $this->db->where('id', $id)->get('suplemen_terdata')->row_array();
         // Data tambahan untuk ditampilkan
         $terdata = $this->get_terdata($data['id_terdata'], $data['sasaran']);
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         switch ($data['sasaran']) {
             case 1:
                 $data['judul_terdata_nama'] = 'NIK';
                 $data['judul_terdata_info'] = 'Nama Terdata';
+<<<<<<< HEAD
                 $data['terdata_nama'] = $terdata['nik'];
                 $data['terdata_info'] = $terdata['nama'];
                 break;
@@ -504,6 +765,21 @@ class Suplemen_model extends MY_Model
                 break;
             default:
             }
+=======
+                $data['terdata_nama']       = $terdata['nik'];
+                $data['terdata_info']       = $terdata['nama'];
+                break;
+
+            case 2:
+                $data['judul_terdata_nama'] = 'No. KK';
+                $data['judul_terdata_info'] = 'Kepala Keluarga';
+                $data['terdata_nama']       = $terdata['no_kk'];
+                $data['terdata_info']       = $terdata['nama'];
+                break;
+
+            default:
+        }
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         return $data;
     }
@@ -511,6 +787,7 @@ class Suplemen_model extends MY_Model
     public function get_terdata_suplemen($sasaran, $id_terdata)
     {
         $list_suplemen = [];
+<<<<<<< HEAD
         /*
          * Menampilkan keterlibatan $id_terdata dalam data suplemen yang ada
          *
@@ -519,6 +796,13 @@ class Suplemen_model extends MY_Model
 			FROM suplemen_terdata o
 			LEFT JOIN suplemen p ON p.id = o.id_suplemen
 			WHERE ((o.id_terdata='".$id_terdata."') AND (o.sasaran='".$sasaran."'))";
+=======
+        // Menampilkan keterlibatan $id_terdata dalam data suplemen yang ada
+        $strSQL = "SELECT p.id as id, o.id_terdata as nik, p.nama as nama, p.keterangan
+			FROM suplemen_terdata o
+			LEFT JOIN suplemen p ON p.id = o.id_suplemen
+			WHERE ((o.id_terdata='" . $id_terdata . "') AND (o.sasaran='" . $sasaran . "'))";
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $query = $this->db->query($strSQL);
         if ($query->num_rows() > 0) {
             $list_suplemen = $query->result_array();
@@ -526,14 +810,19 @@ class Suplemen_model extends MY_Model
 
         switch ($sasaran) {
             case 1:
+<<<<<<< HEAD
                 /*
                  * Rincian Penduduk
                  * */
+=======
+                // Rincian Penduduk
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $strSQL = "SELECT o.nama, o.foto, o.nik, w.rt, w.rw, w.dusun,
 				(case when (o.id_kk IS NULL or o.id_kk = 0) then o.alamat_sekarang else k.alamat end) AS alamat
 					FROM tweb_penduduk o
 					LEFT JOIN tweb_keluarga k ON k.id = o.id_kk
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id = o.id_cluster
+<<<<<<< HEAD
 					WHERE o.id = '".$id_terdata."'";
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
@@ -551,10 +840,29 @@ class Suplemen_model extends MY_Model
                 /*
                  * KK
                  * */
+=======
+					WHERE o.id = '" . $id_terdata . "'";
+                $query = $this->db->query($strSQL);
+                if ($query->num_rows() > 0) {
+                    $row         = $query->row_array();
+                    $data_profil = [
+                        'id'    => $id_terdata,
+                        'nama'  => $row['nama'] . ' - ' . $row['nik'],
+                        'ndesc' => 'Alamat: ' . $row['alamat'] . ' RT ' . strtoupper($row['rt']) . ' / RW ' . strtoupper($row['rw']) . ' ' . strtoupper($row['dusun']),
+                        'foto'  => $row['foto'],
+                    ];
+                }
+
+                break;
+
+            case 2:
+                // KK
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $strSQL = "SELECT o.nik_kepala, o.no_kk, o.alamat, p.nama, w.rt, w.rw, w.dusun
 					FROM tweb_keluarga o
 					LEFT JOIN tweb_penduduk p ON o.nik_kepala = p.id
 					LEFT JOIN tweb_wil_clusterdesa w ON w.id = p.id_cluster
+<<<<<<< HEAD
 					WHERE o.id = '".$id_terdata."'";
                 $query = $this->db->query($strSQL);
                 if ($query->num_rows() > 0) {
@@ -577,12 +885,37 @@ class Suplemen_model extends MY_Model
         } else {
             return null;
         }
+=======
+					WHERE o.id = '" . $id_terdata . "'";
+                $query = $this->db->query($strSQL);
+                if ($query->num_rows() > 0) {
+                    $row         = $query->row_array();
+                    $data_profil = [
+                        'id'    => $id_terdata,
+                        'nama'  => 'Kepala KK : ' . $row['nama'] . ', NO KK: ' . $row['no_kk'],
+                        'ndesc' => 'Alamat: ' . $row['alamat'] . ' RT ' . strtoupper($row['rt']) . ' / RW ' . strtoupper($row['rw']) . ' ' . strtoupper($row['dusun']),
+                        'foto'  => '',
+                    ];
+                }
+
+                break;
+
+            default:
+
+        }
+        if (! empty($list_suplemen)) {
+            return ['daftar_suplemen' => $list_suplemen, 'profil' => $data_profil];
+        }
+
+        return null;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     protected function search_sql($sasaran = '')
     {
         if ($this->session->cari) {
             $cari = $this->session->cari;
+<<<<<<< HEAD
             switch ($sasaran) {
                 case '1':
                     ## sasaran penduduk
@@ -601,6 +934,28 @@ class Suplemen_model extends MY_Model
                             ->or_like('o.nik_kepala', $cari)
                             ->or_like('q.nik', $cari)
                             ->or_like('q.nama ', $cari)
+=======
+
+            switch ($sasaran) {
+                case '1':
+                    //# sasaran penduduk
+                    $this->db
+                        ->group_start()
+                        ->like('o.nama', $cari)
+                        ->or_like('o.nik', $cari)
+                        ->or_like('k.no_kk', $cari)
+                        ->group_end();
+                    break;
+
+                case '2':
+                    //# sasaran keluarga / KK
+                    $this->db
+                        ->group_start()
+                        ->like('o.no_kk', $cari)
+                        ->or_like('o.nik_kepala', $cari)
+                        ->or_like('q.nik', $cari)
+                        ->or_like('q.nama ', $cari)
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         ->group_end();
                     break;
             }
@@ -611,7 +966,11 @@ class Suplemen_model extends MY_Model
     {
         switch ($sasaran) {
             case '1':
+<<<<<<< HEAD
                 ## sasaran penduduk
+=======
+                //# sasaran penduduk
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $data = $this->db
                     ->select('p.nama')
                     ->from('suplemen_terdata s')
@@ -623,7 +982,11 @@ class Suplemen_model extends MY_Model
                 break;
 
             case '2':
+<<<<<<< HEAD
                 ## sasaran keluarga / KK
+=======
+                //# sasaran keluarga / KK
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $data = $this->db
                     ->select('p.nama')
                     ->from('suplemen_terdata s')
@@ -634,6 +997,10 @@ class Suplemen_model extends MY_Model
                     ->get()
                     ->result_array();
                 break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             default:
                 break;
         }
@@ -645,8 +1012,13 @@ class Suplemen_model extends MY_Model
     {
         $data_suplemen = $this->get_rincian(0, $id);
         // print_r($data_anggota);
+<<<<<<< HEAD
         $writer = WriterEntityFactory::createXLSXWriter();
         $file_name = namafile($data_suplemen['suplemen']['nama']) . ".xlsx";
+=======
+        $writer    = WriterEntityFactory::createXLSXWriter();
+        $file_name = namafile($data_suplemen[$this->table]['nama']) . '.xlsx';
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         // $writer->openToFile($filePath);
         $writer->openToBrowser($file_name);
 
@@ -677,20 +1049,33 @@ class Suplemen_model extends MY_Model
             ->build();
 
         // Cetak Header Tabel
+<<<<<<< HEAD
         $values = ['Peserta', 'Nama', 'Tempat Lahir', 'Tanggal Lahir', 'Alamat', 'Keterangan'];
+=======
+        $values        = ['Peserta', 'Nama', 'Tempat Lahir', 'Tanggal Lahir', 'Alamat', 'Keterangan'];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $rowFromValues = WriterEntityFactory::createRowFromArray($values, $yellowBackgroundStyle);
         $writer->addRow($rowFromValues);
 
         // Cetak Data Anggota Suplemen
         $data_anggota = $data_suplemen['terdata'];
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         foreach ($data_anggota as $data) {
             $cells = [
                 WriterEntityFactory::createCell($data['nik']),
                 WriterEntityFactory::createCell(strtoupper($data['nama'])),
                 WriterEntityFactory::createCell($data['tempatlahir']),
                 WriterEntityFactory::createCell(tgl_indo_out($data['tanggallahir'])),
+<<<<<<< HEAD
                 WriterEntityFactory::createCell(strtoupper($data['alamat']." RT ".$data['rt']." / RW ".$data['rw']." ".$this->setting->sebutan_dusun." ".$data['dusun'])),
                 WriterEntityFactory::createCell(empty($data['keterangan']) ? "-" : $data['keterangan'])
+=======
+                WriterEntityFactory::createCell(strtoupper($data['alamat'] . ' RT ' . $data['rt'] . ' / RW ' . $data['rw'] . ' ' . $this->setting->sebutan_dusun . ' ' . $data['dusun'])),
+                WriterEntityFactory::createCell(empty($data['keterangan']) ? '-' : $data['keterangan']),
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             ];
 
             $singleRow = WriterEntityFactory::createRow($cells);
@@ -699,7 +1084,11 @@ class Suplemen_model extends MY_Model
         }
 
         $cells = [
+<<<<<<< HEAD
             '###', '', '', '', '', ''
+=======
+            '###', '', '', '', '', '',
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         ];
         $singleRow = WriterEntityFactory::createRowFromArray($cells);
         $writer->addRow($singleRow);
@@ -707,6 +1096,7 @@ class Suplemen_model extends MY_Model
         // Cetak Catatan
         $array_catatan = [
             [
+<<<<<<< HEAD
                 'Catatan:', '', '', '', '', ''
             ],
             [
@@ -726,12 +1116,35 @@ class Suplemen_model extends MY_Model
         $rows_catatan = array();
         foreach ($array_catatan as $catatan) {
             array_push($rows_catatan, WriterEntityFactory::createRowFromArray($catatan, $greenBackgroundStyle));
+=======
+                'Catatan:', '', '', '', '', '',
+            ],
+            [
+                '1. Sesuaikan kolom peserta (A) berdasarkan sasaran : - penduduk = nik, - keluarga = no. kk', '', '', '', '', '',
+            ],
+            [
+                '2. Kolom Peserta (A)  wajib di isi', '', '', '', '', '',
+            ],
+            [
+                '3. Kolom (B, C, D, E) diambil dari database kependudukan', '', '', '', '', '',
+            ],
+            [
+                '4. Kolom (F) opsional', '', '', '', '', '',
+            ],
+        ];
+
+        $rows_catatan = [];
+
+        foreach ($array_catatan as $catatan) {
+            $rows_catatan[] = WriterEntityFactory::createRowFromArray($catatan, $greenBackgroundStyle);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
         $writer->addRows($rows_catatan);
 
         $writer->close();
     }
 
+<<<<<<< HEAD
     public function impor()
     {
         $this->load->library('upload');
@@ -739,11 +1152,21 @@ class Suplemen_model extends MY_Model
         $config['upload_path']		= LOKASI_DOKUMEN;
         $config['allowed_types']	= 'xls|xlsx|xlsm';
         $config['file_name']		= namafile('Impor Peserta Data Suplemen');
+=======
+    public function impor($suplemen_id)
+    {
+        $this->load->library('upload');
+
+        $config['upload_path']   = LOKASI_DOKUMEN;
+        $config['allowed_types'] = 'xls|xlsx|xlsm';
+        $config['file_name']     = namafile('Impor Peserta Data Suplemen');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $this->upload->initialize($config);
 
         if (! $this->upload->do_upload('userfile')) {
             $this->session->error_msg = $this->upload->display_errors();
+<<<<<<< HEAD
             $this->session->success = -1;
             return;
         }
@@ -758,10 +1181,24 @@ class Suplemen_model extends MY_Model
 
         $upload = $this->upload->data();
         $file = LOKASI_DOKUMEN . $upload['file_name'];
+=======
+            $this->session->success   = -1;
+
+            return;
+        }
+
+        // Data Suplemen
+        $temp                    = $this->session->per_page;
+        $this->session->per_page = 1000000000;
+
+        $upload = $this->upload->data();
+        $file   = LOKASI_DOKUMEN . $upload['file_name'];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $reader = ReaderEntityFactory::createXLSXReader();
         $reader->open($file);
 
+<<<<<<< HEAD
         $data_suplemen = [];
         $data_peserta = [];
         $data_diubah = '';
@@ -771,12 +1208,22 @@ class Suplemen_model extends MY_Model
             $no_gagal = 0;
             $no_sukses = 0;
             $pesan ='';
+=======
+        $data_peserta = [];
+
+        foreach ($reader->getSheetIterator() as $sheet) {
+            $no_baris  = 0;
+            $no_gagal  = 0;
+            $no_sukses = 0;
+            $pesan     = '';
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
             $field = ['id', 'nama', 'sasaran', 'keterangan'];
 
             // // Sheet Program
             if ($sheet->getName() == 'Peserta') {
                 $suplemen_record = $this->get_suplemen($suplemen_id);
+<<<<<<< HEAD
                 $sasaran = $suplemen_record['sasaran'];
 
                 if ($sasaran == '1') {
@@ -790,12 +1237,27 @@ class Suplemen_model extends MY_Model
                 if ($kosongkan_peserta == 1) {
                     $pesan .= "- Data peserta " . ($field['nama']) . " sukses dikosongkan<br>";
                     $terdaftar_peserta = null;
+=======
+                $sasaran         = $suplemen_record['sasaran'];
+
+                if ($sasaran == '1') {
+                    $ambil_peserta     = $this->get_penduduk_terdata($suplemen_id);
+                    $terdaftar_peserta = array_column($ambil_peserta['terdata'], 'nik');
+                } elseif ($sasaran == '2') {
+                    $ambil_peserta     = $this->get_kk_terdata($suplemen_id);
+                    $terdaftar_peserta = array_column($ambil_peserta['terdata'], 'no_kk');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 }
 
                 foreach ($sheet->getRowIterator() as $row) {
                     $no_baris++;
+<<<<<<< HEAD
                     $cells = $row->getCells();
                     $peserta = trim((string) $cells[0]);
+=======
+                    $cells   = $row->getCells();
+                    $peserta = trim((string) $cells[0]); // NIK atau No_kk sesuai sasaran
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
                     // Data terakhir
                     if ($peserta == '###') {
@@ -811,14 +1273,24 @@ class Suplemen_model extends MY_Model
                     $cek_peserta = $this->cek_peserta($peserta, $sasaran);
                     if (! in_array($peserta, $cek_peserta['valid'])) {
                         $no_gagal++;
+<<<<<<< HEAD
                         $pesan .= "- Data peserta baris <b> Ke-" . ($no_baris) . " / " . $cek_peserta['sasaran_peserta'] . " = " . $peserta . "</b> tidak ditemukan <br>";
+=======
+                        $pesan .= '- Data peserta baris <b> Ke-' . ($no_baris) . ' / ' . $cek_peserta['sasaran_peserta'] . ' = ' . $peserta . '</b> tidak ditemukan <br>';
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         continue;
                     }
 
                     $penduduk_sasaran = $this->cek_penduduk($sasaran, $peserta);
                     if (! $penduduk_sasaran['id_terdata']) {
                         $no_gagal++;
+<<<<<<< HEAD
                         $pesan .= "- Data peserta baris <b> Ke-" . ($no_baris) . " / ". $penduduk_sasaran['id_sasaran'] . " = " . $peserta . "</b> yang terdaftar tidak ditemukan <br>";
+=======
+                        $pesan .= '- Data peserta baris <b> Ke-' . ($no_baris) . ' / ' . $penduduk_sasaran['id_sasaran'] . ' = ' . $peserta . '</b> yang terdaftar tidak ditemukan <br>';
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         continue;
                     }
                     $id_terdata = $penduduk_sasaran['id_terdata'];
@@ -826,27 +1298,47 @@ class Suplemen_model extends MY_Model
                     // Cek data peserta yg akan dimpor dan yg sudah ada
                     if (in_array($peserta, $terdaftar_peserta)) {
                         $no_gagal++;
+<<<<<<< HEAD
                         $pesan .= "- Data peserta baris <b> Ke-" . ($no_baris) . "</b> sudah ada <br>";
+=======
+                        $pesan .= '- Data peserta baris <b> Ke-' . ($no_baris) . '</b> sudah ada <br>';
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                         continue;
                     }
 
                     // Simpan data peserta yg diimpor dalam bentuk array
                     $simpan = [
                         'id_suplemen' => $suplemen_id,
+<<<<<<< HEAD
                         'id_terdata' => $id_terdata,
                         'sasaran' => $sasaran,
                         'keterangan' => (string) $cells[5],
                     ];
 
                     array_push($data_peserta, $simpan);
+=======
+                        'id_terdata'  => $id_terdata,
+                        'sasaran'     => $sasaran, // Duplikasi
+                        'keterangan'  => (string) $cells[1],
+                    ];
+
+                    $data_peserta[] = $simpan;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                     $no_sukses++;
                 }
 
                 // Proses impor peserta
                 if ($no_baris <= 0) {
+<<<<<<< HEAD
                     $pesan .= "- Data peserta tidak tersedia<br>";
                 } else {
                     $this->impor_peserta($suplemen_id, $data_peserta, $kosongkan_peserta);
+=======
+                    $pesan .= '- Data peserta tidak tersedia<br>';
+                } else {
+                    $this->impor_peserta($suplemen_id, $data_peserta);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 }
             }
         }
@@ -855,10 +1347,16 @@ class Suplemen_model extends MY_Model
         unlink($file);
 
         $notif = [
+<<<<<<< HEAD
             'gagal' => $no_gagal,
             'sukses' => $no_sukses,
             'pesan' => $pesan,
             'total' => $total,
+=======
+            'gagal'  => $no_gagal,
+            'sukses' => $no_sukses,
+            'pesan'  => $pesan,
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         ];
 
         $this->session->set_flashdata('notif', $notif);
@@ -871,12 +1369,17 @@ class Suplemen_model extends MY_Model
         $terdata = [];
         if ($sasaran == '1') {
             $terdata['id_sasaran'] = 'NIK';
+<<<<<<< HEAD
             $cek_penduduk = $this->penduduk_model->get_penduduk_by_nik($peserta);
+=======
+            $cek_penduduk          = $this->penduduk_model->get_penduduk_by_nik($peserta);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             if ($cek_penduduk['id']) {
                 $terdata['id_terdata'] = $cek_penduduk['id'];
             }
         } elseif ($sasaran == '2') {
             $terdata['id_sasaran'] = 'KK';
+<<<<<<< HEAD
             $kepala_kk = $this->keluarga_model->get_kepala_kk($peserta, true);
             if ($kepala_kk['nik']) {
                 $id_terdata = $kepala_kk['id_kk'];
@@ -894,6 +1397,25 @@ class Suplemen_model extends MY_Model
         }
 
         $outp = $this->db->insert_batch('suplemen_terdata', $data_peserta);
+=======
+            $kepala_kk             = $this->keluarga_model->get_kepala_kk($peserta, true);
+            if ($kepala_kk['nik']) {
+                $terdata['id_terdata'] = $kepala_kk['id_kk'];
+            }
+        }
+
+        return $terdata;
+    }
+
+    public function impor_peserta($suplemen_id = '', $data_peserta = [])
+    {
+        $this->session->success = 1;
+
+        if ($data_peserta) {
+            $outp = $this->db->insert_batch('suplemen_terdata', $data_peserta);
+        }
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         status_sukses($outp, true);
     }
 
@@ -932,6 +1454,7 @@ class Suplemen_model extends MY_Model
                 break;
         }
 
+<<<<<<< HEAD
         $data = [
             'id' => $data[0]['id'], // untuk nik, no_kk, no_rtm, kode konversi menjadi id issue #3417
             'sasaran_peserta' => $sasaran_peserta,
@@ -939,5 +1462,21 @@ class Suplemen_model extends MY_Model
         ];
 
         return $data;
+=======
+        return [
+            'id'              => $data[0]['id'], // untuk nik, no_kk, no_rtm, kode konversi menjadi id issue #3417
+            'sasaran_peserta' => $sasaran_peserta,
+            'valid'           => array_column($data, 'no'), // untuk daftar valid anggota keluarga
+        ];
+    }
+
+    public function slug($slug = null)
+    {
+        return $this->db
+            ->select('id')
+            ->get_where($this->table, ['slug' => $slug])
+            ->row()
+            ->id;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 }

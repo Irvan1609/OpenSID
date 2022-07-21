@@ -71,10 +71,20 @@ $(document).ready(function () {
 	});
 	$('#file').change(function () {
 		$('#file_path').val($(this).val());
+<<<<<<< HEAD
 		if ($(this).val() == '') {
 			$('#' + $(this).data('submit')).attr('disabled', 'disabled');
 		} else {
 			$('#' + $(this).data('submit')).removeAttr('disabled');;
+=======
+		if ($(this).val() == '')
+		{
+			$('#'+$(this).data('submit')).attr('disabled','disabled');
+		}
+		else
+		{
+			$('#'+$(this).data('submit')).removeAttr('disabled');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 		}
 	});
 	$('#file_path').click(function () {

@@ -12,7 +12,11 @@
 							<select class="form-control input-sm required"  id="kategori" name="kategori" style="width:100%;">
 								<option option value="">-- Pilih Kategori --</option>
 								<?php foreach ($list_kategori as $kategori): ?>
+<<<<<<< HEAD
 									<option <?php if ($kategori_sekarang['id_kategori']==$kategori['id']): ?>selected<?php endif; ?> value="<?= $kategori['id']?>"><?= $kategori['judul']?></option>
+=======
+									<option <?php if ($kategori_sekarang['id_kategori'] == $kategori['id']): ?>selected<?php endif; ?> value="<?= $kategori['id']?>"><?= $kategori['judul']?></option>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 								<?php endforeach; ?>
 							</select>
 						</div>

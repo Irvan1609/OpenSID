@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php
 $CI =& get_instance();
 if (! isset($CI)) {
     $CI = new CI_Controller();
 }
+=======
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
+<?php
+    $CI = &get_instance();
+    if (! isset($CI)) {
+        $CI = new CI_Controller();
+    }
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +32,15 @@ if (! isset($CI)) {
 			<h3><i class="fa fa-warning text-danger"></i> <?= strip_tags($heading); ?></h3>
 			<?php
             error_log(strip_tags($message));
+<<<<<<< HEAD
 ?>
+=======
+            ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			<p>
 				<?= $message; ?>
 
-				Versi OpenSID <?= AmbilVersi()?>. PHP versi <?= preg_split('/-/', phpversion())[0]?>.<br><br>
+				Versi OpenSID <?= AmbilVersi()?>. PHP versi <?= preg_split('/-/', PHP_VERSION)[0]?>.<br><br>
 
 				Harap laporkan masalah ini, agar kami dapat mencarikan solusinya.
 				Untuk sementara Anda dapat kembali ke halaman <a href="<?= APP_URL ?>">awal</a>.

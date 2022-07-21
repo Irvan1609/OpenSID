@@ -5,6 +5,7 @@
 	<title>
 		<?=$this->setting->login_title
         . ' ' . ucwords($this->setting->sebutan_desa)
+<<<<<<< HEAD
         . (($header['nama_desa']) ? ' ' . $header['nama_desa']: '')
         . get_dynamic_title_page_from_path();
 		?>
@@ -15,15 +16,32 @@
 	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/login-form-elements.css" media="screen" type="text/css" />
 	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap.bar.css" media="screen" type="text/css" />
 	<?php if (is_file("desa/css/siteman.css")): ?>
+=======
+        . (($header['nama_desa']) ? ' ' . $header['nama_desa'] : '')
+        . get_dynamic_title_page_from_path();
+        ?>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/login-style.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/login-form-elements.css" media="screen" type="text/css" />
+	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap.bar.css" media="screen" type="text/css" />
+	<?php if (is_file('desa/css/siteman.css')): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 		<link type='text/css' href="<?= base_url()?>desa/css/siteman.css" rel='Stylesheet' />
 	<?php endif; ?>
-	<?php if (is_file(LOKASI_LOGO_DESA ."favicon.ico")): ?>
+	<?php if (is_file(LOKASI_LOGO_DESA . 'favicon.ico')): ?>
 		<link rel="shortcut icon" href="<?= base_url()?><?=LOKASI_LOGO_DESA?>favicon.ico" />
 	<?php else: ?>
 		<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
 	<?php endif; ?>
+<<<<<<< HEAD
 	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
 	<?php require __DIR__ .'/head_tags.php' ?>
+=======
+	<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
+	<?php require __DIR__ . '/head_tags.php' ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 </head>
 <body class="login">
 	<div class="top-content">
@@ -32,7 +50,7 @@
 				<div class="row">
 					<div class="col-sm-4 col-sm-offset-4 form-box">
 						<div class="form-top">
-							<a href="<?=site_url(); ?>"><img src="<?=gambar_desa($header['logo']);?>" alt="<?=$header['nama_desa']?>" class="img-responsive" /></a>
+							<a href="<?=site_url(); ?>"><img src="<?=gambar_desa($header['logo']); ?>" alt="<?=$header['nama_desa']?>" class="img-responsive" /></a>
 							<div class="login-footer-top"><h1><?=ucwords($this->setting->sebutan_desa)?> <?=$header['nama_desa']?></h1>
 								<h3>
 									<br /><?=$header['alamat_kantor']?><br />Kodepos <?=$header['kode_pos']?>
@@ -48,7 +66,7 @@
 							</div>
 						</div>
 						<div class="form-bottom">
-							<form action="<?=site_url("user_setting/update_password/$main[id]")?>" method="POST" id="validasi" enctype="multipart/form-data">
+							<form action="<?=site_url("user_setting/update_password/{$main['id']}")?>" method="POST" id="validasi" enctype="multipart/form-data">
 								<div class="form-group">
 									<div class="input-group">
 										<input class="form-control input-sm required" type="password" name="pass_lama" placeholder="Kata Sandi Lama" ></input>
@@ -77,7 +95,7 @@
 								<button type="submit" id="btnSubmit" class="btn btn-social btn-flat btn-info btn-sm"><i class='fa fa-check'></i>Simpan</button>
 							</form>
 							<hr/>
-							<div class="login-footer-bottom"><a href="https://github.com/OpenSID/OpenSID" target="_blank">OpenSID</a> <?= substr(AmbilVersi(), 0, 11)?></div>
+							<div class="login-footer-bottom"><a href="https://github.com/OpenSID/OpenSID" target="_blank">OpenSID</a> <?= AmbilVersi(); ?></div>
 						</div>
 					</div>
 				</div>

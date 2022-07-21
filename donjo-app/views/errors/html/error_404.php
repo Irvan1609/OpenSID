@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <?php
@@ -9,6 +10,18 @@ $CI =& get_instance();
 if (! isset($CI)) {
     $CI = new CI_Controller();
 }
+=======
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
+
+<?php $previous = 'javascript:history.go(-1)';
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        $previous = $_SERVER['HTTP_REFERER'];
+    }
+    $CI = &get_instance();
+    if (! isset($CI)) {
+        $CI = new CI_Controller();
+    }
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 ?>
 
 <!DOCTYPE html>

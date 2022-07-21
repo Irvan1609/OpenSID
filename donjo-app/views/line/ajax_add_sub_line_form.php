@@ -12,7 +12,7 @@
 					<div class="box-body">
 						<div class="form-group">
 							<label class="control-label">Nama Kategori Garis</label>
-							<input name="nama" class="form-control input-sm nomor_sk required" maxlength="100" "type="text" value="<?=$line['nama']?>"></input>
+							<input name="nama" class="form-control input-sm nomor_sk required" maxlength="100" "type="text" value="<?= $line['nama']?>"></input>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Warna</label>
@@ -20,7 +20,7 @@
 								<div class="input-group-addon input-sm">
 									<i></i>
 								</div>
-								<input type="text" id="color" name="color" class="form-control input-sm" placeholder="#FFFFFF" value="<?= $line['color']?>">
+								<input type="text" id="color" name="color" class="form-control input-sm warna" placeholder="#FFFFFF" value="<?= $line['color']?>">
 							</div>
 						</div>
 					</div>

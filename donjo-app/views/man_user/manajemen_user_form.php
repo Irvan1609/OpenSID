@@ -13,11 +13,15 @@
 				<div class="col-md-3">
 					<div class="box box-primary">
 						<div class="box-body box-profile">
+<<<<<<< HEAD
 							<?php if ($user['foto']): ?>
 								 <img class="profile-user-img img-responsive img-circle" src="<?=AmbilFoto($user['foto'])?>" alt="Pengguna">
 							<?php else: ?>
 								<img class="profile-user-img img-responsive img-circle" src="<?= base_url(IRVAN)?>assets/files/user_pict/kuser.png" alt="Pengguna">
 							<?php endif ?>
+=======
+							<img class="penduduk" src="<?= AmbilFoto($user['foto']); ?>" alt="Foto Pengguna">
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 							<br/>
 							<p class="text-center text-bold">Foto Pengguna</p>
 							<p class="text-muted text-center text-red">(Kosongkan, jika foto tidak berubah)</p>

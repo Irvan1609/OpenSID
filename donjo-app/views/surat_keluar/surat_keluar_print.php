@@ -3,8 +3,13 @@
 	<head>
 		<title>Agenda Surat Keluar</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
+=======
+		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<?php if (is_file(LOKASI_LOGO_DESA . 'favicon.ico')): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
 			<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
@@ -18,7 +23,7 @@
 					<label align="left"><?= get_identitas()?></label>
 					<h3>
 						<span>AGENDA SURAT KELUAR</span>
-						<?php if (!empty($_SESSION['filter'])): ?>
+						<?php if (! empty($_SESSION['filter'])): ?>
 							TAHUN <?= $_SESSION['filter']; ?>
 						<?php endif; ?>
 					</h3>
@@ -56,7 +61,7 @@
 						<td colspan="1">&nbsp;</td>
 						<td colspan="2">Mengetahui</td>
 						<td colspan="2">&nbsp;</td>
-						<td><?= ucwords($this->setting->sebutan_desa)?> <?= $desa['nama_desa']?>, <?= tgl_indo(date("Y m d"))?></td>
+						<td><?= ucwords($this->setting->sebutan_desa)?> <?= $desa['nama_desa']?>, <?= tgl_indo(date('Y m d'))?></td>
 					</tr>
 					<tr>
 						<td colspan="1">&nbsp;</td>

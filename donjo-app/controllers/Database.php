@@ -1,18 +1,13 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
 
+=======
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 /*
- *  File ini:
  *
- * Controller untuk modul Database
- *
- * donjo-app/controllers/Database.php
- *
- */
-
-/*
- *  File ini bagian dari:
+ * File ini bagian dari:
  *
  * OpenSID
  *
@@ -21,7 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -36,29 +31,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ * @package   OpenSID
+ * @author    Tim Pengembang OpenDesa
+ * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
+ * @link      https://github.com/OpenSID/OpenSID
+ *
  */
 
+<<<<<<< HEAD
 require_once IRVAN . 'vendor/spout/src/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Common\Entity\Row;
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+
+use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
 class Database extends Admin_Controller
 {
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
         $this->load->dbforge();
         $this->load->library('zip');
         $this->load->model(['import_model', 'export_model', 'database_model']);
 
         $this->modul_ini = 11;
+=======
+        $this->load->model(['import_model', 'export_model', 'database_model']);
+        $this->modul_ini     = 11;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->sub_modul_ini = 45;
     }
 
@@ -72,11 +79,17 @@ class Database extends Admin_Controller
         // Untuk development: menghapus session tracking. Tidak ada kaitan dengan database.
         // Di sini untuk kemudahan saja.
         // TODO: cari tempat yang lebih cocok
+<<<<<<< HEAD
         if (defined('ENVIRONMENT') and ENVIRONMENT == 'development') {
             log_message('debug', "Reset tracking");
             unset($_SESSION['track_web']);
             unset($_SESSION['track_admin']);
             unset($_SESSION['siteman_timeout']);
+=======
+        if (defined('ENVIRONMENT') && ENVIRONMENT == 'development') {
+            log_message('debug', 'Reset tracking');
+            unset($_SESSION['track_web'], $_SESSION['track_admin'], $_SESSION['siteman_timeout']);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         }
 
         $data['act_tab'] = 1;
@@ -86,8 +99,17 @@ class Database extends Admin_Controller
 
     public function import()
     {
+<<<<<<< HEAD
         $data['form_action'] = site_url("database/import_dasar");
         $data['form_action3'] = site_url("database/ppls_individu");
+=======
+        if (config_item('demo_mode')) {
+            redirect($this->controller);
+        }
+
+        $data['form_action']  = site_url('database/import_dasar');
+        $data['form_action3'] = site_url('database/ppls_individu');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $data['act_tab'] = 2;
         $data['content'] = 'import/imp';
@@ -96,7 +118,15 @@ class Database extends Admin_Controller
 
     public function import_bip()
     {
+<<<<<<< HEAD
         $data['form_action'] = site_url("database/import_data_bip");
+=======
+        if (config_item('demo_mode')) {
+            redirect($this->controller);
+        }
+
+        $data['form_action'] = site_url('database/import_data_bip');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $data['act_tab'] = 3;
         $data['content'] = 'import/bip';
@@ -105,7 +135,11 @@ class Database extends Admin_Controller
 
     public function migrasi_cri()
     {
+<<<<<<< HEAD
         $data['form_action'] = site_url("database/migrasi_db_cri");
+=======
+        $data['form_action'] = site_url('database/migrasi_db_cri');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $data['act_tab'] = 5;
         $data['content'] = 'database/migrasi_cri';
@@ -114,7 +148,11 @@ class Database extends Admin_Controller
 
     public function backup()
     {
+<<<<<<< HEAD
         $data['form_action'] = site_url("database/restore");
+=======
+        $data['form_action'] = site_url('database/restore');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $data['act_tab'] = 4;
         $data['content'] = 'database/backup';
@@ -123,24 +161,42 @@ class Database extends Admin_Controller
 
     public function kosongkan()
     {
+<<<<<<< HEAD
+=======
+        if (config_item('demo_mode')) {
+            redirect($this->controller);
+        }
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $data['act_tab'] = 6;
         $data['content'] = 'database/kosongkan';
         $this->load->view('database/database.tpl.php', $data);
     }
 
+<<<<<<< HEAD
     /*
         $opendk - tidak kosong untuk header sesuai dengan format impor OpenDK
     */
+=======
+    // $opendk - tidak kosong untuk header sesuai dengan format impor OpenDK
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     public function export_excel()
     {
         $writer = WriterEntityFactory::createXLSXWriter();
 
         //Nama File
+<<<<<<< HEAD
         $tgl =  date('d_m_Y');
         $fileName = 'penduduk_' . $tgl . '.xlsx';
         $writer->openToBrowser($fileName); // stream data directly to the browser
 
 
+=======
+        $tgl      = date('d_m_Y');
+        $fileName = 'penduduk_' . $tgl . '.xlsx';
+        $writer->openToBrowser($fileName); // stream data directly to the browser
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         //Header Tabel
         $daftar_kolom = [
             ['Alamat', 'alamat'],
@@ -180,16 +236,29 @@ class Database extends Admin_Controller
             ['Status Rekam', 'status_rekam'],
             ['Alamat Sekarang', 'alamat_sekarang'],
             ['Status Dasar', 'status_dasar'],
+<<<<<<< HEAD
         ];
 
         $judul = array_column($daftar_kolom, 0);
+=======
+            ['Suku', 'suku'],
+        ];
+
+        $judul  = array_column($daftar_kolom, 0);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $header = WriterEntityFactory::createRowFromArray($judul);
         $writer->addRow($header);
 
         //Isi Tabel
         $get = $this->export_model->export_excel();
+<<<<<<< HEAD
         foreach ($get as $row) {
             $penduduk = array(
+=======
+
+        foreach ($get as $row) {
+            $penduduk = [
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 $row->alamat,
                 $row->dusun,
                 $row->rw,
@@ -227,13 +296,21 @@ class Database extends Admin_Controller
                 $row->status_rekam,
                 $row->alamat_sekarang,
                 $row->status_dasar,
+<<<<<<< HEAD
             );
+=======
+                $row->suku,
+            ];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             $rowFromValues = WriterEntityFactory::createRowFromArray($penduduk);
             $writer->addRow($rowFromValues);
         }
         $writer->close();
+<<<<<<< HEAD
 
         redirect('database');
+=======
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function export_dasar()
@@ -260,16 +337,24 @@ class Database extends Admin_Controller
     public function migrasi_db_cri()
     {
         $this->redirect_hak_akses('u');
+<<<<<<< HEAD
         $this->session->unset_userdata('success');
         $this->session->unset_userdata('error_msg');
+=======
+        $this->session->unset_userdata(['success, error_msg']);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->database_model->migrasi_db_cri();
         redirect('database/migrasi_cri');
     }
 
     public function kosongkan_db()
     {
+<<<<<<< HEAD
         $this->redirect_hak_akses('u');
         $this->redirect_hak_akses('h', "database/kosongkan");
+=======
+        $this->redirect_hak_akses('h');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->database_model->kosongkan_db();
         redirect('database/kosongkan');
     }
@@ -288,14 +373,23 @@ class Database extends Admin_Controller
 
     public function desa_backup()
     {
+<<<<<<< HEAD
         $backup_folder = FCPATH.'desa/'; // Folder yg akan di backup
         $this->zip->read_dir($backup_folder, false);
         $this->zip->download('backup_folder_desa_'.date('Y_m_d').'.zip');
+=======
+        $this->load->library('zip');
+
+        $backup_folder = FCPATH . 'desa/'; // Folder yg akan di backup
+        $this->zip->read_dir($backup_folder, false);
+        $this->zip->download('backup_folder_desa_' . date('Y_m_d') . '.zip');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     }
 
     public function restore()
     {
         $this->redirect_hak_akses('h');
+<<<<<<< HEAD
         try {
             $this->session->success = 1;
             $this->session->error_msg = '';
@@ -303,6 +397,16 @@ class Database extends Admin_Controller
             $this->export_model->restore();
         } catch (Exception $e) {
             $this->session->success = -1;
+=======
+
+        try {
+            $this->session->success        = 1;
+            $this->session->error_msg      = '';
+            $this->session->sedang_restore = 1;
+            $this->export_model->restore();
+        } catch (Exception $e) {
+            $this->session->success   = -1;
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
             $this->session->error_msg = $e->getMessage();
         } finally {
             $this->session->sedang_restore = 0;
@@ -349,11 +453,19 @@ class Database extends Admin_Controller
 
         $this->load->library('upload');
 
+<<<<<<< HEAD
         $config['upload_path']		= LOKASI_SINKRONISASI_ZIP;
         $config['allowed_types']	= 'zip';
         $config['overwrite'] 			= true;
         //$config['max_size']				= max_upload() * 1024;
         $config['file_name']			= namafile('sinkronisasi');
+=======
+        $config['upload_path']   = LOKASI_SINKRONISASI_ZIP;
+        $config['allowed_types'] = 'zip';
+        $config['overwrite']     = true;
+        //$config['max_size']				= max_upload() * 1024;
+        $config['file_name'] = namafile('sinkronisasi');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $this->upload->initialize($config);
 

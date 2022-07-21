@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
@@ -42,7 +42,7 @@
                             <a href="<?= site_url('layanan-mandiri'); ?>" rel="noopener noreferrer" target="_blank">Layanan Mandiri</a>
                         </li>
                     </ul>
-                </li>
+                </li>                
             </ul>
 		</div>
     </div>

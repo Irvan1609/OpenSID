@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 } ?>
@@ -10,6 +11,17 @@
         	<a href="<?= site_url(); ?>first/wilayah"><img alt="Statistik Wilayah" width="30%" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/statistik_wil.png") ?>" /></a> 
             <a href="<?= site_url(); ?>first/statistik/0"><img alt="Statistik Pendidikan" width="30%" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/statistik_pend.png") ?>" /></a>
         	<a href="<?= site_url(); ?>first/statistik/1"><img alt="Statistik Pekerjaan" width="30%" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/statistik_pekerjaan.png") ?>" /></a> 
+=======
+<?php defined('BASEPATH') || exit('No direct script access allowed'); ?>
+
+<?php if (!is_null($transparansi)) $this->load->view("$folder_themes/partials/apbdesa-tema", $transparansi); ?>
+    <div class="col-md-12" align="center">
+        <h2>Statistik Desa</h2><hr>
+        <div class="col-md-6">
+        	<a href="<?= site_url(); ?>data-wilayah"><img alt="Statistik Wilayah" width="30%" src="<?= base_url("$this->theme_folder/$this->theme/images/statistik_wil.png") ?>" /></a> 
+            <a href="<?= site_url(); ?>first/statistik/0"><img alt="Statistik Pendidikan" width="30%" src="<?= base_url("$this->theme_folder/$this->theme/images/statistik_pend.png") ?>" /></a>
+        	<a href="<?= site_url(); ?>first/statistik/1"><img alt="Statistik Pekerjaan" width="30%" src="<?= base_url("$this->theme_folder/$this->theme/images/statistik_pekerjaan.png") ?>" /></a> 
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         <hr></div>
         <div class="col-md-6">
             <a href="<?= site_url(); ?>first/statistik/3"><img alt="Statistik Agama" width="30%" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/statistik_agama.png") ?>" /></a>

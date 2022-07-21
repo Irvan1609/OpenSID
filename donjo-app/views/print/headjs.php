@@ -1,17 +1,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
+<<<<<<< HEAD
 		<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/css/960.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/css/screen.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/css/print-preview.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/css/print.css" type="text/css" media="print" />
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
+=======
+		<link rel="stylesheet" href="<?= base_url()?>assets/lib/print/css/960.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?= base_url()?>assets/lib/print/css/screen.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?= base_url()?>assets/lib/print/css/print-preview.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?= base_url()?>assets/lib/print/css/print.css" type="text/css" media="print" />
+		<?php if (is_file(LOKASI_LOGO_DESA . 'favicon.ico')): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
 			<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
 		<?php endif; ?>
+<<<<<<< HEAD
 		<script src="<?= base_url(IRVAN)?>assets/css/css/jquery.tools.min.js"></script>
 		<script src="<?= base_url(IRVAN)?>assets/css/css/jquery.print-preview.js" type="text/javascript" charset="utf-8"></script>
+=======
+		<script src="<?= base_url()?>assets/lib/print/js/jquery.tools.min.js"></script>
+		<script src="<?= base_url()?>assets/lib/print/js/jquery.print-preview.js" type="text/javascript" charset="utf-8"></script>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
 		<script type="text/javascript">
 			$(function()

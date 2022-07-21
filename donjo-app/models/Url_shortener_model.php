@@ -1,17 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-/**
- * File ini:
- *
- * Model untuk modul URL-Shortener ()
- *
- * donjo-app/models/Url_shortener_model.php
- *
- */
-
-/**
+/*
  *
  * File ini bagian dari:
  *
@@ -22,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -37,110 +26,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ * @package   OpenSID
+ * @author    Tim Pengembang OpenDesa
+ * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
+ * @link      https://github.com/OpenSID/OpenSID
+ *
  */
 
-class Url_shortener_model extends CI_Model {
+defined('BASEPATH') || exit('No direct script access allowed');
 
-  public function url_pendek($url)
-  {
-    $id = $this->add_url($url);
-    $url_data = $this->get_url_by_id($id);
-    $data['url_data'] = $url_data;
-    $output = site_url('v/'.$url_data->alias);
-    return $output;
-  }
-
-  public function add_url($url)
-  {
-    $data = array(
-      'url'       => (string) $url,
-      'alias'     => (string) $this->random_code(6),
-      'created'   => date('Y-m-d H:i:s'),
-    );
-    $this->db->insert('urls', $data);
-    return $this->db->insert_id();
-  }
-
-  public function get_url_by_id($id)
-  {
-    $this->db->select('*');
-    $this->db->from('urls');
-    $this->db->where('id', (int) $id);
-    $result = $this->db->get()->row_object();
-    return (count($result) > 0) ? $result : FALSE;
-  }
-
-  public function get_url($alias)
-  {
-    $this->db->select('*');
-    $this->db->from('urls');
-    $this->db->where('alias', (string) $alias);
-    $result = $this->db->get()->row_object();
-    return (count($result) > 0) ? $result : FALSE;
-  }
-
-  public function random_code($length)
-  {
-    return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);
-  }
-
-  public function generateRandomString($length = 10)
-  {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++)
+class Url_shortener_model extends CI_Model
+{
+    public function url_pendek($url)
     {
-      $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-  }
+        $id               = $this->add_url($url);
+        $url_data         = $this->get_url_by_id($id);
+        $data['url_data'] = $url_data;
 
-  public function seeded_shuffle(array &$items, $seed = false)
-  {
-    $items = array_values($items);
-    mt_srand($seed ? $seed : time());
-    for ($i = count($items) - 1; $i > 0; $i--)
+        return site_url('v/' . $url_data->alias);
+    }
+
+    public function add_url($url)
     {
-      $j = mt_rand(0, $i);
-      list($items[$i], $items[$j]) = array($items[$j], $items[$i]);
-    }
-  }
+        $data = [
+            'url'     => (string) $url,
+            'alias'   => (string) $this->random_code(6),
+            'created' => date('Y-m-d H:i:s'),
+        ];
+        $this->db->insert('urls', $data);
 
-  public function seeded_unshuffle(array &$items, $seed)
-  {
-    $items = array_values($items);
-    mt_srand($seed);
-    $indices = [];
-    for ($i = count($items) - 1; $i > 0; $i--)
+        return $this->db->insert_id();
+    }
+
+    public function get_url_by_id($id)
     {
-      $indices[$i] = mt_rand(0, $i);
+        $this->db->select('*');
+        $this->db->from('urls');
+        $this->db->where('id', (int) $id);
+        $result = $this->db->get()->row_object();
+
+        return (count($result) > 0) ? $result : false;
     }
-    foreach (array_reverse($indices, true) as $i => $j)
+
+    public function get_url($alias)
     {
-      list($items[$i], $items[$j]) = [$items[$j], $items[$i]];
+        $this->db->select('*');
+        $this->db->from('urls');
+        $this->db->where('alias', (string) $alias);
+        $result = $this->db->get()->row_object();
+
+        return (count($result) > 0) ? $result : false;
     }
-  }
 
-  public function encode_id( $id, $seed, $length = 9)
-  {
-    $string = $id . $this->generateRandomString($length - strlen($id));
-    $arr = (str_split($string));
-    $this->seeded_shuffle($arr, $seed);
-    return implode("",$arr);
-  }
+    public function random_code($length)
+    {
+        return substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, $length);
+    }
 
-  public function decode_id( $encoded_id, $seed, $length = 6)
-  {
-    $arr = str_split($encoded_id);
-    $this->seeded_unshuffle( $arr, $seed);
-    return substr(implode("", $arr), 0, $length);
-  }
+    public function encode_id($plainText)
+    {
+        $key         = $this->config->item('encryption_url') . time();
+        $random_code = $this->random_code(20);
+        $base64      = base64_encode($random_code . ',' . $plainText . ',' . $key . ',' . $plainText);
+        $base64url   = strtr($base64, '+/=', '-  ');
 
+        return trim($base64url);
+    }
+
+    public function decode_id($plainText)
+    {
+        $base64url = strtr($plainText, '-  ', '+/=');
+        $base64    = base64_decode($base64url, true);
+        $exp       = explode(',', $base64);
+
+        return ($exp[1] != $exp[3]) ? $plainText : $exp[1];
+    }
 }

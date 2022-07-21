@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
 
 require_once IRVAN . 'vendor/google-api-php-client/vendor/autoload.php';
@@ -18,6 +19,9 @@ use GuzzleHttp\Psr7;
  */
 
 /**
+=======
+/*
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
  *
  * File ini bagian dari:
  *
@@ -28,7 +32,7 @@ use GuzzleHttp\Psr7;
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -47,23 +51,46 @@ use GuzzleHttp\Psr7;
  * @author    Tim Pengembang OpenDesa
  * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
  * @copyright Hak Cipta 2016 - 2021 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license   http://www.gnu.org/licenses/gpl.html	GPL V3
+ * @license   http://www.gnu.org/licenses/gpl.html GPL V3
  * @link      https://github.com/OpenSID/OpenSID
+ *
  */
+
+defined('BASEPATH') || exit('No direct script access allowed');
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7;
+
 class Pendaftaran_kerjasama extends Admin_Controller
 {
+<<<<<<< HEAD
 
     /** @var Client HTTP Client */
     protected $client;
+=======
+    /**
+     * @var Client HTTP Client
+     */
+    protected $client;
+
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
     protected $server;
 
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
         $this->modul_ini = 200;
         $this->sub_modul_ini = 331;
 
         $this->load->model(['setting_model', 'surat_model', 'pamong_model']);
+=======
+        $this->modul_ini     = 200;
+        $this->sub_modul_ini = 331;
+
+        $this->load->model(['surat_model', 'pamong_model']);
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         $this->client = new Client();
         $this->server = config_item('server_layanan');
     }
@@ -74,13 +101,21 @@ class Pendaftaran_kerjasama extends Admin_Controller
             $response = $this->client->get("{$this->server}/api/v1/pelanggan/terdaftar", [
                 'headers' => [
                     'X-Requested-With' => 'XMLHttpRequest',
+<<<<<<< HEAD
                     'Authorization' => "Bearer {$this->setting->layanan_opendesa_token}"
+=======
+                    'Authorization'    => "Bearer {$this->setting->layanan_opendesa_token}",
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
                 ],
                 'query' => [
                     'desa_id' => kode_wilayah($this->header['desa']['kode_desa']),
                 ],
             ])
+<<<<<<< HEAD
             ->getBody();
+=======
+                ->getBody();
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         } catch (ClientException $e) {
             // log_message('error', $e);
             $this->session->set_userdata(['response' => json_decode($e->getResponse()->getBody())]);
@@ -97,10 +132,17 @@ class Pendaftaran_kerjasama extends Admin_Controller
             $response = $this->client->get("{$this->server}/api/v1/pelanggan/form-register", [
                 'headers' => [
                     'X-Requested-With' => 'XMLHttpRequest',
+<<<<<<< HEAD
                     'Authorization' => "Bearer {$this->setting->layanan_opendesa_token}"
                 ],
             ])
             ->getBody();
+=======
+                    'Authorization'    => "Bearer {$this->setting->layanan_opendesa_token}",
+                ],
+            ])
+                ->getBody();
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         } catch (ClientException $cx) {
             log_message('error', $cx);
         }
@@ -133,7 +175,11 @@ class Pendaftaran_kerjasama extends Admin_Controller
                     ['name' => 'permohonan', 'contents' => Psr7\Utils::tryFopen(LOKASI_DOKUMEN . 'dokumen-permohonan.pdf', 'r')],
                 ]
             ])
+<<<<<<< HEAD
             ->getBody();
+=======
+                ->getBody();
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
         } catch (ClientException $cx) {
             log_message('error', $cx);
             $this->session->set_flashdata(['errors' => json_decode($cx->getResponse()->getBody())]);
@@ -161,6 +207,7 @@ class Pendaftaran_kerjasama extends Admin_Controller
         $date = new \DateTime();
         $desa = $this->header['desa'];
 
+<<<<<<< HEAD
         $data['desa'] = $desa['nama_desa'];
         $data['logo'] = $desa['logo'];
         $data['random'] = substr(str_shuffle("0123456789"), 0, 4);
@@ -173,6 +220,20 @@ class Pendaftaran_kerjasama extends Admin_Controller
         $data['nama_tahun'] = ucwords(to_word($date->format('Y')));
         $data['kepala_desa'] = strtoupper($this->pamong_model->get_ttd()['pamong_nama']);
         $data['alamat'] = $desa['alamat_kantor'];
+=======
+        $data['desa']         = $desa['nama_desa'];
+        $data['logo']         = $desa['logo'];
+        $data['random']       = substr(str_shuffle('0123456789'), 0, 4);
+        $data['hari']         = $date->format('d');
+        $data['nama_hari']    = ucwords(hari($date->getTimestamp()));
+        $data['nama_tanggal'] = ucwords(to_word($date->format('d')));
+        $data['bulan']        = $date->format('m');
+        $data['nama_bulan']   = ucwords(getBulan($date->format('m')));
+        $data['tahun']        = $date->format('Y');
+        $data['nama_tahun']   = ucwords(to_word($date->format('Y')));
+        $data['kepala_desa']  = strtoupper($this->pamong_model->get_ttd()['pamong_nama']);
+        $data['alamat']       = $desa['alamat_kantor'];
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
         $this->load->view('pendaftaran_kerjasama/template', $data);
     }

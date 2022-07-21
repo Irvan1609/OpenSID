@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
 /*
  * File ini:
@@ -11,39 +15,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-/**
- *
- * File ini bagian dari:
- *
- * OpenSID
- *
- * Sistem informasi desa sumber terbuka untuk memajukan desa
- *
- * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
- *
- * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- *
- * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
- * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
- * tanpa batasan, termasuk hak untuk menggunakan, menyalin, mengubah dan/atau mendistribusikan,
- * asal tunduk pada syarat berikut:
-
- * Pemberitahuan hak cipta di atas dan pemberitahuan izin ini harus disertakan dalam
- * setiap salinan atau bagian penting Aplikasi Ini. Barang siapa yang menghapus atau menghilangkan
- * pemberitahuan ini melanggar ketentuan lisensi Aplikasi Ini.
-
- * PERANGKAT LUNAK INI DISEDIAKAN "SEBAGAIMANA ADANYA", TANPA JAMINAN APA PUN, BAIK TERSURAT MAUPUN
- * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
- * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
- *
- * @package OpenSID
- * @author  Tim Pengembang OpenDesa
- * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
- * @license http://www.gnu.org/licenses/gpl.html  GPL V3
- * @link  https://github.com/OpenSID/OpenSID
- */
 ?>
 
 <!-- Menampilkan OpenStreetMap -->
@@ -60,35 +31,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</section>
 	<section class="content">
 		<div class="box box-info">
-			<form action="<?= $form_action?>" method="POST" enctype="multipart/form-data" class="form-horizontal">
+			<form id="validasi" action="<?= $form_action; ?>" method="POST" enctype="multipart/form-data" class="form-horizontal">
 				<div class="box-body">
 					<div id="tampil-map">
 						<input type="hidden" id="path" name="path" value="<?= $wil_ini['path']?>">
 						<input type="hidden" name="id" id="id"  value="<?= $wil_ini['id']?>"/>
 						<input type="hidden" name="zoom" id="zoom"  value="<?= $wil_ini['zoom']?>"/>
-						<?php include("donjo-app/views/gis/cetak_peta.php"); ?>
+						<?php include 'donjo-app/views/gis/cetak_peta.php'; ?>
 					</div>
 				</div>
-				<div class="box-footer">
-					<a href="<?= $tautan['link'] ?>" class="btn btn-social btn-flat bg-purple btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" title="Kembali"><i class="fa fa-arrow-circle-o-left"></i> Kembali</a>
-					<?php if ($this->CI->cek_hak_akses('u')): ?>
-						<a href="#" data-href="<?= "$tautan[link]/kosongkan/$wil_ini[id]"; ?>" class="btn btn-social btn-flat bg-maroon btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" title="Kosongkan Wilayah" data-toggle="modal" data-target="#confirm-status" data-body="Apakah yakin akan mengosongkan peta wilayah ini?"><i class="fa fa fa-trash-o"></i>Kosongkan</a>
-					<?php endif; ?>
-					<a href="#" class="btn btn-social btn-flat btn-success btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" download="OpenSID.gpx" id="exportGPX"><i class='fa fa-download'></i> Export ke GPX</a>
-					<button type='reset' class='btn btn-social btn-flat btn-danger btn-sm' id="resetme"><i class='fa fa-times'></i> Reset</button>
-					<label class="control-label col-sm-1">Warna</label>
-					<div class="col-sm-2">
-						<div class="input-group my-colorpicker2">
-							<input type="text" id="warna" name="warna" class="form-control input-sm required" placeholder="#FFFFFF" value="<?= $wil_ini['warna']?>">
-							<div class="input-group-addon input-sm">
-								<i></i>
+				<?php if ($this->CI->cek_hak_akses('u')): ?>
+					<div class="box-footer">
+						<a href="<?= $tautan['link'] ?>" class="btn btn-social btn-flat bg-purple btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" title="Kembali"><i class="fa fa-arrow-circle-o-left"></i> Kembali</a>
+							<a href="#" data-href="<?= "{$tautan['link']}/kosongkan/{$wil_ini['id']}"; ?>" class="btn btn-social btn-flat bg-maroon btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" title="Kosongkan Wilayah" data-toggle="modal" data-target="#confirm-status" data-body="Apakah yakin akan mengosongkan peta wilayah ini?"><i class="fa fa fa-trash-o"></i>Kosongkan</a>
+						<a href="#" class="btn btn-social btn-flat btn-success btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" download="OpenSID.gpx" id="exportGPX"><i class='fa fa-download'></i> Export ke GPX</a>
+						<button type='reset' class='btn btn-social btn-flat btn-danger btn-sm' id="resetme"><i class='fa fa-times'></i> Reset</button>
+						<label class="control-label col-sm-1">Warna</label>
+						<div class="col-sm-2">
+							<div class="input-group my-colorpicker2">
+								<input type="text" id="warna" name="warna" class="form-control input-sm warna required" placeholder="#FFFFFF" value="<?= $wil_ini['warna']?>">
+								<div class="input-group-addon input-sm">
+									<i></i>
+								</div>
 							</div>
 						</div>
+							<button type='submit' class='btn btn-social btn-flat btn-info btn-sm pull-right'><i class='fa fa-check'></i> Simpan</button>
 					</div>
-					<?php if ($this->CI->cek_hak_akses('u')): ?>
-						<button type='submit' class='btn btn-social btn-flat btn-info btn-sm pull-right'><i class='fa fa-check'></i> Simpan</button>
-					<?php endif; ?>
-				</div>
+				<?php endif; ?>
 			</form>
 		</div>
 	</section>
@@ -102,12 +71,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	 */
 
 	window.onload = function() {
+<<<<<<< HEAD
 		<?php if (! empty($wil_ini['lat']) &&  ! empty($wil_ini['lng'])): ?>
 			var posisi = [<?=$wil_ini['lat'].", ".$wil_ini['lng']?>];
 			var zoom = <?=$wil_ini['zoom']?>;
 		<?php elseif (! empty($wil_atas['lat']) &&  ! empty($wil_atas['lng'])): ?>
+=======
+		<?php if (! empty($wil_ini['lat']) && ! empty($wil_ini['lng'])): ?>
+			var posisi = [<?=$wil_ini['lat'] . ', ' . $wil_ini['lng']?>];
+			var zoom = <?=$wil_ini['zoom']?>;
+		<?php elseif (! empty($wil_atas['lat']) && ! empty($wil_atas['lng'])): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			// Jika posisi saat ini belum ada, maka posisi peta akan menampilkan peta desa
-			var posisi = [<?=$wil_atas['lat'].", ".$wil_atas['lng']?>];
+			var posisi = [<?=$wil_atas['lat'] . ', ' . $wil_atas['lng']?>];
 			var zoom = <?=$wil_atas['zoom']?>;
 		<?php else: ?>
 			// Kondisi ini hanya untuk lokasi/wilayah desa yg belum ada
@@ -126,7 +102,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		// OVERLAY WILAYAH DESA
 		<?php if (! empty($desa['path'])): ?>
+<<<<<<< HEAD
 			set_marker_desa(marker_desa, <?=json_encode($desa)?>, "<?=ucwords($this->setting->sebutan_desa).' '.$desa['nama_desa']?>", "<?= favico_desa()?>");
+=======
+			set_marker_desa(marker_desa, <?=json_encode($desa)?>, "<?=ucwords($this->setting->sebutan_desa) . ' ' . $desa['nama_desa']?>", "<?= favico_desa()?>");
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 		<?php endif; ?>
 
 		// OVERLAY WILAYAH DUSUN
@@ -165,9 +145,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				// Polygon
 				showCurrentPolygon(wilayah, peta_wilayah, warna);
 			<?php endif ?>
-			
+
 		<?php endif; ?>
-		 
+
 		// Menambahkan zoom scale ke peta
 		L.control.scale().addTo(peta_wilayah);
 
@@ -183,7 +163,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			addPetaPoly(peta_wilayah);
 			var multi = false;
 		<?php endif ?>
-		
+
 		// Update value zoom ketika ganti zoom
 		updateZoom(peta_wilayah);
 
@@ -240,7 +220,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		  if (eventLayer.name === 'Peta Wilayah RW') {
 		    peta_wilayah.removeControl(legenda_rw);
 		  }
-		  
+
 		  if (eventLayer.name === 'Peta Wilayah RT') {
 		    peta_wilayah.removeControl(legenda_rt);
 		  }

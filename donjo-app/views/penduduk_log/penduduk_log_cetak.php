@@ -1,18 +1,20 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
-/**
+/*
  * File ini:
  *
  * View Log Penduduk untuk modul Kependudukan > Penduduk
  *
  * donjo-app/views/penduduk_log/penduduk_log_cetak.php
- *
  */
 
-/**
- *
+/*
  * File ini bagian dari:
  *
  * OpenSID
@@ -37,14 +39,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @copyright	  Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright	  Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ *
+ * @see 	https://github.com/OpenSID/OpenSID
  */
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,8 +52,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<head>
 		<title>Data Log Penduduk</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
+=======
+		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<?php if (is_file(LOKASI_LOGO_DESA . 'favicon.ico')): ?>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
 			<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
@@ -105,7 +110,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<td><?= strtoupper($data['nama'])?></td>
 							<td>
 								<?= $privasi_nik ? sensor_nik_kk($data['no_kk']) : $data['no_kk']?>
-								<?= " / ".$data['nama_kk']?>
+								<?= ' / ' . $data['nama_kk']?>
 							</td>
 							<td><?= strtoupper($data['dusun'])?></td>
 							<td><?= $data['rw']?></td>
@@ -121,7 +126,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</table>
 			</div>
 			<br>
-			<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date("Y m d"))?>
+			<label>Tanggal cetak : &nbsp; </label><?= tgl_indo(date('Y m d'))?>
 		</div>
 
 	</body>

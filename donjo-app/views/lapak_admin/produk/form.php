@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 defined('BASEPATH') or exit('No direct script access allowed');
+=======
+defined('BASEPATH') || exit('No direct script access allowed');
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 
 /*
  * File ini:
@@ -12,8 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-/**
- *
+/*
  * File ini bagian dari:
  *
  * OpenSID
@@ -38,12 +41,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * TERSIRAT. PENULIS ATAU PEMEGANG HAK CIPTA SAMA SEKALI TIDAK BERTANGGUNG JAWAB ATAS KLAIM, KERUSAKAN ATAU
  * KEWAJIBAN APAPUN ATAS PENGGUNAAN ATAU LAINNYA TERKAIT APLIKASI INI.
  *
- * @package	OpenSID
- * @author	Tim Pengembang OpenDesa
- * @copyright	Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright	Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @copyright	  Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
+ * @copyright	  Hak Cipta 2016 - 2020 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  * @license	http://www.gnu.org/licenses/gpl.html	GPL V3
- * @link 	https://github.com/OpenSID/OpenSID
+ *
+ * @see 	https://github.com/OpenSID/OpenSID
  */
 ?>
 
@@ -65,7 +67,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<div class="col-md-9">
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<a href="<?= site_url("$this->controller/produk"); ?>" class="btn btn-social btn-flat btn-info btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><i class="fa fa-arrow-circle-left"></i> Kembali Ke Daftar Data Produk</a>
+							<a href="<?= site_url("{$this->controller}/produk"); ?>" class="btn btn-social btn-flat btn-info btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block"><i class="fa fa-arrow-circle-left"></i> Kembali Ke Daftar Data Produk</a>
 						</div>
 						<div class="box-body">
 							<div class="form-group">
@@ -128,20 +130,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</select>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<div class="col-sm-6" id="tampil-persen" <?= jecho($main->tipe_potongan == 1, false, 'style="display:none;"'); ?>>
+=======
+								<div class="col-sm-6" id="tampil-persen" <?= jecho($main->tipe_potongan, 2, 'style="display:none;"'); ?>>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 									<div class="form-group">
 										<div class="input-group">
-											<input type="number" class="form-control input-sm number required" id="persen" name="persen" onkeyup="cek_persen();" placeholder="Potongan Persen (%)"  style="text-align:right;" min="0" max="100" step="1" value="<?= ($main->tipe_potongan == 1) ? $main->potongan : 0; ?>"/>
+											<input type="number" class="form-control input-sm number" id="persen" name="persen" onkeyup="cek_persen();" placeholder="Potongan Persen (%)"  style="text-align:right;" min="0" max="100" step="1" value="<?= ($main->tipe_potongan == 1) ? $main->potongan : 0; ?>"/>
 											<span class="input-group-addon input-sm">%</span>
 										</div>
 									</div>
 								</div>
 
+<<<<<<< HEAD
 								<div class="col-sm-6" id="tampil-nominal" <?= jecho($main->tipe_potongan == 2, false, 'style="display:none;"'); ?>>
+=======
+								<div class="col-sm-6" id="tampil-nominal" <?= jecho($main->tipe_potongan, 1, 'style="display:none;"'); ?>>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon input-sm ">Rp.</span>
-											<input type="number" class="form-control input-sm number required" id="nominal" name="nominal" onkeyup="cek_nominal();" placeholder="Potongan Nominal (Rp.)" style="text-align:right;" min="0" max="99999999999" step="100" value="<?= ($main->tipe_potongan == 2) ? $main->potongan : 0; ?>"/>
+											<input type="number" class="form-control input-sm number" id="nominal" name="nominal" onkeyup="cek_nominal();" placeholder="Potongan Nominal (Rp.)" style="text-align:right;" min="0" max="99999999999" step="100" value="<?= ($main->tipe_potongan == 2) ? $main->potongan : 0; ?>"/>
 										</div>
 									</div>
 								</div>
@@ -187,7 +197,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</span>
 										<span class="input-group-addon" style="background-color: red; border: 1px solid #ccc;">
 											<input type="checkbox" title="Centang Untuk Hapus Foto" name="hapus_foto_<?= $ii; ?>" value="hapus">
-										</span>											
+										</span>
 									</div>
 								</div>
 								<hr/>
@@ -201,15 +211,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</section>
 </div>
 <script type="text/javascript">
+	/**
+	 * Tipe Potongan
+	 * 1 = Persen
+	 * 2 = Nominal
+	 */
 	$( document ).ready(function() {
 		$('#tipe_potongan').on('change', function() {
 			if (this.value == 2) {
 				$('#tampil-persen').hide();
 				$('#tampil-nominal').show();
+				$('#nominal').addClass('required');
+				$('#persen').removeClass('required');
 				cek_nominal();
 			} else {
 				$('#tampil-nominal').hide();
 				$('#tampil-persen').show();
+				$('#persen').addClass('required');
+				$('#nominal').removeClass('required');
 				cek_persen();
 			}
 		});
@@ -218,12 +237,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	function cek_persen() {
 		if (($('#tipe_potongan').val() == 1) && (parseInt($('#persen').val()) > 100)) {
 			$('#persen').val(100);
-		}	
+		}
 	}
 
 	function cek_nominal() {
 		if (($('#tipe_potongan').val() == 2) && (parseInt($('#nominal').val()) > parseInt($('#harga').val()))) {
-			$('#nominal').val($('#harga').val());			
+			$('#nominal').val($('#harga').val());
 		}
 	}
 </script>

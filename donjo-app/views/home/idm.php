@@ -1,12 +1,18 @@
 <?php if ($halaman_statis): ?>
+<<<<<<< HEAD
 	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/AdminLTE.css" />
 	<?php if (is_file($this->theme_folder."/".$this->theme.'/css/first.css')): ?>
 		<link rel="stylesheet" href="<?= base_url().$this->theme_folder.'/'.$this->theme.'/css/first.css' ?>" />
+=======
+	<link rel="stylesheet" href="<?= base_url()?>assets/css/AdminLTE.css" />
+	<?php if (is_file($this->theme_folder . '/' . $this->theme . '/css/first.css')): ?>
+		<link rel="stylesheet" href="<?= base_url() . $this->theme_folder . '/' . $this->theme . '/css/first.css' ?>" />
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 	<?php endif; ?>
-	<?php if (is_file($this->theme_folder."/".$this->theme.'/assets/css/desa-web.css')): ?>
-		<link type='text/css' href="<?= base_url().$this->theme_folder.'/'.$this->theme.'/assets/css/desa-web.css' ?>" rel='stylesheet' />
+	<?php if (is_file($this->theme_folder . '/' . $this->theme . '/assets/css/desa-web.css')): ?>
+		<link type='text/css' href="<?= base_url() . $this->theme_folder . '/' . $this->theme . '/assets/css/desa-web.css' ?>" rel='stylesheet' />
 	<?php endif; ?>
-	<?php if (is_file("desa/css/".$this->theme."/desa-web.css")): ?>
+	<?php if (is_file('desa/css/' . $this->theme . '/desa-web.css')): ?>
 		<link type='text/css' href="<?= base_url()?>desa/css/<?= $this->theme ?>/desa-web.css" rel='Stylesheet' />
 	<?php endif; ?>
 <?php endif; ?>
@@ -83,7 +89,11 @@
 								<option value="<?= $thn ?>" <?= selected($tahun, $thn) ?>><?= $thn; ?></option>
 							<?php endforeach; ?>
 						</select>
+<<<<<<< HEAD
 						<a class="btn btn-social btn-flat btn-info btn-sm btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" <?= cek_koneksi_internet() == false ? 'disabled title="Perangkat tidak terhubung dengan jaringan"' : 'href="' . site_url("status_desa/perbaharui/$tahun") . '"'; ?> ><i class="fa fa-refresh"></i>Perbaharui</a>
+=======
+						<a class="btn btn-social btn-flat btn-info btn-sm btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" <?= cek_koneksi_internet() == false ? 'disabled title="Perangkat tidak terhubung dengan jaringan"' : 'href="' . site_url("status_desa/perbaharui/{$tahun}") . '"'; ?> ><i class="fa fa-refresh"></i>Perbaharui</a>
+>>>>>>> ec32238eb3e141c01ed908fd0401488c17ee0629
 					</form>
 				</div>
 			<?php endif; ?>
@@ -202,7 +212,7 @@
 									</thead>
 									<tbody>
 										<?php foreach ($idm->ROW as $data): ?>
-											<tr class="<?php empty($data->NO) and print('judul'); ?> ">
+											<tr class="<?php empty($data->NO) && print 'judul'; ?> ">
 												<td class="text-center"><?= $data->NO ?></td>
 												<td style="min-width: 150px;"><?= $data->INDIKATOR ?></td>
 												<td class="padat"><?= $data->SKOR ?></td>
