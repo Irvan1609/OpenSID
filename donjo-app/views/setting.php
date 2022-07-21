@@ -8,7 +8,7 @@
 						<?php if ($main['foto']): ?>
 							<img class="profile-user-img img-responsive img-circle" src="<?=AmbilFoto($main['foto'])?>" alt="Foto">
 						<?php else: ?>
-							<img class="profile-user-img img-responsive img-circle" src="<?= base_url()?>assets/files/user_pict/kuser.png" alt="Foto">
+							<img class="profile-user-img img-responsive img-circle" src="<?= base_url(IRVAN)?>assets/files/user_pict/kuser.png" alt="Foto">
 						<?php endif; ?>
 					</div>
 				</div>
@@ -58,10 +58,10 @@
 		</div>
 	</div>
 </form>
-<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
-<script src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script src="<?= base_url()?>assets/js/validasi.js"></script>
-<script src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script>
 $('document').ready(function()
 {

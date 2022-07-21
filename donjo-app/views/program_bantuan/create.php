@@ -1,5 +1,5 @@
-<script src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>Tambah Program Bantuan</h1>
@@ -46,7 +46,7 @@
 						<div class="col-sm-3">
 							<select class="form-control input-sm required" name="asaldana" id="asaldana">
 								<option value="">Asal Dana</option>
-								<?php foreach ($asaldana AS $ad): ?>
+								<?php foreach ($asaldana as $ad): ?>
 									<option value="<?= $ad?>"><?= $ad?></option>
 								<?php endforeach; ?>
 							</select>

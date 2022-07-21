@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -52,10 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>
 		<?=$this->setting->login_title
-			. ' ' . ucwords($this->setting->sebutan_desa)
-			. (($header['nama_desa']) ? ' ' . $header['nama_desa']: '')
-			. get_dynamic_title_page_from_path();
-		?>
+            . ' ' . ucwords($this->setting->sebutan_desa)
+            . (($header['nama_desa']) ? ' ' . $header['nama_desa']: '')
+            . get_dynamic_title_page_from_path();
+?>
 	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="robots" content="noindex">
@@ -76,12 +76,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php endif; ?>
 	<!-- Google Font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
 
 	<?php if ($cek_anjungan): ?>
 		<!-- Keyboard Default (Ganti dengan keyboard-dark.min.css untuk tampilan lain)-->
-		<link rel="stylesheet" href="<?= base_url("assets/css/keyboard.min.css")?>">
-		<link rel="stylesheet" href="<?= base_url("assets/front/css/mandiri-keyboard.css")?>">
+		<link rel="stylesheet" href="<?= base_url(IRVAN . "assets/css/keyboard.min.css")?>">
+		<link rel="stylesheet" href="<?= base_url(IRVAN . "assets/front/css/mandiri-keyboard.css")?>">
 	<?php endif; ?>
 
 	<?php $this->load->view('head_tags'); ?>
@@ -108,13 +108,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<br/><?=$header['alamat_kantor']?>
 									<br />Kodepos <?=$header['kode_pos']?>
 									<br/><br/>Silakan hubungi operator desa untuk mendapatkan kode PIN anda.
-									<?php if ( ! $cek_anjungan): ?>
+									<?php if (! $cek_anjungan): ?>
 										<br/><br/><br/>IP Address: <?= $this->input->ip_address(); ?>
 									<?php else: ?>
 										<br/><br/><br/>IP Address :	<?= $cek_anjungan['ip_address']?>
 										<br/>Mac Address :	<?= $cek_anjungan['mac_address']?>
 										<br/>Anjungan Mandiri
-										<?= jecho($cek_anjungan['keyboard'] == 1, TRUE, ' | Virtual Keyboard : Aktif'); ?>
+										<?= jecho($cek_anjungan['keyboard'] == 1, true, ' | Virtual Keyboard : Aktif'); ?>
 									<?php endif; ?>
 								</h3>
 							</div>
@@ -136,10 +136,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												</div>
 											<?php endif; ?>
 											<div class="form-group form-login">
-												<input type="text" autocomplete="off" class="form-control required <?= jecho($cek_anjungan['keyboard'] == 1, TRUE, 'kbvnumber'); ?>" name="nik" placeholder=" NIK">
+												<input type="text" autocomplete="off" class="form-control required <?= jecho($cek_anjungan['keyboard'] == 1, true, 'kbvnumber'); ?>" name="nik" placeholder=" NIK">
 											</div>
 											<div class="form-group form-login">
-												<input type="password" autocomplete="off" class="form-control required <?= jecho($cek_anjungan['keyboard'] == 1, TRUE, 'kbvnumber'); ?>" name="pin" placeholder="PIN" id="pin">
+												<input type="password" autocomplete="off" class="form-control required <?= jecho($cek_anjungan['keyboard'] == 1, true, 'kbvnumber'); ?>" name="pin" placeholder="PIN" id="pin">
 											</div>
 											<div class="form-group">
 												<center><input type="checkbox" id="checkbox"> Tampilkan PIN</center>
@@ -165,10 +165,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												Tempelkan e-KTP Pada Card Reader
 											<?php endif; ?>
 											<div class="thumbnail">
-												<img src="<?= base_url('assets/images/camera-scan.gif')?>" alt="scanner" class="center" style="width:30%">
+												<img src="<?= base_url(IRVAN . 'assets/images/camera-scan.gif')?>" alt="scanner" class="center" style="width:30%">
 											</div>
 										</div>
-										<div class="form-group form-login" style="<?= jecho($cek_anjungan == 0 || ENVIRONMENT == 'development', FALSE, 'width: 0; overflow: hidden;'); ?>" >
+										<div class="form-group form-login" style="<?= jecho($cek_anjungan == 0 || ENVIRONMENT == 'development', false, 'width: 0; overflow: hidden;'); ?>" >
 											<input name="tag" id="tag" autocomplete="off" placeholder="Tempelkan e-KTP Pada Card Reader" class="form-control required number" type="password" onkeypress="if (event.keyCode == 13){$('#'+'validasi').attr('action', '<?= $form_action; ?>');$('#'+'validasi').submit();}">
 										</div>
 										<?php if (! $cek_anjungan): ?>
@@ -199,26 +199,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 	<!-- jQuery 3 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- SlimScroll -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.slimscroll.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
-	<script src="<?= base_url()?>assets/bootstrap/js/fastclick.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="<?= base_url()?>assets/js/adminlte.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/adminlte.min.js"></script>
 	<!-- Validasi -->
-	<script src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-	<script src="<?= base_url()?>assets/js/validasi.js"></script>
-	<script src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 
 	<?php if ($cek_anjungan): ?>
 		<!-- keyboard widget css & script -->
-		<script src="<?= base_url("assets/js/jquery.keyboard.min.js")?>"></script>
-		<script src="<?= base_url("assets/js/jquery.mousewheel.min.js")?>"></script>
-		<script src="<?= base_url("assets/js/jquery.keyboard.extension-all.min.js")?>"></script>
-		<script src="<?= base_url("assets/front/js/mandiri-keyboard.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.keyboard.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.mousewheel.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.keyboard.extension-all.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/front/js/mandiri-keyboard.js")?>"></script>
 	<?php endif; ?>
 	<script type="text/javascript">
 	$('document').ready(function() {

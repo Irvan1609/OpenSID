@@ -1,8 +1,10 @@
-<?php  if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php  if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+} ?>
 
-<script src="<?= base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script src="<?= base_url()?>assets/js/highcharts/highcharts-more.js"></script>
-<script src="<?= base_url()?>assets/js/highcharts/exporting.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/highcharts-more.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/exporting.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {hiRes ();});
 	var chart;
@@ -21,9 +23,13 @@
 					text:''
 				},
 				categories: [
-				<?php $i=0;foreach($list_jawab as $data){$i++;?>
-					<?php if($data['nilai'] != "-"){echo "'$data[jawaban]',";}?>
-				<?php }?>
+				<?php $i=0; foreach ($list_jawab as $data) {
+				    $i++; ?>
+					<?php if ($data['nilai'] != "-") {
+					    echo "'$data[jawaban]',";
+					} ?>
+				<?php
+				}?>
 				]
 			},
 			yAxis: {
@@ -48,9 +54,9 @@
 				shadow:1,
 				border:0,
 				data: [
-				<?php foreach($list_jawab as $data){?>
-					<?php if($data['jawaban'] != "TOTAL"){?>
-						<?php if($data['nilai'] != "-"){?>
+				<?php foreach ($list_jawab as $data) {?>
+					<?php if ($data['jawaban'] != "TOTAL") {?>
+						<?php if ($data['nilai'] != "-") {?>
 							<?= $data['nilai']?>,
 						<?php }?>
 					<?php }?>
@@ -83,7 +89,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($list_jawab as $data): ?>
+				<?php foreach ($list_jawab as $data): ?>
 					<tr>
 						<td><?= $data['no']?></td>
 						<td><?= $data['jawaban']?></td>

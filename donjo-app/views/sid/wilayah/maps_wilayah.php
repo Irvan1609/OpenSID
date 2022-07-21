@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
  * File ini:
@@ -102,10 +102,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 */
 
 	window.onload = function() {
-		<?php if ( ! empty($wil_ini['lat']) &&  ! empty($wil_ini['lng'])): ?>
+		<?php if (! empty($wil_ini['lat']) &&  ! empty($wil_ini['lng'])): ?>
 			var posisi = [<?=$wil_ini['lat'].", ".$wil_ini['lng']?>];
 			var zoom = <?=$wil_ini['zoom']?>;
-		<?php elseif ( ! empty($wil_atas['lat']) &&  ! empty($wil_atas['lng'])): ?>
+		<?php elseif (! empty($wil_atas['lat']) &&  ! empty($wil_atas['lng'])): ?>
 			// Jika posisi saat ini belum ada, maka posisi peta akan menampilkan peta desa
 			var posisi = [<?=$wil_atas['lat'].", ".$wil_atas['lng']?>];
 			var zoom = <?=$wil_atas['zoom']?>;
@@ -125,27 +125,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var marker_rt = [];
 
 		// OVERLAY WILAYAH DESA
-		<?php if ( ! empty($desa['path'])): ?>
+		<?php if (! empty($desa['path'])): ?>
 			set_marker_desa(marker_desa, <?=json_encode($desa)?>, "<?=ucwords($this->setting->sebutan_desa).' '.$desa['nama_desa']?>", "<?= favico_desa()?>");
 		<?php endif; ?>
 
 		// OVERLAY WILAYAH DUSUN
-		<?php if ( ! empty($dusun_gis)): ?>
+		<?php if (! empty($dusun_gis)): ?>
 			set_marker_multi(marker_dusun, '<?=addslashes(json_encode($dusun_gis))?>', '<?=ucwords($this->setting->sebutan_dusun)?>', 'dusun', "<?= favico_desa()?>");
 		<?php endif; ?>
 
 		// OVERLAY WILAYAH RW
-		<?php if ( ! empty($rw_gis)): ?>
+		<?php if (! empty($rw_gis)): ?>
 			set_marker(marker_rw, '<?=addslashes(json_encode($rw_gis))?>', 'RW', 'rw', "<?= favico_desa()?>");
 		<?php endif; ?>
 
 		// OVERLAY WILAYAH RT
-		<?php if ( ! empty($rt_gis)): ?>
+		<?php if (! empty($rt_gis)): ?>
 			set_marker(marker_rt, '<?=addslashes(json_encode($rt_gis))?>', 'RT', 'rt', "<?= favico_desa()?>");
 		<?php endif; ?>
 
 		// 2. Menampilkan overlayLayers Peta Semua Wilayah
-		<?php if ( ! empty($wil_atas['path'])): ?>
+		<?php if (! empty($wil_atas['path'])): ?>
 	    var overlayLayers = overlayWil(marker_desa, marker_dusun, marker_rw, marker_rt,"<?=ucwords($this->setting->sebutan_desa)?>", "<?=ucwords($this->setting->sebutan_dusun)?>");
 		<?php else: ?>
 			var overlayLayers = {};
@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var baseLayers = getBaseLayers(peta_wilayah, '<?=$this->setting->mapbox_key?>');
 
 		// Menampilkan Peta wilayah yg sudah ada
-		<?php if ( ! empty($wil_ini['path']) ): ?>
+		<?php if (! empty($wil_ini['path'])): ?>
 			var wilayah = <?=$wil_ini['path']?>;
 			var warna = '<?=$wil_ini['warna']?>';
 			<?php if (isset($poly) && $poly == 'multi'): ?>
@@ -251,5 +251,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	}; // EOF window.onload
 </script>
-<script src="<?= base_url()?>assets/js/leaflet.filelayer.js"></script>
-<script src="<?= base_url()?>assets/js/togeojson.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.filelayer.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/togeojson.js"></script>

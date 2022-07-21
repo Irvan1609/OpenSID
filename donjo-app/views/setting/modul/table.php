@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="<?= base_url()?>assets/css/alert-bootstrap.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/alert-bootstrap.css">
 
-<?php if( ! $sub_modul): ?>
+<?php if (! $sub_modul): ?>
 	<script type="text/javascript">
 		function ubah_jenis_server(jenis_server) {
 			$('#offline_saja select').val('');
@@ -52,7 +52,7 @@
 		<h1>Pengaturan <?= $sub_modul ? 'Submodul' : 'Modul';?></h1>
 		<ol class="breadcrumb">
 			<li><a href="<?= site_url('hom_sid')?>"><i class="fa fa-home"></i> Home</a></li>
-			<?php if( ! $sub_modul): ?>
+			<?php if (! $sub_modul): ?>
 				<li class="active">Pengaturan Modul</li>
 			<?php else: ?>
 				<li><a href="<?= site_url('modul/clear')?>"> Daftar Modul</a></li>
@@ -60,7 +60,7 @@
 			<?php endif; ?>
 		</ol>
 	</section>
-	<?php if( ! $sub_modul): ?>
+	<?php if (! $sub_modul): ?>
 		<section class="content" id="maincontent">
 			<div class="box box-info">
 				<form id="validasi" action="<?= site_url("modul/ubah_server")?>" method="POST" class="form-horizontal">
@@ -154,7 +154,7 @@
 	<?php endif; ?>
 	<section class="content" id="maincontent">
 		<div class="box box-info">
-			<?php if( ! $sub_modul): ?>
+			<?php if (! $sub_modul): ?>
 				<div class="box-body">
 					<h4>Pengaturan Modul</h4>
 					<?php if ($this->CI->cek_hak_akses('u')): ?>
@@ -225,7 +225,7 @@
 													<a href="<?=site_url("modul/form/$data[id]")?>" class="btn bg-orange btn-flat btn-sm" title="Ubah Data" ><i class="fa fa-edit"></i></a>
 													<?php if ($data['aktif'] == '1'): ?>
 														<a href="<?= site_url("modul/lock/$data[id]/2")?>" class="btn bg-navy btn-flat btn-sm"  title="Non Aktifkan"><i class="fa fa-unlock"></i></a>
-													<?php elseif ($sub_modul AND $sub_modul['aktif'] != '1'): ?>
+													<?php elseif ($sub_modul and $sub_modul['aktif'] != '1'): ?>
 														<!-- Jika parrent menu tdk aktif, maka tdk ada aksi lock -->
 													<?php else: ?>
 														<a href="<?= site_url("modul/lock/$data[id]/1")?>" class="btn bg-navy btn-flat btn-sm"  title="Aktifkan"><i class="fa fa-lock">&nbsp;</i></a>

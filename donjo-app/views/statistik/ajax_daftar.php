@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -46,9 +46,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 ?>
 
-<script src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script src="<?= base_url()?>assets/js/validasi.js"></script>
-<script src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script>
 	$('document').ready(function() {
 		$('#validasi').submit(function() {
@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<label for="pamong_ttd">Laporan Ditandatangani</label>
 			<select class="form-control input-sm required" name="pamong_ttd">
 				<option value="">Pilih Staf Pemerintah <?= ucwords($this->setting->sebutan_desa)?></option>
-				<?php foreach ($pamong AS $data): ?>
+				<?php foreach ($pamong as $data): ?>
 					<option value="<?= $data['pamong_id']?>" <?= selected($data['pamong_ttd'], 1); ?>><?= $data['nama']?> (<?= $data['jabatan']?>)</option>
 				<?php endforeach; ?>
 			</select>

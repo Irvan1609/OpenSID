@@ -57,7 +57,7 @@
                 </p>
             </td>
             <td width="25" align="center" valign="top">
-                <img src="<?= base_url('assets/images/layanan/logo.png') ?>" width="70%">
+                <img src="<?= base_url(IRVAN . 'assets/images/layanan/logo.png') ?>" width="70%">
             </td>
         </tr>
     </table>
@@ -412,7 +412,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><img src="<?= base_url('assets/images/layanan/stempel.png') ?>" width="220"></td>
+                <td><img src="<?= base_url(IRVAN . 'assets/images/layanan/stempel.png') ?>" width="220"></td>
             </tr>
             <tr>
                 <td>

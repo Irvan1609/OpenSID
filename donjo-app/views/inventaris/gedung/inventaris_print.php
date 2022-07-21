@@ -1,8 +1,8 @@
 <html >
 	<head>
-		<title>KIB C</title>
+		<title>KIB F</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
@@ -10,8 +10,7 @@
 		<?php endif; ?>
 		<!-- TODO: Pindahkan ke external css -->
 		<style>
-			.textx
-			{
+			.textx{
 				mso-number-format:"\@";
 			}
 			td,th
@@ -23,7 +22,8 @@
 				text-align: center;
 				white-space: nowrap;
 			}
-			.underline {
+			.underline
+			{
 				text-decoration: underline;
 			}
 			/* Style berikut untuk unduh excel.
@@ -56,7 +56,7 @@
 			<div id="body">
 				<div class="" align="center">
 					<h3> KARTU INVENTARIS BARANG (KIB) <br>
-						C. GEDUNG DAN BANGUNAN
+						F. ASET TETAP LAINNYA
 					</h3>
 					<br>
 				</div>
@@ -86,28 +86,31 @@
 				<table id="inventaris" class="list border thick">
 					<thead>
 					<tr>
-						<th class="text-center" rowspan="2">No</th>
-						<th class="text-center" rowspan="2">Nama Barang</th>
-						<th class="text-center" colspan="2">Nomor</th>
-						<th class="text-center" rowspan="2">Kondisi Bangunan (B, KB, RB)</th>
-						<th class="text-center" colspan="2">Konstruksi Bangunan</th>
-						<th class="text-center" rowspan="2">Luas Lantai (M<sup>2</sup>)</th>
-						<th class="text-center" rowspan="2">Letak/Lokasi</th>
-						<th class="text-center" colspan="2">Dokumen Gedung</th>
-						<th class="text-center" rowspan="2">Luas (M<sup>2</sup>)</th>
-						<th class="text-center" rowspan="2">Status Tanah</th>
-						<th class="text-center" rowspan="2">Nomor Tanah</th>
-						<th class="text-center" rowspan="2">Asal Usul</th>
-						<th class="text-center" rowspan="2">Harga (Rp)</th>
-						<th class="text-center" rowspan="2">Keterangan</th>
+							<th class="text-center" rowspan="2">No</th>
+							<th class="text-center" rowspan="2">Nama Barang</th>
+							<th class="text-center" colspan="2">Nomor</th>
+							<th class="text-center" colspan="2">Buku / Perpustakaan</th>
+							<th class="text-center" colspan="3">Barang Bercorak Kesenian/Kebudayaan</th>
+							<th class="text-center" colspan="2">Hewan / Ternak</th>
+							<th class="text-center" colspan="2">Tumbuhan</th>
+							<th class="text-center" rowspan="2">Jumlah</th>
+							<th class="text-center" rowspan="2">Tahun Cetak / Pembelian</th>
+							<th class="text-center" rowspan="2">Asal Usul</th>
+							<th class="text-center" rowspan="2">Harga (Rp)</th>
+							<th class="text-center" rowspan="2">Keterangan</th>
 					</tr>
 					<tr>
-						<th class="text-center" style="text-align:center;" rowspan="1">Kode Barang</th>
-						<th class="text-center" style="text-align:center;" rowspan="1">Register</th>
-						<th class="text-center" style="text-align:center;" rowspan="1">Bertingkat / Tidak</th>
-						<th class="text-center" style="text-align:center;" rowspan="1">Beton / Tidak</th>
-						<th class="text-center" style="text-align:center;" rowspan="1">Tanggal</th>
-						<th class="text-center" style="text-align:center;" rowspan="1">Nomor</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Kode Barang</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Register</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Judui / Pencipta</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Spesifikasi</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Asal Daerah</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Pencipta</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Bahan</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Jenis</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Ukuran (M)</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Jenis</th>
+							<th class="text-center" style="text-align:center;" rowspan="1">Ukuran (cm)</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -118,18 +121,19 @@
 								<td><?= $data->nama_barang; ?></td>
 								<td><?= $data->kode_barang; ?></td>
 								<td><?= $data->register; ?></td>
-								<td><?= $data->kondisi_bangunan; ?></td>
-								<td><?= $data->kontruksi_bertingkat; ?></td>
-								<td><?= ($data->kontruksi_beton == '1' ? 'Ya': 'Tidak'); ?></td>
-								<td><?= $data->luas_bangunan; ?></td>
-								<td><?= $data->letak; ?></td>
-								<td><?= date('d M Y',strtotime($data->tanggal_dokument)); ?></td>
-								<td><?= (!empty($data->no_dokument) ? $data->no_dokument : '-'); ?></td>
-								<td><?= $data->luas; ?></td>
-								<td><?= $data->status_tanah; ?></td>
-								<td><?= (!empty($main->no_tanah) ? $main->no_tanah : '-'); ?></td>
+								<td><?= (empty($data->judul_buku) ? '-': $data->judul_buku); ?></td>
+								<td><?= (empty($data->spesifikasi_buku) ? '-': $data->spesifikasi_buku); ?></td>
+								<td><?= (empty($data->asal_daerah) ? '-': $data->asal_daerah); ?></td>
+								<td><?= (empty($data->pencipta) ? '-': $data->pencipta); ?></td>
+								<td><?= (empty($data->bahan) ? '-': $data->bahan); ?></td>
+								<td><?= (empty($data->jenis_hewan) ? '-': $data->jenis_hewan); ?></td>
+								<td><?= (empty($data->ukuran_hewan) ? '-': $data->ukuran_hewan); ?></td>
+								<td><?= (empty($data->jenis_tumbuhan) ? '-': $data->jenis_tumbuhan); ?></td>
+								<td><?= (empty($data->ukuran_tumbuhan) ? '-': $data->ukuran_tumbuhan); ?></td>
+								<td><?= $data->jumlah; ?></td>
+								<td><?= $data->tahun_pengadaan; ?></td>
 								<td><?= $data->asal; ?></td>
-								<td><?= number_format($data->harga,0,".","."); ?></td>
+								<td><?= number_format($data->harga, 0, ".", "."); ?></td>
 								<td><?= $data->keterangan; ?></td>
 							</tr>
 							<?php $i = $i+1 ?>
@@ -137,11 +141,12 @@
 					</tbody>
 					<tfooot>
 						<tr>
-							<th colspan="15" style="text-align:right">Total:</th>
-							<th colspan="2"><?= number_format($total,0,".","."); ?></th>
+							<th colspan="16" style="text-align:right">Total:</th>
+							<th colspan="2"><?= number_format($total, 0, ".", "."); ?></th>
 						</tr>
 					</tfooot>
 				</table>
+
 
 				<table id="ttd">
 					<tr><td colspan="14">&nbsp;</td></tr>
@@ -173,7 +178,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" width="10%">&nbsp;</td>
-						<td colspan="3" width="30%"	></td>
+						<td colspan="3" width="30%"></td>
 						<td colspan="5" width="55%"></td>
 						<td colspan="5" width="5%">&nbsp;</td>
 					</tr>

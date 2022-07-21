@@ -7,12 +7,12 @@
 	</style>
 	<body>
 		<div id="container">
-			<link href="<?php echo base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+			<link href="<?php echo base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 			<?php
-				foreach ($all_kk as $kk):
-					$this->load->view("sid/kependudukan/cetak_kk", $kk);
-				endforeach;
-			?>
+                foreach ($all_kk as $kk):
+                    $this->load->view("sid/kependudukan/cetak_kk", $kk);
+                endforeach;
+?>
 			<div id="aside"></div>
 		</div>
 	</body>

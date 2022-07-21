@@ -1,6 +1,6 @@
-<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script type="text/javascript">
 	$('document').ready(function()
 	{
@@ -30,7 +30,7 @@
 							<label for="pamong_ttd">Laporan Ditandatangani</label>
               <select class="form-control input-sm required" name="pamong_ttd" width="100%">
 								<option value="">Pilih Staf Pemerintah <?= ucwords($this->setting->sebutan_desa)?></option>
-								<?php foreach ($pamong AS $data): ?>
+								<?php foreach ($pamong as $data): ?>
 									<option value="<?= $data['pamong_id']?>" <?= selected($pamong_ttd['pamong_id'], $data['pamong_id'])?>><?= $data['nama']?> (<?= $data['jabatan']?>)</option>
 								<?php endforeach; ?>
               </select>
@@ -39,7 +39,7 @@
 							<label for="pamong_ketahui">Laporan Diketahui</label>
               <select class="form-control input-sm required" name="pamong_ketahui" width="100%">
 								<option value="">Pilih Staf Pemerintah <?= ucwords($this->setting->sebutan_desa)?></option>
-								<?php foreach ($pamong AS $data): ?>
+								<?php foreach ($pamong as $data): ?>
 									<option value="<?= $data['pamong_id']?>" <?= selected($pamong_ketahui['pamong_id'], $data['pamong_id'])?>><?= $data['nama']?> (<?= $data['jabatan']?>)</option>
 								<?php endforeach; ?>
               </select>
@@ -51,6 +51,6 @@
 	</div>
 	<div class="modal-footer">
 		<button type="reset" class="btn btn-social btn-flat btn-danger btn-sm" data-dismiss="modal"><i class='fa fa-sign-out'></i> Tutup</button>
-		<button type="submit" class="btn btn-social btn-flat btn-info btn-sm" id="ok"><i class='fa fa-check'></i> <?= $aksi?></button>
+		<button type="submit" class="btn btn-social btn-flat btn-info btn-sm" id="ok"><i class='fa fa-check'></i> <?= ucwords($aksi)?></button>
 	</div>
 </form>

@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -60,31 +60,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php endif; ?>
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?= base_url()?>rss.xml" />
 	<!-- Bootstrap 3.3.7 -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap.min.css">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/font-awesome.min.css">
 	<!-- DataTables -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/dataTables.bootstrap.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/dataTables.bootstrap.min.css">
 	<!-- bootstrap wysihtml5 - text editor -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap3-wysihtml5.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap3-wysihtml5.min.css">
 	<!-- Select2 -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/select2.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/select2.min.css">
 	<!-- Bootstrap Color Picker -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap-colorpicker.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap-colorpicker.min.css">
 	<!-- Bootstrap Date time Picker -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap-datetimepicker.min.css">
 	<!-- bootstrap datepicker -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap-datepicker.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/skins/_all-skins.min.css">
 	<!-- Style Mandiri Modification CSS -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/mandiri-style.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/mandiri-style.css">
 	<!-- Jquery Confirm -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/front/css/jquery-confirm.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/front/css/jquery-confirm.min.css">
 	<!-- Jquery UI -->
-	<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/jquery-ui.min.css">
 	<!-- Diperlukan untuk script jquery khusus halaman -->
 	<script src="<?= base_url() ?>assets/bootstrap/js/jquery.min.js"></script>
 	<!-- Diperlukan untuk global automatic base_url oleh external js file -->
@@ -94,8 +94,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</script>
 	<?php if ($cek_anjungan): ?>
 		<!-- Keyboard Default (Ganti dengan keyboard-dark.min.css untuk tampilan lain)-->
-		<link rel="stylesheet" href="<?= base_url("assets/css/keyboard.min.css")?>">
-		<link rel="stylesheet" href="<?= base_url("assets/front/css/mandiri-keyboard.css")?>">
+		<link rel="stylesheet" href="<?= base_url(IRVAN . "assets/css/keyboard.min.css")?>">
+		<link rel="stylesheet" href="<?= base_url(IRVAN . "assets/front/css/mandiri-keyboard.css")?>">
 	<?php endif; ?>
 
 	<?php $this->load->view('head_tags'); ?>
@@ -241,24 +241,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</div>
 						<div class="col-md-9">
 							<?php
-								$this->load->view("layanan_mandiri/$konten");
+                                $this->load->view("layanan_mandiri/$konten");
 
-								if ($this->is_login->ganti_pin === '1' && $this->uri->segment(2) != "ganti-pin"):
+if ($this->is_login->ganti_pin === '1' && $this->uri->segment(2) != "ganti-pin"):
 
-									$data = [
-										'pesan' => "Selamat datang pengguna layanan mandiri <b> " . ucwords($this->setting->sebutan_desa . " " . $desa[nama_desa]) . " </b>, <br>Untuk keamanan akun anda, silahkan ganti <b>PIN</b> anda terlebih dahulu sebelum melanjutkan menggunakan layanan mandiri.",
-										'aksi' => site_url('layanan-mandiri/ganti-pin')
-									];
+    $data = [
+        'pesan' => "Selamat datang pengguna layanan mandiri <b> " . ucwords($this->setting->sebutan_desa . " " . $desa[nama_desa]) . " </b>, <br>Untuk keamanan akun anda, silahkan ganti <b>PIN</b> anda terlebih dahulu sebelum melanjutkan menggunakan layanan mandiri.",
+        'aksi' => site_url('layanan-mandiri/ganti-pin')
+    ];
 
-									$this->load->view('layanan_mandiri/notif', $data);
-								endif;
+    $this->load->view('layanan_mandiri/notif', $data);
+endif;
 
-								$data = $this->session->flashdata('notif');
+$data = $this->session->flashdata('notif');
 
-								if ($data['status'] == 1):
-									$this->load->view('layanan_mandiri/notif', $data);
-								endif;
-							?>
+if ($data['status'] == 1):
+    $this->load->view('layanan_mandiri/notif', $data);
+endif;
+?>
 						</div>
 					</div>
 				</section>
@@ -276,50 +276,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</footer>
 	</div>
 	<!-- jQuery 3 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
 	<!-- Jquery UI -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery-ui.min.js"></script>
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.ui.autocomplete.scroll.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery-ui.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.ui.autocomplete.scroll.min.js"></script>
 
-	<script src="<?= base_url()?>assets/bootstrap/js/moment.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/moment.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<!-- Select2 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/select2.full.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/select2.full.min.js"></script>
 	<!-- DataTables -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url()?>assets/bootstrap/js/dataTables.bootstrap.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.dataTables.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/dataTables.bootstrap.min.js"></script>
 	<!-- bootstrap color picker -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap-colorpicker.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap-colorpicker.min.js"></script>
 	<!-- bootstrap Date time picker -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="<?= base_url()?>assets/bootstrap/js/id.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/id.js"></script>
 	<!-- bootstrap Date picker -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap-datepicker.id.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap-datepicker.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap-datepicker.id.min.js"></script>
 	<!-- Bootstrap WYSIHTML5 -->
-	<script src="<?= base_url()?>assets/bootstrap/js/bootstrap3-wysihtml5.all.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap3-wysihtml5.all.min.js"></script>
 	<!-- Slimscroll -->
-	<script src="<?= base_url()?>assets/bootstrap/js/jquery.slimscroll.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->
-	<script src="<?= base_url()?>assets/bootstrap/js/fastclick.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="<?= base_url()?>assets/js/adminlte.min.js"></script>
-	<script src="<?= base_url()?>assets/front/js/jquery.overlay.min.js"></script>
-	<script src="<?= base_url()?>assets/front/js/jquery-confirm.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/adminlte.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/front/js/jquery.overlay.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/front/js/jquery-confirm.min.js"></script>
 	<!-- Validasi js -->
 	<?php $this->load->view('global/validasi_form'); ?>
 	<!-- Numeral js -->
-	<script src="<?= base_url()?>assets/js/numeral.min.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/numeral.min.js"></script>
 	<!-- Khusus modul layanan mandiri -->
 	<script src="<?= base_url() ?>assets/front/js/mandiri.js"></script>
 
 	<?php if ($cek_anjungan): ?>
 		<!-- keyboard widget script -->
-		<script src="<?= base_url("assets/js/jquery.keyboard.min.js")?>"></script>
-		<script src="<?= base_url("assets/js/jquery.mousewheel.min.js")?>"></script>
-		<script src="<?= base_url("assets/js/jquery.keyboard.extension-all.min.js")?>"></script>
-		<script src="<?= base_url("assets/front/js/mandiri-keyboard.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.keyboard.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.mousewheel.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/js/jquery.keyboard.extension-all.min.js")?>"></script>
+		<script src="<?= base_url(IRVAN . "assets/front/js/mandiri-keyboard.js")?>"></script>
 	<?php endif; ?>
 	<script type="text/javascript">
 		$(window).on('load', function() {

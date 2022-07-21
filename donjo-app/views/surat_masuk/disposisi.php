@@ -3,7 +3,7 @@
 	<head>
 		<title>Lembar Disposisi</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 		<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
 			<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 		<?php else: ?>
@@ -126,7 +126,9 @@
 												/>
 											</td>
 											<td class="nostretch no-border-kanan" style="vertical-align: text-top;">
-												<?php if ($ref_disposisi[$i + 1]) echo $ref_disposisi[$i + 1]?>
+												<?php if ($ref_disposisi[$i + 1]) {
+												    echo $ref_disposisi[$i + 1];
+												}?>
 											</td>
 											<td class="no-border-kiri" style="vertical-align: text-top;">
 												<input type="checkbox" style="zoom: 2; padding: 10px" disabled="disabled"

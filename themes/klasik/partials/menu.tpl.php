@@ -1,4 +1,6 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+} ?>
 
 <!-- https://stackoverflow.com/questions/25692514/bootstrap-how-do-i-make-dropdown-navigation-parent-links-an-active-link -->
 <script>
@@ -14,8 +16,8 @@
 	});
 </script>
 
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap.bar.css">
-<link rel="stylesheet" href="<?= base_url()?>assets/front/css/default.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap.bar.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/front/css/default.css" />
 <link rel="stylesheet" href="<?= base_url().$this->theme_folder.'/'.$this->theme.'/assets/css/default.css'?>" />
 <?php if (is_file("desa/css/".$this->theme."/desa-default.css")): ?>
 	<link rel="stylesheet" href="<?= base_url().'desa/css/'.$this->theme.'/desa-default.css'?>" />

@@ -5,7 +5,9 @@
 		<ol class="breadcrumb">
 			<li><a href="<?= site_url('hom_sid')?>"><i class="fa fa-home"></i> Home</a></li>
 			<?php switch ($edit): ?><?php case '0': ?>
-			<?php case '2': ?>
+			<?php
+// no break
+case '2': ?>
 				<li><a href="<?= site_url("penduduk")?>"> Daftar Penduduk</a></li>
 				<?php break; ?>
 			<?php case '1': ?>
@@ -84,7 +86,7 @@
 <script>
 	window.onload = function() {
 		//Jika posisi kantor dusun belum ada, maka posisi peta akan menampilkan peta desa
-		<?php if ( ! empty($penduduk['lat'])):	?>
+		<?php if (! empty($penduduk['lat'])):	?>
 			var posisi = [<?= $penduduk['lat'].",".$penduduk['lng']; ?>];
 			var zoom = <?= $desa['zoom'] ?: 10; ?>;
 		<?php else: ?>
@@ -102,27 +104,27 @@
 		var marker_rt = [];
 		var marker_persil = []
 		//WILAYAH DESA
-		<?php if ( ! empty($desa['path'])): ?>
+		<?php if (! empty($desa['path'])): ?>
 		set_marker_desa(marker_desa, <?=json_encode($desa)?>, "<?=ucwords($this->setting->sebutan_desa).' '.$desa['nama_desa']?>", "<?= favico_desa()?>");
 		<?php endif; ?>
 
 		//WILAYAH DUSUN
-		<?php if ( ! empty($dusun_gis)): ?>
+		<?php if (! empty($dusun_gis)): ?>
 			set_marker_multi(marker_dusun, '<?=addslashes(json_encode($dusun_gis))?>', '#FFFF00', '<?=ucwords($this->setting->sebutan_dusun)?>', 'dusun');
 		<?php endif; ?>
 
 		//WILAYAH RW
-		<?php if ( ! empty($rw_gis)): ?>
+		<?php if (! empty($rw_gis)): ?>
 			set_marker(marker_rw, '<?=addslashes(json_encode($rw_gis))?>', '#8888dd', 'RW', 'rw');
 		<?php endif; ?>
 
 		//WILAYAH RT
-		<?php if ( ! empty($rt_gis)): ?>
+		<?php if (! empty($rt_gis)): ?>
 			set_marker(marker_rt, '<?=addslashes(json_encode($rt_gis))?>', '#008000', 'RT', 'rt');
 		<?php endif; ?>
 
 		//2. Menampilkan overlayLayers Peta Semua Wilayah
-		<?php if ( ! empty($wil_atas['path'])): ?>
+		<?php if (! empty($wil_atas['path'])): ?>
 			var overlayLayers = overlayWil(marker_desa, marker_dusun, marker_rw, marker_rt, marker_persil, "<?=ucwords($this->setting->sebutan_desa)?>", "<?=ucwords($this->setting->sebutan_dusun)?>");
 		<?php else: ?>
 			var overlayLayers = {};
@@ -132,7 +134,7 @@
 		var baseLayers = getBaseLayers(peta_penduduk, '<?=$this->setting->mapbox_key?>');
 
 		//Menampilkan dan Menambahkan Peta wilayah + Geolocation GPS + Exim GPX/KML
-		L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url()?>assets/images/folder.svg" alt="file icon"/>';
+		L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url(IRVAN)?>assets/images/folder.svg" alt="file icon"/>';
 		showCurrentPoint(posisi, peta_penduduk);
 
 		//Menambahkan zoom scale ke peta
@@ -178,5 +180,5 @@
 		});
 	});
 </script>
-<script src="<?= base_url()?>assets/js/leaflet.filelayer.js"></script>
-<script src="<?= base_url()?>assets/js/togeojson.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.filelayer.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/togeojson.js"></script>

@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -112,26 +112,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </select>
 												<select class="form-control input-sm" name="sex" onchange="formAction('mainform','<?= site_url('penduduk_log/filter/sex')?>')">
 													<option value="">Jenis Kelamin</option>
-													<?php foreach ($list_sex AS $data): ?>
+													<?php foreach ($list_sex as $data): ?>
 														<option value="<?= $data['id']?>" <?php selected($sex, $data['id']); ?>><?= set_ucwords($data['nama'])?></option>
 													<?php endforeach; ?>
 												</select>
 												<select class="form-control input-sm" name="agama" onchange="formAction('mainform','<?= site_url('penduduk_log/filter/agama')?>')">
 													<option value="">Agama</option>
-													<?php foreach ($list_agama AS $data): ?>
+													<?php foreach ($list_agama as $data): ?>
 														<option value="<?= $data['id']?>" <?php selected($agama, $data['id']); ?>><?= set_ucwords($data['nama'])?></option>
 													<?php endforeach; ?>
 												</select>
 												<select class="form-control input-sm " name="dusun" onchange="formAction('mainform','<?= site_url('penduduk_log/dusun')?>')">
 													<option value=""><?= ucwords($this->setting->sebutan_dusun)?></option>
-													<?php foreach ($list_dusun AS $data): ?>
+													<?php foreach ($list_dusun as $data): ?>
 														<option value="<?= $data['dusun']?>" <?php selected($dusun, $data['dusun']); ?>><?= set_ucwords($data['dusun'])?></option>
 													<?php endforeach; ?>
 												</select>
 												<?php if ($dusun): ?>
 													<select class="form-control input-sm" name="rw" onchange="formAction('mainform','<?= site_url('penduduk_log/rw')?>')" >
 														<option value="">RW</option>
-														<?php foreach ($list_rw AS $data): ?>
+														<?php foreach ($list_rw as $data): ?>
 															<option value="<?= $data['rw']?>" <?php selected($rw, $data['rw']); ?>><?= set_ucwords($data['rw'])?></option>
 														<?php endforeach; ?>
 													</select>
@@ -139,7 +139,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<?php if ($rw): ?>
 													<select class="form-control input-sm" name="rt" onchange="formAction('mainform','<?= site_url('penduduk_log/rt')?>')">
 														<option value="">RT</option>
-														<?php foreach ($list_rt AS $data): ?>
+														<?php foreach ($list_rt as $data): ?>
 															<option value="<?= $data['rt']?>" <?php selected($rt, $data['rt']); ?>><?= set_ucwords($data['rt'])?></option>
 														<?php endforeach; ?>
 													</select>
@@ -218,20 +218,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																	<td class="aksi">
 																			<a href="<?= site_url("penduduk_log/edit/$p/$o/$data[id_log]")?>" class="btn bg-orange btn-flat btn-sm"  title="Ubah Log Penduduk" data-remote="false" data-toggle="modal" data-target="#modalBox" data-title="Ubah Log Penduduk" ><i class="fa fa-edit"></i></a>
 																		<?php
-																			if ($data['is_log_pergi_terakhir'] && $data['status_dasar'] == 6)
-																			{
-																		?>
+                                                                            if ($data['is_log_pergi_terakhir'] && $data['status_dasar'] == 6) {
+                                                                                ?>
 																				<a href="#" data-href="<?= site_url("penduduk_log/kembalikan_status/$data[id_log]")?>" class="btn bg-olive btn-flat btn-sm" title="Kembalikan Status"  data-remote="false"  data-toggle="modal" data-target="#confirm-status" data-body="<?= $pertanyaan; ?>"><i class="fa fa-undo"></i></a>
 																				<a href="<?= site_url("penduduk_log/ajax_kembalikan_status_pergi/$data[id_log]")?>" class="btn bg-purple btn-flat btn-sm" title="Datang Kembali"  data-remote="false"  data-toggle="modal" data-target="#modalBox" data-title="Kembalikan Penduduk"><i class="fa fa-angle-double-left"></i></a>
 																		<?php
-																			}
-																			else if ($data['kode_peristiwa'] != 5 && $data['kode_peristiwa'] != 1 && $data['kode_peristiwa'] != 6 && $data['kode_peristiwa'])
-																			{
-																		?>
+                                                                            } elseif ($data['kode_peristiwa'] != 5 && $data['kode_peristiwa'] != 1 && $data['kode_peristiwa'] != 6 && $data['kode_peristiwa']) {
+                                                                                ?>
 																				<a href="#" data-href="<?= site_url("penduduk_log/kembalikan_status/$data[id_log]")?>" class="btn bg-olive btn-flat btn-sm" title="Kembalikan Status"  data-remote="false"  data-toggle="modal" data-target="#confirm-status" data-body="<?= $pertanyaan; ?>"><i class="fa fa-undo"></i></a>
-																		<?php	
-																			}
-																		?>
+																		<?php
+                                                                            }
+															    ?>
 																	</td>
 																	<td nowrap>
 																		<div class="user-panel">
@@ -269,7 +266,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																	<td nowrap>
 																		<div class="user-panel">
 																			<div class="image2">
-																				<img src="<?= !empty($data['foto']) ? AmbilFoto($data['foto']) : base_url('assets/files/user_pict/kuser.png') ?>" class="img-circle" alt="Foto Penduduk"/>
+																				<img src="<?= !empty($data['foto']) ? AmbilFoto($data['foto']) : base_url(IRVAN . 'assets/files/user_pict/kuser.png') ?>" class="img-circle" alt="Foto Penduduk"/>
 																			</div>
 																		</div>
 																	</td>

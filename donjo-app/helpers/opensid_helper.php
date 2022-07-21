@@ -79,10 +79,10 @@ define("LOKASI_GAMBAR_WIDGET", 'desa/upload/widgets/');
 define("LOKASI_KEUANGAN_ZIP", 'desa/upload/keuangan/');
 define("LOKASI_MEDIA", 'desa/upload/media/');
 define("LOKASI_SIMBOL_LOKASI", 'desa/upload/gis/lokasi/point/');
-define("LOKASI_SIMBOL_LOKASI_DEF", 'assets/images/gis/point/');
-define("LOKASI_SISIPAN_DOKUMEN", 'assets/files/sisipan/');
+define("LOKASI_SIMBOL_LOKASI_DEF", IRVAN . 'assets/images/gis/point/');
+define("LOKASI_SISIPAN_DOKUMEN", IRVAN . 'assets/files/sisipan/');
 define("LOKASI_SINKRONISASI_ZIP", 'desa/upload/sinkronisasi/');
-define("PENDAPAT", 'assets/images/layanan_mandiri/');
+define("PENDAPAT", IRVAN . 'assets/images/layanan_mandiri/');
 define("LOKASI_PRODUK", 'desa/upload/produk/');
 
 // Pengaturan Latar
@@ -341,10 +341,10 @@ define("KATEGORI_MAILBOX", serialize(array(
 )));
 
 define("NILAI_PENDAPAT", serialize([
-	1 => 'Sangat Puas',
-	2 => 'Puas',
-	3 => 'Cukup',
-	4 => 'Buruk'
+    1 => 'Sangat Puas',
+    2 => 'Puas',
+    3 => 'Cukup',
+    4 => 'Buruk'
 ]));
 
 /**
@@ -383,7 +383,7 @@ function currentVersion()
 function favico_desa()
 {
     $favico = 'favicon.ico';
-    $favico_desa = (is_file(APPPATH .'../'. LOKASI_LOGO_DESA . $favico)) ?
+    $favico_desa = (is_file(FCPATH . '/' . LOKASI_LOGO_DESA . $favico)) ?
         base_url() . LOKASI_LOGO_DESA . $favico :
         base_url() . $favico;
     return $favico_desa;
@@ -399,13 +399,13 @@ function favico_desa()
  */
 function gambar_desa($nama_file, $type = false, $file = false)
 {
-    if (is_file(APPPATH .'../'. LOKASI_LOGO_DESA . $nama_file)) {
-        return $logo_desa = ($file ? APPPATH.'../' : base_url()) . LOKASI_LOGO_DESA . $nama_file;
+    if (is_file(FCPATH . '/' . LOKASI_LOGO_DESA . $nama_file)) {
+        return $logo_desa = ($file ? FCPATH : base_url()) . LOKASI_LOGO_DESA . $nama_file;
     }
 
     // type FALSE = logo, TRUE = kantor
     $default = ($type)  ? 'opensid_kantor.jpg' : 'opensid_logo.png';
-    return $logo_desa = ($file ? APPPATH.'../' : base_url()). "assets/files/logo/$default";
+    return $logo_desa = ($file ? FCPATH : base_url(IRVAN)). "assets/files/logo/$default";
 }
 
 /**
@@ -443,53 +443,47 @@ function session_success()
 // Untuk mengirim data ke OpenSID tracker
 function httpPost($url, $params)
 {
-	if (!extension_loaded('curl') OR isset($_SESSION['no_curl']))
-	{
-		log_message('error', 'curl tidak bisa dijalankan 1.'.$_SESSION['no_curl'].' 2.'.extension_loaded('curl'));
-		return;
-	}
+    if (!extension_loaded('curl') or isset($_SESSION['no_curl'])) {
+        log_message('error', 'curl tidak bisa dijalankan 1.'.$_SESSION['no_curl'].' 2.'.extension_loaded('curl'));
+        return;
+    }
 
-	$postData = '';
-	//create name value pairs seperated by &
-	foreach ($params as $k => $v)
-	{
-		$postData .= $k . '=' . $v . '&';
-	}
-	$postData = rtrim($postData, '&');
+    $postData = '';
+    //create name value pairs seperated by &
+    foreach ($params as $k => $v) {
+        $postData .= $k . '=' . $v . '&';
+    }
+    $postData = rtrim($postData, '&');
 
-	try
-	{
-		$ch = curl_init();
+    try {
+        $ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_POST, count($postData));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, count($postData));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
-		// Batasi waktu koneksi dan ambil data, supaya tidak menggantung kalau ada error koneksi
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        // Batasi waktu koneksi dan ambil data, supaya tidak menggantung kalau ada error koneksi
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
-		/*curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-		curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 10);
-		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 1);*/
-		$output = curl_exec($ch);
+        /*curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+        curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 1);*/
+        $output = curl_exec($ch);
 
-		if ($output === false)
-		{
-			log_message('error', 'Curl error: ' . curl_error($ch));
-			log_message('error', print_r(curl_getinfo($ch), true));
-		}
-		curl_close($ch);
-		return $output;
-	}
-	catch (Exception $e)
-	{
-		return $e;
-	}
+        if ($output === false) {
+            log_message('error', 'Curl error: ' . curl_error($ch));
+            log_message('error', print_r(curl_getinfo($ch), true));
+        }
+        curl_close($ch);
+        return $output;
+    } catch (Exception $e) {
+        return $e;
+    }
 }
 
 /**
@@ -725,60 +719,58 @@ function sql_in_list($list_array)
  */
 function ambilBerkas($nama_berkas, $redirect_url = null, $unique_id = null, $lokasi = LOKASI_ARSIP, $tampil=false)
 {
-	$CI =& get_instance();
-	$CI->load->helper('download');
+    $CI =& get_instance();
+    $CI->load->helper('download');
 
-	// Batasi akses LOKASI_ARSIP hanya untuk admin
-	if ($lokasi == LOKASI_ARSIP && $CI->session->siteman != 1) redirect('/'); 
-	
-	// Tentukan path berkas (absolut)
-	$pathBerkas = FCPATH . $lokasi . $nama_berkas;
-	$pathBerkas = str_replace('/', DIRECTORY_SEPARATOR, $pathBerkas);
-	// Redirect ke halaman surat masuk jika path berkas kosong atau berkasnya tidak ada
-	if ( ! file_exists($pathBerkas))
-	{
-		$_SESSION['success'] = -1;
-		$_SESSION['error_msg'] = 'Berkas tidak ditemukan';
-		if ($redirect_url)
-			redirect($redirect_url);
-		else
-		{
-			http_response_code(404);
-			include(FCPATH . 'donjo-app/views/errors/html/error_404.php');
-			die();
-		}
-	}
-	// OK, berkas ada. Ambil konten berkasnya
+    // Batasi akses LOKASI_ARSIP hanya untuk admin
+    if ($lokasi == LOKASI_ARSIP && $CI->session->siteman != 1) {
+        redirect('/');
+    }
+    
+    // Tentukan path berkas (absolut)
+    $pathBerkas = FCPATH . $lokasi . $nama_berkas;
+    $pathBerkas = str_replace('/', DIRECTORY_SEPARATOR, $pathBerkas);
+    // Redirect ke halaman surat masuk jika path berkas kosong atau berkasnya tidak ada
+    if (! file_exists($pathBerkas)) {
+        $_SESSION['success'] = -1;
+        $_SESSION['error_msg'] = 'Berkas tidak ditemukan';
+        if ($redirect_url) {
+            redirect($redirect_url);
+        } else {
+            http_response_code(404);
+            include(FCPATH . 'donjo-app/views/errors/html/error_404.php');
+            die();
+        }
+    }
+    // OK, berkas ada. Ambil konten berkasnya
 
-	$data = file_get_contents($pathBerkas);
+    $data = file_get_contents($pathBerkas);
 
-	if ( ! is_null($unique_id))
-	{
-		// Buang unique id pada nama berkas download
-		$nama_berkas = explode($unique_id, $nama_berkas);
-		$namaFile = $nama_berkas[0];
-		$ekstensiFile = explode('.', end($nama_berkas));
-		$ekstensiFile = end($ekstensiFile);
-		$nama_berkas = $namaFile . '.' . $ekstensiFile;
-	}
+    if (! is_null($unique_id)) {
+        // Buang unique id pada nama berkas download
+        $nama_berkas = explode($unique_id, $nama_berkas);
+        $namaFile = $nama_berkas[0];
+        $ekstensiFile = explode('.', end($nama_berkas));
+        $ekstensiFile = end($ekstensiFile);
+        $nama_berkas = $namaFile . '.' . $ekstensiFile;
+    }
 
-	// Kalau $tampil, tampilkan secara inline.
-	if ($tampil)
-	{
-		// Set the default MIME type to send
-		$mime = get_extension($nama_berkas) == '.pdf' ? 'application/pdf' : 'application/octet-stream';
-		// Generate the server headers
-		header('Content-Type: '.$mime);
-		header('Content-Disposition: inline; filename="'.$nama_berkas.'"');
-		header('Expires: 0');
-		header('Content-Transfer-Encoding: binary');
-		header('Content-Length: '.strlen($data));
-		header('Cache-Control: private, no-transform, no-store, must-revalidate');
+    // Kalau $tampil, tampilkan secara inline.
+    if ($tampil) {
+        // Set the default MIME type to send
+        $mime = get_extension($nama_berkas) == '.pdf' ? 'application/pdf' : 'application/octet-stream';
+        // Generate the server headers
+        header('Content-Type: '.$mime);
+        header('Content-Disposition: inline; filename="'.$nama_berkas.'"');
+        header('Expires: 0');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: '.strlen($data));
+        header('Cache-Control: private, no-transform, no-store, must-revalidate');
 
-		exit($data);
-	}
+        exit($data);
+    }
 
-	force_download($nama_berkas, $data);
+    force_download($nama_berkas, $data);
 }
 
 /**
@@ -930,7 +922,7 @@ function bilangan_titik($str)
 
 function alfanumerik_kolon($str)
 {
-	return preg_replace('/[^a-zA-Z0-9:]/', '', strip_tags($str));
+    return preg_replace('/[^a-zA-Z0-9:]/', '', strip_tags($str));
 }
 
 function nomor_surat_keputusan($str)
@@ -1066,46 +1058,46 @@ function convertToBytes(string $from)
     return $number * (1024 ** $exponent);
 }
 
-  /**
-  * Disalin dari FeedParser.php
-    * Load the whole contents of a web page
-    *
-    * @access   public
-    * @param    string
-    * @return   string
-    */
-    function getUrlContent($url)
-    {
-        if (empty($url)) {
-            throw new Exception("URL to parse is empty!.");
-            return false;
-        }
-        if (!in_array(explode(':', $url)[0], array('http', 'https'))) {
-            throw new Exception("URL harus http atau https");
-            return false;
-        }
-        if ($content = @file_get_contents($url)) {
+/**
+* Disalin dari FeedParser.php
+  * Load the whole contents of a web page
+  *
+  * @access   public
+  * @param    string
+  * @return   string
+  */
+function getUrlContent($url)
+{
+    if (empty($url)) {
+        throw new Exception("URL to parse is empty!.");
+        return false;
+    }
+    if (!in_array(explode(':', $url)[0], array('http', 'https'))) {
+        throw new Exception("URL harus http atau https");
+        return false;
+    }
+    if ($content = @file_get_contents($url)) {
+        return $content;
+    } else {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $content = curl_exec($ch);
+        $error = curl_error($ch);
+
+        curl_close($ch);
+
+        if (empty($error)) {
             return $content;
         } else {
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $content = curl_exec($ch);
-            $error = curl_error($ch);
-
-            curl_close($ch);
-
-            if (empty($error)) {
-                return $content;
-            } else {
-                log_message('error', "Error occured while loading url by cURL. <br />\n" . $error) ;
-                return false;
-            }
+            log_message('error', "Error occured while loading url by cURL. <br />\n" . $error) ;
+            return false;
         }
     }
+}
 
 function crawler()
 {
@@ -1139,52 +1131,51 @@ function kode_wilayah($kode_wilayah)
 // Dari 0892611042612 --> +6292611042612 untuk redirect WA
 function format_telpon(string $no_telpon, $kode_negara = '+62')
 {
-	$awalan = substr($no_telpon, 0, 2);
+    $awalan = substr($no_telpon, 0, 2);
 
-	if ($awalan == "62") return '+' . $no_telpon;
+    if ($awalan == "62") {
+        return '+' . $no_telpon;
+    }
 
-	return $kode_negara . substr($no_telpon, 1, strlen($no_telpon));
+    return $kode_negara . substr($no_telpon, 1, strlen($no_telpon));
 }
 
 // https://stackoverflow.com/questions/6158761/recursive-php-function-to-replace-characters/24482733
 function strReplaceArrayRecursive($replacement = array(), $strArray = false, $isReplaceKey = false)
 {
-	if ( ! is_array($strArray))
-	{
-		return str_replace(array_keys($replacement), array_values($replacement), $strArray);
-	}
-	else
-	{
-		$newArr = array();
-		foreach ($strArray as $key=>$value)
-		{
-			$replacedKey = $key;
-			if ($isReplaceKey)
-			{
-				$replacedKey = str_replace(array_keys($replacement), array_values($replacement), $key);
-			}
-			$newArr[$replacedKey] = strReplaceArrayRecursive($replacement, $value, $isReplaceKey);
-		}
+    if (! is_array($strArray)) {
+        return str_replace(array_keys($replacement), array_values($replacement), $strArray);
+    } else {
+        $newArr = array();
+        foreach ($strArray as $key=>$value) {
+            $replacedKey = $key;
+            if ($isReplaceKey) {
+                $replacedKey = str_replace(array_keys($replacement), array_values($replacement), $key);
+            }
+            $newArr[$replacedKey] = strReplaceArrayRecursive($replacement, $value, $isReplaceKey);
+        }
 
-		return $newArr;
-	}
+        return $newArr;
+    }
 }
 
 function get_domain(string $url)
 {
-	$parse = parse_url($url);
+    $parse = parse_url($url);
 
-	return preg_replace('#^(http(s)?://)?w{3}\.#', '$1', $parse['host']);
+    return preg_replace('#^(http(s)?://)?w{3}\.#', '$1', $parse['host']);
 }
 
 function get_antrian($antrian)
 {
-	return substr_replace($antrian, '-', 6, 0);
+    return substr_replace($antrian, '-', 6, 0);
 }
 
 function get_nik($nik = '0')
 {
-	if (substr($nik, 0, 1) !== '0') return $nik;
+    if (substr($nik, 0, 1) !== '0') {
+        return $nik;
+    }
 
-	return '0';
+    return '0';
 }

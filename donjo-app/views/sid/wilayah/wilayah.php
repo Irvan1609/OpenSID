@@ -64,21 +64,21 @@
 														</thead>
 														<tbody>
 															<?php
-																$total = array();
-																$total['total_rw'] = 0;
-																$total['total_rt'] = 0;
-																$total['total_kk'] = 0;
-																$total['total_warga'] = 0;
-																$total['total_warga_l'] = 0;
-																$total['total_warga_p'] = 0;
-																foreach ($main as $data):
-															?>
+                                                                $total = array();
+		$total['total_rw'] = 0;
+		$total['total_rt'] = 0;
+		$total['total_kk'] = 0;
+		$total['total_warga'] = 0;
+		$total['total_warga_l'] = 0;
+		$total['total_warga_p'] = 0;
+		foreach ($main as $data):
+		    ?>
 															<tr>
 																<td class="no_urut"><?= $data['no']?></td>
 																<td nowrap>
 																	<?php if ($this->CI->cek_hak_akses('u')): ?>
 																		<a href="<?= site_url("sid_core/urut/dusun/$paging->page/$data[id]/1"); ?>" class="btn bg-olive btn-flat btn-sm <?php ($data['no'] == $paging->num_rows) and print('disabled'); ?>" title="Pindah Posisi Ke Bawah"><i class="fa fa-arrow-down"></i></a>
-																		<a href="<?= site_url("sid_core/urut/dusun/$paging->page/$data[id]/2"); ?>" class="btn bg-olive btn-flat btn-sm <?php ($data['no'] == 1 AND $paging->page == $paging->start_link) and print('disabled'); ?>" title="Pindah Posisi Ke Atas"><i class="fa fa-arrow-up"></i></a>
+																		<a href="<?= site_url("sid_core/urut/dusun/$paging->page/$data[id]/2"); ?>" class="btn bg-olive btn-flat btn-sm <?php ($data['no'] == 1 and $paging->page == $paging->start_link) and print('disabled'); ?>" title="Pindah Posisi Ke Atas"><i class="fa fa-arrow-up"></i></a>
 																	<?php endif; ?>
 																	<a href="<?= site_url("sid_core/sub_rw/$data[id]")?>" class="btn bg-purple btn-flat btn-sm" title="Rincian Sub Wilayah"><i class="fa fa-list"></i></a>
 																	<?php if ($this->CI->cek_hak_akses('u')): ?>
@@ -109,14 +109,14 @@
 																<td class="bilangan"><a href="<?= site_url("sid_core/warga_p/$data[id]")?>"><?= $data['jumlah_warga_p']?></a></td>
 															</tr>
 															<?php
-																$total['total_rw'] += $data['jumlah_rw'];
-																$total['total_rt'] += $data['jumlah_rt'];
-																$total['total_kk'] += $data['jumlah_kk'];
-																$total['total_warga'] += $data['jumlah_warga'];
-																$total['total_warga_l'] += $data['jumlah_warga_l'];
-																$total['total_warga_p'] += $data['jumlah_warga_p'];
-																endforeach;
-															?>
+		        $total['total_rw'] += $data['jumlah_rw'];
+		    $total['total_rt'] += $data['jumlah_rt'];
+		    $total['total_kk'] += $data['jumlah_kk'];
+		    $total['total_warga'] += $data['jumlah_warga'];
+		    $total['total_warga_l'] += $data['jumlah_warga_l'];
+		    $total['total_warga_p'] += $data['jumlah_warga_p'];
+		endforeach;
+		?>
 														</tbody>
 														<tfoot>
 															<tr>
@@ -145,8 +145,8 @@
 	</section>
 </div>
 <?php $this->load->view('global/confirm_delete');?>
-<script src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script src="<?= base_url()?>assets/js/validasi.js"></script>
-<script src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 
 

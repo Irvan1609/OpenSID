@@ -1,4 +1,6 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+} ?>
 
 <div class="row" style="margin-bottom:3px; margin-top:10px;">
 	<div class="col-lg-12 col-md-12">
@@ -25,11 +27,11 @@
 			</ul>
     		</div>
     		<div class="navbar-right hidden-xs" style="margin-right: 15px; margin-top: 15px;">
-                  <?php foreach ($sosmed As $data): ?>
+                  <?php foreach ($sosmed as $data): ?>
     	            <?php if (!empty($data["link"])): ?>
     	            <a href="<?= $data['link']?>" rel="noopener noreferrer" style="padding:2px;">
     	                <i class="fa fa-<?= strtolower($data['nama']) ?>-square fa-2x"></i>
-    	                <?php if (strtolower($data["nama"]) == 'whatsapp' OR strtolower($data["nama"]) == 'instagram' OR strtolower($data["nama"]) == 'telegram'): ?>
+    	                <?php if (strtolower($data["nama"]) == 'whatsapp' or strtolower($data["nama"]) == 'instagram' or strtolower($data["nama"]) == 'telegram'): ?>
     	                <i class="fa fa-<?= strtolower($data['nama']) ?> fa-2x"></i>
     	                <?php endif; ?>
     	            </a>
@@ -56,10 +58,10 @@
             </ol>   
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="tlClogo" src="<?= base_url("$this->theme_folder/$this->theme/images/bg_header.jpg") ?>">
+                    <img class="tlClogo" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/bg_header.jpg") ?>">
                 </div>
                 <div class="item">
-                    <img class="tlClogo" src="<?= base_url("$this->theme_folder/$this->theme/images/bg_header.jpg") ?>">
+                    <img class="tlClogo" src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/bg_header.jpg") ?>">
                 </div>
             </div>
 

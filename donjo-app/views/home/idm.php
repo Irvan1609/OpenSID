@@ -1,5 +1,5 @@
 <?php if ($halaman_statis): ?>
-	<link rel="stylesheet" href="<?= base_url()?>assets/css/AdminLTE.css" />
+	<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/AdminLTE.css" />
 	<?php if (is_file($this->theme_folder."/".$this->theme.'/css/first.css')): ?>
 		<link rel="stylesheet" href="<?= base_url().$this->theme_folder.'/'.$this->theme.'/css/first.css' ?>" />
 	<?php endif; ?>
@@ -11,7 +11,7 @@
 	<?php endif; ?>
 <?php endif; ?>
 
-<?php if ( ! $idm->error_msg): ?>
+<?php if (! $idm->error_msg): ?>
 	<script type="text/javascript">
 		$(document).ready(function () {
 
@@ -83,7 +83,7 @@
 								<option value="<?= $thn ?>" <?= selected($tahun, $thn) ?>><?= $thn; ?></option>
 							<?php endforeach; ?>
 						</select>
-						<a class="btn btn-social btn-flat btn-info btn-sm btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" <?= cek_koneksi_internet() == FALSE ? 'disabled title="Perangkat tidak terhubung dengan jaringan"' : 'href="' . site_url("status_desa/perbaharui/$tahun") . '"'; ?> ><i class="fa fa-refresh"></i>Perbaharui</a>
+						<a class="btn btn-social btn-flat btn-info btn-sm btn-sm visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block" <?= cek_koneksi_internet() == false ? 'disabled title="Perangkat tidak terhubung dengan jaringan"' : 'href="' . site_url("status_desa/perbaharui/$tahun") . '"'; ?> ><i class="fa fa-refresh"></i>Perbaharui</a>
 					</form>
 				</div>
 			<?php endif; ?>

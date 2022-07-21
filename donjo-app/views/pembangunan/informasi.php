@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/font-awesome.min.css">
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/ionicons.min.css">
-<link rel="stylesheet" href="<?= base_url()?>assets/css/leaflet.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/fonts.googleapis.com.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/ace.min.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/ionicons.min.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/leaflet.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/fonts.googleapis.com.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/ace.min.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/ace-skins.min.css" />
 
 <script src="<?= base_url() ?>assets/bootstrap/js/jquery.min.js"></script>
-<script src="<?= base_url()?>assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.js"></script>
-<script src="<?= base_url()?>assets/js/ace-elements.min.js"></script>
-<script src="<?= base_url()?>assets/js/ace.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/ace-elements.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/ace.min.js"></script>
 
 <div class="main-container ace-save-state" id="main-container">
 	<div class="main-content">
@@ -52,7 +52,7 @@
 							<tr>
 								<th>Anggaran</th>
 								<td width="20px">:</td>
-								<td>Rp. <?= number_format($pembangunan->anggaran,0) ?></td>
+								<td>Rp. <?= number_format($pembangunan->anggaran, 0) ?></td>
 							</tr>
 							<tr>
 								<th>Volume</th>

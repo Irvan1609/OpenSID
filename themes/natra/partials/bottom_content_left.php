@@ -1,4 +1,6 @@
-<?php  if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php  if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+} ?>
 <div class="content_bottom_left" style="margin-bottom:10px;">
     <div class="archive_style_1">
         <div style="margin-top:10px;">
@@ -9,8 +11,12 @@
             <?php endif; ?>
         </div>
         <?php $this->load->view($folder_themes."/layouts/slider.php") ?>
-		<?php if ($this->setting->covid_data) $this->load->view($folder_themes."/partials/corona-widget.php")?>
-		<?php if ($this->setting->covid_desa) $this->load->view($folder_themes."/partials/corona-local.php");?>
+		<?php if ($this->setting->covid_data) {
+		    $this->load->view($folder_themes."/partials/corona-widget.php");
+		}?>
+		<?php if ($this->setting->covid_desa) {
+		    $this->load->view($folder_themes."/partials/corona-local.php");
+		}?>
         <?php if ($headline): ?>
         <?php $abstrak_headline = potong_teks($headline['isi'], 550) ?>
         <div class="single_category wow fadeInDown">
@@ -28,11 +34,11 @@
                                 <a href="<?= site_url('artikel/'.buat_slug($headline))?>">
                                 <?php if ($headline["gambar"] != ""): ?>
                                 <?php if (is_file(LOKASI_FOTO_ARTIKEL."sedang_".$headline['gambar'])): ?>
-                                <img src="<?= AmbilFotoArtikel($headline['gambar'],'sedang') ?>" width="300" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" />
-                                <img src="<?= AmbilFotoArtikel($headline['gambar'],'sedang') ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" />
+                                <img src="<?= AmbilFotoArtikel($headline['gambar'], 'sedang') ?>" width="300" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" />
+                                <img src="<?= AmbilFotoArtikel($headline['gambar'], 'sedang') ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" />
                                 <?php else: ?>
-                                <img src="<?= base_url("$this->theme_folder/$this->theme/images/noimage.png") ?>" width="300px" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;"/>
-                                <img src="<?= base_url("$this->theme_folder/$this->theme/images/noimage.png") ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;"/>
+                                <img src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/noimage.png") ?>" width="300px" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;"/>
+                                <img src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/noimage.png") ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;"/>
                                 <?php endif; ?>
                                 <?php endif; ?>
                                 </a>
@@ -73,16 +79,16 @@
                                 <i class="fa fa-user"></i><?= $data['owner']?>&nbsp;
                                 <i class="fa fa-eye"></i><?= hit($data['hit']) ?>&nbsp;
                                 <i class="fa fa-comments"></i><?php $baca_komentar = $this->db->query("SELECT * FROM komentar WHERE id_artikel = '".$data['id']."'"); $komentarku = $baca_komentar->num_rows();
-                                echo number_format($komentarku,0,',','.'); ?>&nbsp;
+                echo number_format($komentarku, 0, ',', '.'); ?>&nbsp;
                                 </span>
                             </div>
                             <a href="<?= site_url('artikel/'.buat_slug($data))?>" title="Baca Selengkapnya" style="font-weight:bold">
                             <?php if (is_file(LOKASI_FOTO_ARTIKEL."kecil_".$data['gambar'])): ?>
-                            <img src="<?= AmbilFotoArtikel($data['gambar'],'sedang') ?>" width="300" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>"/>
-                            <img src="<?= AmbilFotoArtikel($data['gambar'],'sedang') ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>"/>
+                            <img src="<?= AmbilFotoArtikel($data['gambar'], 'sedang') ?>" width="300" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>"/>
+                            <img src="<?= AmbilFotoArtikel($data['gambar'], 'sedang') ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>"/>
                             <?php else: ?>
-                            <img src="<?= base_url("$this->theme_folder/$this->theme/images/noimage.png") ?>" width="300px" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>" />
-                            <img src="<?= base_url("$this->theme_folder/$this->theme/images/noimage.png") ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>" />
+                            <img src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/noimage.png") ?>" width="300px" class="img-fluid img-thumbnail hidden-sm hidden-xs" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>" />
+                            <img src="<?= base_url(IRVAN . "$this->theme_folder/$this->theme/images/noimage.png") ?>" width="100%" class="img-fluid img-thumbnail hidden-lg hidden-md" style="float:left; margin:0 8px 4px 0;" alt="<?= $data["judul"] ?>" />
                             <?php endif;?>
                             </a>
                             <div style="text-align: justify;" class="hidden-sm hidden-xs">
@@ -107,7 +113,7 @@
     </div>
     <?php endif; ?>
 </div>
-<?php if ($artikel AND $paging->num_rows > $paging->per_page): ?>
+<?php if ($artikel and $paging->num_rows > $paging->per_page): ?>
 <div class="pagination_area">
     <div>Halaman <?= $p ?> dari <?= $paging->end_link ?></div>
     <ul class="pagination">

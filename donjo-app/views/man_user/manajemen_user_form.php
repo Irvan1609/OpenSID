@@ -16,7 +16,7 @@
 							<?php if ($user['foto']): ?>
 								 <img class="profile-user-img img-responsive img-circle" src="<?=AmbilFoto($user['foto'])?>" alt="Pengguna">
 							<?php else: ?>
-								<img class="profile-user-img img-responsive img-circle" src="<?= base_url()?>assets/files/user_pict/kuser.png" alt="Pengguna">
+								<img class="profile-user-img img-responsive img-circle" src="<?= base_url(IRVAN)?>assets/files/user_pict/kuser.png" alt="Pengguna">
 							<?php endif ?>
 							<br/>
 							<p class="text-center text-bold">Foto Pengguna</p>

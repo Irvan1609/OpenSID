@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
  * File ini:
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															<?php if (is_file(LOKASI_PRODUK . $foto[$i])): ?>
 																<img src="<?= base_url(LOKASI_PRODUK . $foto[$i]); ?>" alt="Foto <?= ($i+1); ?>">
 															<?php else: ?>
-																<img class="card-img-top" style="width: auto; max-height: 700px" src="<?= base_url('assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
+																<img class="card-img-top" style="width: auto; max-height: 700px" src="<?= base_url(IRVAN . 'assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
 															<?php endif; ?>
 														</div>
 													<?php endif; ?>
@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 							<?php else: ?>
-								<img class="card-img-top" style="width: auto; max-height: 700px" src="<?= base_url('assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
+								<img class="card-img-top" style="width: auto; max-height: 700px" src="<?= base_url(IRVAN . 'assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
 							<?php endif; ?>
 							<div class="card-body">
 								<!--
@@ -142,9 +142,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 
 			<?php
-				$paging_page = 'lapak';
-				if ($paging->num_rows > $paging->per_page):
-			?>
+                $paging_page = 'lapak';
+if ($paging->num_rows > $paging->per_page):
+    ?>
 				<div class="box-footer text-center">
 					<div>Halaman <?= $paging->page ?> dari <?= $paging->end_link ?></div>
 					<ul class="pagination pagination-sm no-margin">

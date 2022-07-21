@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -46,8 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 ?>
 
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/jquery-ui.min.css">
-<script src="<?= base_url()?>assets/bootstrap/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/jquery-ui.min.css">
+<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery-ui.min.js"></script>
 <script>
 	function show_kartu_peserta(elem) {
 		var id = elem.attr('target');
@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</thead>
 				<tbody>
 					<?php if ($bantuan_penduduk):
-						foreach ($bantuan_penduduk as $key => $item): ?>
+					    foreach ($bantuan_penduduk as $key => $item): ?>
 							<tr>
 								<td class="padat"><?= ($key + 1); ?></td>
 								<td class="padat">

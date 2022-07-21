@@ -1,25 +1,23 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
-<?php 
-	$previous = "javascript:history.go(-1)";
-	if(isset($_SERVER['HTTP_REFERER'])) 
-	{
+<?php
+    $previous = "javascript:history.go(-1)";
+if (isset($_SERVER['HTTP_REFERER'])) {
     $previous = $_SERVER['HTTP_REFERER'];
-	}
-	$CI =& get_instance();
-	if( ! isset($CI))
-	{
-		$CI = new CI_Controller();
-	}
+}
+$CI =& get_instance();
+if (! isset($CI)) {
+    $CI = new CI_Controller();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>404 Page Not Found</title>
-	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url()?>assets/bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url()?>assets/css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url()?>assets/css/AdminLTE.css" />
+	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url(IRVAN)?>assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url(IRVAN)?>assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?= $CI->config->base_url(IRVAN)?>assets/css/AdminLTE.css" />
 </head>
 <body>
 <div class="container">

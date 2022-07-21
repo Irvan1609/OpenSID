@@ -73,51 +73,51 @@
   //Realisasi Pelaksanaan APBD
   $raw_data = $this->keuangan_model->rp_apbd('1', '2016');
   
-  $res_pelaksanaan = array();
-  $nama = array(
-    'PENDAPATAN' => '(PA) Pendapatan Desa',
-    'BELANJA' => '(PA) Belanja Desa', 
-    'PEMBIAYAAN' => '(PA) Pembiayaan Desa',
-  );
-  for ($i = 0; $i < count($raw_data['jenis_belanja']) / 2; $i++) { 
-    $row = array(
-      'jenis_belanja' => $raw_data['jenis_belanja'][$i]['Nama_Akun'],
-      'anggaran' => $raw_data['anggaran'][$i]['AnggaranStlhPAK'],
-      'realisasi' => $raw_data['realisasi'][$i]['Nilai'],
+    $res_pelaksanaan = array();
+    $nama = array(
+      'PENDAPATAN' => '(PA) Pendapatan Desa',
+      'BELANJA' => '(PA) Belanja Desa',
+      'PEMBIAYAAN' => '(PA) Pembiayaan Desa',
     );
-    array_push($res_pelaksanaan, $row);
-  }
+    for ($i = 0; $i < count($raw_data['jenis_belanja']) / 2; $i++) {
+        $row = array(
+        'jenis_belanja' => $raw_data['jenis_belanja'][$i]['Nama_Akun'],
+        'anggaran' => $raw_data['anggaran'][$i]['AnggaranStlhPAK'],
+        'realisasi' => $raw_data['realisasi'][$i]['Nilai'],
+    );
+        array_push($res_pelaksanaan, $row);
+    }
 
-  //Pendapatan APBD
-  $raw_data = $this->keuangan_model->r_pd('2', '2016');
-  $res_pendapatan = array();
-  foreach ($raw_data['jenis_pendapatan'] as $r){
-    $res_pendapatan[$r['Jenis']]['nama'] = $r['Nama_Jenis'];
-  }
+    //Pendapatan APBD
+    $raw_data = $this->keuangan_model->r_pd('2', '2016');
+    $res_pendapatan = array();
+    foreach ($raw_data['jenis_pendapatan'] as $r) {
+        $res_pendapatan[$r['Jenis']]['nama'] = $r['Nama_Jenis'];
+    }
 
-  foreach ($raw_data['anggaran'] as $r) {
-    $res_pendapatan[$r['jenis_pendapatan']]['anggaran'] = $r['Pagu'];
-  }
+    foreach ($raw_data['anggaran'] as $r) {
+        $res_pendapatan[$r['jenis_pendapatan']]['anggaran'] = $r['Pagu'];
+    }
 
-  foreach ($raw_data['realisasi'] as $r) {
-    $res_pendapatan[$r['jenis_pendapatan']]['realisasi'] = $r['Pagu'];
-  }
+    foreach ($raw_data['realisasi'] as $r) {
+        $res_pendapatan[$r['jenis_pendapatan']]['realisasi'] = $r['Pagu'];
+    }
 
-  //Belanja APBD
-  $raw_data = $this->keuangan_model->r_bd('1', '2016');
-  $res_belanja = array();
-  foreach ($raw_data['bidang'] as $r){
-    $res_belanja[$r['Kd_Bid']]['nama'] = $r['Nama_Bidang'];
-  }
+    //Belanja APBD
+    $raw_data = $this->keuangan_model->r_bd('1', '2016');
+    $res_belanja = array();
+    foreach ($raw_data['bidang'] as $r) {
+        $res_belanja[$r['Kd_Bid']]['nama'] = $r['Nama_Bidang'];
+    }
 
-  foreach ($raw_data['anggaran'] as $r) {
-    $res_belanja[$r['Kd_Bid']]['anggaran'] = $r['Pagu'];
-  }
+    foreach ($raw_data['anggaran'] as $r) {
+        $res_belanja[$r['Kd_Bid']]['anggaran'] = $r['Pagu'];
+    }
 
-  foreach ($raw_data['realisasi'] as $r) {
-    $res_belanja[$r['Kd_Bid']]['realisasi'] = $r['Nilai'];
-  }
-?>
+    foreach ($raw_data['realisasi'] as $r) {
+        $res_belanja[$r['Kd_Bid']]['realisasi'] = $r['Nilai'];
+    }
+    ?>
 
 <script type="text/javascript">
   function displayPelaksanaan(){
@@ -320,6 +320,6 @@
 	});
 </script>
 <!-- Highcharts -->
-<script src="<?= base_url()?>assets/js/highcharts/highcharts.js"></script>
-<script src="<?= base_url()?>assets/js/highcharts/exporting.js"></script>
-<script src="<?= base_url()?>assets/js/highcharts/highcharts-more.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/highcharts.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/exporting.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/highcharts/highcharts-more.js"></script>

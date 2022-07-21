@@ -159,11 +159,11 @@
 		</div>
 	</div>
 </div>
-<script src="<?= base_url()?>assets/bootstrap/js/jquery.min.js"></script>
-<script src="<?= base_url('assets/js/html5-qrcode-scanner.js'); ?>"></script>
-<script src="<?= base_url('assets/js/html5-qrcode.js'); ?>"></script>
-<script src="<?= base_url('assets/js/qrcode.js'); ?>"></script>
-<script src="<?= base_url('assets/js/qrcode-scanner.js'); ?>"></script>
+<script src="<?= base_url(IRVAN)?>assets/bootstrap/js/jquery.min.js"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/html5-qrcode-scanner.js'); ?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/html5-qrcode.js'); ?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/qrcode.js'); ?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/qrcode-scanner.js'); ?>"></script>
 <script>
 	$('document').ready(function() {
 		$('#changeqr').change();

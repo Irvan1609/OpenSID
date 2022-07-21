@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -48,11 +48,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
  <?php
-	if ($log_status_dasar['tgl_peristiwa']!=''):
-		$sekarang = $log_status_dasar['tgl_peristiwa'];
-	else:
-		$sekarang = date("d-m-Y");
-	endif;
+    if ($log_status_dasar['tgl_peristiwa']!=''):
+        $sekarang = $log_status_dasar['tgl_peristiwa'];
+    else:
+        $sekarang = date("d-m-Y");
+    endif;
 ?>
 <form action="<?=$form_action?>" method="post" id="validasi" class="tgl_lapor_peristiwa">
 	<div class='modal-body'>
@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<label for="ref_pindah">Tujuan Pindah</label>
 								<select name="ref_pindah" class="form-control select2 input-sm required">
 									<option value="">Pilih Tujuan Pindah</option>
-									<?php foreach ($list_ref_pindah AS $data): ?>
+									<?php foreach ($list_ref_pindah as $data): ?>
 										<option value="<?=$data['id']?>" <?php selected($data['id'], $log_status_dasar['ref_pindah'])?>><?=$data['nama']?></option>
 									<?php endforeach; ?>
 								</select>
@@ -125,10 +125,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </form>
 
-<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/script.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/script.js"></script>
 
 <script type="text/javascript">
 	$('#tgl_1').datetimepicker(

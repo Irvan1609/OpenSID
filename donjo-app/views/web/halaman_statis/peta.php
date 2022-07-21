@@ -43,11 +43,11 @@
  */
 ?>
 
-<link rel="stylesheet" href="<?= base_url()?>assets/bootstrap/css/font-awesome.min.css">
-<link rel="stylesheet" href="<?= base_url()?>assets/css/leaflet-measure-path.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/MarkerCluster.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/MarkerCluster.Default.css" />
-<link rel="stylesheet" href="<?= base_url()?>assets/css/leaflet.groupedlayercontrol.min.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/bootstrap/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/leaflet-measure-path.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/MarkerCluster.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/MarkerCluster.Default.css" />
+<link rel="stylesheet" href="<?= base_url(IRVAN)?>assets/css/leaflet.groupedlayercontrol.min.css" />
 <style>
 #map
 .leaflet-popup-content {
@@ -79,7 +79,9 @@ td {
           <?php $this->load->view("gis/content_rw_web.php", array('rw_gis' => $rw_gis, 'list_ref' => $list_ref, 'wilayah' => ucwords($this->setting->sebutan_dusun.' '))) ?>
           <?php $this->load->view("gis/content_rt_web.php", array('rt_gis' => $rt_gis, 'list_ref' => $list_ref, 'wilayah' => ucwords($this->setting->sebutan_dusun.' '))) ?>
           <div id="covid_status" style="display: none;">
-            <?php if ($this->setting->covid_data) $this->load->view("gis/covid_peta.php")?>
+            <?php if ($this->setting->covid_data) {
+                $this->load->view("gis/covid_peta.php");
+            }?>
           </div>
         </div>
         <div id="desa_online" style="display: none;">
@@ -134,14 +136,16 @@ td {
         </div>
         <div class="leaflet-top leaflet-right">
           <div id="covid_status_local" style="display: none;">
-            <?php if ($this->setting->covid_desa) $this->load->view("gis/covid_peta_local.php")?>
+            <?php if ($this->setting->covid_desa) {
+                $this->load->view("gis/covid_peta_local.php");
+            }?>
           </div>
         </div>
         <div class="leaflet-bottom leaflet-left">
           <div id="qrcode">
             <div class="panel-body-lg">
               <a href="https://github.com/OpenSID/OpenSID">
-                <img src="<?= base_url()?>assets/images/opensid.png" alt="OpenSID">
+                <img src="<?= base_url(IRVAN)?>assets/images/opensid.png" alt="OpenSID">
               </a>
             </div>
           </div>
@@ -193,7 +197,7 @@ td {
   var infoWindow;
   window.onload = function()
   {
-		<?php if (!empty($desa['lat']) AND !empty($desa['lng'])): ?>
+		<?php if (!empty($desa['lat']) and !empty($desa['lng'])): ?>
 			var posisi = [<?=$desa['lat'].",".$desa['lng']?>];
 			var zoom = <?=$desa['zoom'] ?: 10?>;
 		<?php elseif (!empty($desa['path'])): ?>
@@ -310,7 +314,7 @@ td {
       "Desa Pengguna OpenSID": layer_desa
     }
 
-    peta_covid(mylayer, mymap, '<?= base_url()?>assets/images/covid.png');
+    peta_covid(mylayer, mymap, '<?= base_url(IRVAN)?>assets/images/covid.png');
 
     mylayer.on('add', function () {
       setTimeout(function () {
@@ -389,14 +393,14 @@ td {
 })();
 </script>
 
-<script src="<?= base_url()?>assets/js/turf.min.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet-providers.js"></script>
-<script src="<?= base_url()?>assets/js/L.Control.Locate.min.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet-measure-path.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.markercluster.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.groupedlayercontrol.min.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.browser.print.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.browser.print.utils.js"></script>
-<script src="<?= base_url()?>assets/js/leaflet.browser.print.sizes.js"></script>
-<script src="<?= base_url()?>assets/js/dom-to-image.min.js"></script>
-<script src="<?= base_url()?>assets/js/script.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/turf.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet-providers.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/L.Control.Locate.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet-measure-path.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.markercluster.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.groupedlayercontrol.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.browser.print.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.browser.print.utils.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.browser.print.sizes.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/dom-to-image.min.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/script.js"></script>

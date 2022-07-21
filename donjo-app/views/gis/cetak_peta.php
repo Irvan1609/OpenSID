@@ -105,6 +105,6 @@
     <td align="center"></td>
   </tr>
   <tr>
-    <td align="center"><img src="<?= base_url()?>assets/images/kompas.png" alt="OpenSID"></td>
+    <td align="center"><img src="<?= base_url(IRVAN)?>assets/images/kompas.png" alt="OpenSID"></td>
   </tr>
 </table>

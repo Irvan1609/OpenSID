@@ -4,7 +4,7 @@
 	}
 </style>
 
-<script src="<?= base_url()?>assets/js/validasi.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
 <script>
 $(document).ready(function() {
 	$('#file_browser').click(function(e)
@@ -35,7 +35,7 @@ $(document).ready(function() {
 			<label for="nama_dokumen">Jenis Dokumen</label>
 			<select class="form-control required input-sm" name="id_syarat" id="id_syarat">
 				<option value=""> -- Pilih Jenis Dokumen -- </option>
-				<?php foreach ($jenis_syarat_surat AS $data): ?>
+				<?php foreach ($jenis_syarat_surat as $data): ?>
 					<option value="<?= $data['ref_syarat_id']?>" <?= selected($data['ref_syarat_id'], $dokumen['id_syarat']) ?>><?= $data['ref_syarat_nama']?></option>
 				<?php endforeach;?>
 			</select>

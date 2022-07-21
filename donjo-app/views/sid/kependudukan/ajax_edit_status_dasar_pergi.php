@@ -1,10 +1,10 @@
 <?php
-	if ($log_status_dasar['tgl_peristiwa']!=''):
-		$sekarang = $log_status_dasar['tgl_peristiwa'];
-	else:
-		$sekarang = date("d-m-Y");
-	endif;
-?>
+    if ($log_status_dasar['tgl_peristiwa']!=''):
+        $sekarang = $log_status_dasar['tgl_peristiwa'];
+    else:
+        $sekarang = date("d-m-Y");
+    endif;
+    ?>
 <form action="<?=$form_action?>" method="post" id="validasi" class="tgl_lapor_peristiwa">
 	<div class='modal-body'>
 		<div class="row">
@@ -44,10 +44,10 @@
 	</div>
 </form>
 
-<script type="text/javascript" src="<?= base_url()?>assets/js/script.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/script.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script>
 	$('#tgl_1').datetimepicker(
 	{

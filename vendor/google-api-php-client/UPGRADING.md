@@ -35,7 +35,7 @@ This will install this library and generate an autoload file in `vendor/autoload
 of your project. You can now include this library with the following code:
 
 ```php
-require_once 'vendor/autoload.php';
+require_once IRVAN . 'vendor/autoload.php';
 ```
 
 ## Access Tokens are passed around as arrays instead of JSON strings

@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -46,9 +46,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 ?>
 
-<script src="<?= base_url('assets/js/jquery.validate.min.js')?>"></script>
-<script src="<?= base_url('assets/js/validasi.js')?>"></script>
-<script src="<?= base_url('assets/js/localization/messages_id.js')?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/jquery.validate.min.js')?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/validasi.js')?>"></script>
+<script src="<?= base_url(IRVAN . 'assets/js/localization/messages_id.js')?>"></script>
 <form action="<?= $form_action?>" method="post" id="validasi">
 	<div class='modal-body'>
 		<div class="form-group">

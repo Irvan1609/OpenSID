@@ -129,7 +129,7 @@ And then browsing to the host and port you specified
 
 ```php
 // include your composer dependencies
-require_once 'vendor/autoload.php';
+require_once IRVAN . 'vendor/autoload.php';
 
 $client = new Google\Client();
 $client->setApplicationName("Client_Library_Examples");

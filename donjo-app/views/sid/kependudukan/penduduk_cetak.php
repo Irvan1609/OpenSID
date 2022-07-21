@@ -8,7 +8,7 @@
 	<?php else: ?>
 		<link rel="shortcut icon" href="<?= base_url()?>favicon.ico" />
 	<?php endif; ?>
-	<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 	<!-- TODO: Pindahkan ke external css -->
 	<style>
 		.textx

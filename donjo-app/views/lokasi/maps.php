@@ -140,12 +140,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var baseLayers = getBaseLayers(peta_lokasi, '<?=$this->setting->mapbox_key?>');
 
 		//Menampilkan dan Menambahkan Peta wilayah + Geolocation GPS
-		L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url()?>assets/images/folder.svg" alt="file icon"/>';
+		L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url(IRVAN)?>assets/images/folder.svg" alt="file icon"/>';
 		showCurrentPoint(posisi, peta_lokasi);
 
 		<?php if ($this->CI->cek_hak_akses('u')): ?>
 			//Export/Import Peta dari file GPX
-			L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url()?>assets/images/gpx.png" alt="file icon"/>';
+			L.Control.FileLayerLoad.LABEL = '<img class="icon-map" src="<?= base_url(IRVAN)?>assets/images/gpx.png" alt="file icon"/>';
 			L.Control.FileLayerLoad.TITLE = 'Impor GPX/KML';
 			controlGpxPoint = eximGpxPoint(peta_lokasi);
 		<?php endif; ?>
@@ -199,5 +199,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		});
 	});
 </script>
-<script src="<?= base_url()?>assets/js/leaflet.filelayer.js"></script>
-<script src="<?= base_url()?>assets/js/togeojson.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.filelayer.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/togeojson.js"></script>

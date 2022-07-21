@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <?php if (count($slider_gambar) > 0): ?>
 	<?php $this->load->view($folder_themes."/layouts/slider.php") ?>
@@ -20,7 +20,7 @@
 				<?php if (is_file(LOKASI_FOTO_ARTIKEL."sedang_".$headline['gambar'])): ?>
 					<a class="group2" href="<?= AmbilFotoArtikel($headline['gambar'], 'sedang') ?>" title=""><img src="<?= AmbilFotoArtikel($headline['gambar'], 'sedang') ?>" /></a>
 				<?php else: ?>
-					<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?= base_url('assets/images/404-image-not-found.jpg') ?>" width="300" height="180"/>
+					<img style="margin-right: 10px; margin-bottom: 5px; float: left;" src="<?= base_url(IRVAN . 'assets/images/404-image-not-found.jpg') ?>" width="300" height="180"/>
 				<?php endif; ?>
 			<?php endif; ?>
 			<?= $abstrak_headline ?>
@@ -32,7 +32,7 @@
 <?php $this->load->view($folder_themes."/partials/feed.php") ?>
 
 <!-- List Konten -->
-<?php $title = ( ! empty($judul_kategori)) ? $judul_kategori['kategori'] : "Artikel Terkini"; ?>
+<?php $title = (! empty($judul_kategori)) ? $judul_kategori['kategori'] : "Artikel Terkini"; ?>
 
 <div class="box box-primary">
 	<div class="box-header with-border">
@@ -62,9 +62,9 @@
 								<div class="img">
 									<?php if ($data['gambar']!=''): ?>
 										<?php if (is_file(LOKASI_FOTO_ARTIKEL."kecil_".$data['gambar'])): ?>
-											<img src="<?= AmbilFotoArtikel($data['gambar'],'kecil') ?>" alt="<?= $data["judul"] ?>"/>
+											<img src="<?= AmbilFotoArtikel($data['gambar'], 'kecil') ?>" alt="<?= $data["judul"] ?>"/>
 										<?php else: ?>
-											<img src="<?= base_url('assets/images/404-image-not-found.jpg') ?>" alt="<?= $data["judul"] ?>" />
+											<img src="<?= base_url(IRVAN . 'assets/images/404-image-not-found.jpg') ?>" alt="<?= $data["judul"] ?>" />
 										<?php endif;?>
 									<?php endif; ?>
 								</div>
@@ -93,7 +93,7 @@
 		<?php endif; ?>
 	</div>
 
-	<?php if ($artikel AND $paging->num_rows > $paging->per_page): ?>
+	<?php if ($artikel and $paging->num_rows > $paging->per_page): ?>
 		<div class="box-footer">
 			<div>Halaman <?= $p ?> dari <?= $paging->end_link ?></div>
 			<ul class="pagination pagination-sm no-margin">

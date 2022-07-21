@@ -80,7 +80,7 @@
 																<div class='modal-body'>
 																	Harap tunggu sampai proses migrasi selesai. Proses ini biasa memakan waktu beberapa menit.
 																	<div class='text-center'>
-																		<img src='<?= base_url()?>assets/images/background/loading.gif'>
+																		<img src='<?= base_url(IRVAN)?>assets/images/background/loading.gif'>
 																	</div>
 																</div>
 															</div>

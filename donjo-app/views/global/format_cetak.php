@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 /*
  * File ini:
  *
@@ -44,22 +44,23 @@
 ?>
 
 <?php
-	if ($aksi == 'unduh')
-	{
-		header("Content-type: application/xls");
-		header("Content-Disposition: attachment; filename=" . namafile($file) . ".xls");
-		header("Pragma: no-cache");
-		header("Expires: 0");
-	}
+    if ($aksi == 'unduh') {
+        header("Content-type: application/xls");
+        header("Content-Disposition: attachment; filename=" . namafile($file) . ".xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+    }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<?php if ($aksi == 'cetak') $this->load->view('print/headjs') ?>
+	<?php if ($aksi == 'cetak') {
+	    $this->load->view('print/headjs');
+	} ?>
 	<head>
 		<title><?= ucwords($file); ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="<?= base_url('assets/css/report.css'); ?>" rel="stylesheet">
+		<link href="<?= base_url(IRVAN . 'assets/css/report.css'); ?>" rel="stylesheet">
 	</head>
 	<body>
 		<div id="container">
@@ -71,7 +72,7 @@
 			<table width="100%">
 				<tr>
 					<td colspan="<?= $letak_ttd[0]; ?>" width="10%">&nbsp;</td>
-					<?php if(!empty($pamong_ketahui)) :?>
+					<?php if (!empty($pamong_ketahui)) :?>
 						<td colspan="<?= $letak_ttd[1]; ?>" width="20%">
 							Mengetahui
 							<br><?= $pamong_ketahui['jabatan'] . ' ' . $config['nama_desa']?>

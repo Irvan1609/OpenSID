@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -150,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						text: '<b>Pilihan</b>'
 					},
 					categories: [
-					<?php foreach ($list_pendapat AS $key => $value): ?>
+					<?php foreach ($list_pendapat as $key => $value): ?>
 						['<?= $value; ?>', ],
 					<?php endforeach;?>
 					]
@@ -177,7 +177,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					shadow:1,
 					border:1,
 					data: [
-					<?php foreach ($list_pendapat AS $key => $value): ?>
+					<?php foreach ($list_pendapat as $key => $value): ?>
 						<?php $jml =  "pilihan_$key"; ?>
 						['<?= $key; ?>', <?= $$jml; ?>],
 					<?php endforeach; ?>
@@ -205,5 +205,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 		});
 	</script>
-	<script src="<?= base_url()?>assets/js/highcharts/exporting.js"></script>
-	<script src="<?= base_url()?>assets/js/highcharts/highcharts-more.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/highcharts/exporting.js"></script>
+	<script src="<?= base_url(IRVAN)?>assets/js/highcharts/highcharts-more.js"></script>

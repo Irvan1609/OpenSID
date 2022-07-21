@@ -2,7 +2,7 @@
 <head>
 	<title>KIB C</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 	<?php if (is_file(LOKASI_LOGO_DESA . "favicon.ico")): ?>
 		<link rel="shortcut icon" href="<?= base_url()?><?= LOKASI_LOGO_DESA?>favicon.ico" />
 	<?php else: ?>
@@ -12,9 +12,9 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-	<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+	<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+	<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 	<!-- TODO: Pindahkan ke external css -->
 	<style>
 		.textx{

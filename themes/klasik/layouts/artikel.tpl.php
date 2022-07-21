@@ -1,4 +1,6 @@
-<?php  if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php  if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+} ?>
 
 <?php $this->load->view($folder_themes.'/layouts/header.php');?>
 			<div id="contentwrapper">
@@ -17,12 +19,12 @@
 
 			<div id="footer">
 				<?php
-				$this->load->view($folder_themes.'/partials/copywright.tpl.php');
-				?>
+                $this->load->view($folder_themes.'/partials/copywright.tpl.php');
+?>
 			</div>
 		</div>
 		<?php if ($single_artikel): ?>
-			<script src="<?= base_url()?>assets/front/js/jquery.colorbox.js"></script>
+			<script src="<?= base_url(IRVAN)?>assets/front/js/jquery.colorbox.js"></script>
 			<script>
 				$(".group2").colorbox({rel:'group2', transition:"fade"});
 			</script>

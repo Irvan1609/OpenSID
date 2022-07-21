@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * File ini:
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 ?>
 
-<link rel="Stylesheet" href="<?= base_url('assets/front/css/slider.css')?>" />
+<link rel="Stylesheet" href="<?= base_url(IRVAN . 'assets/front/css/slider.css')?>" />
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -60,12 +60,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="box">
 	<div class="slider">
-		<span class="cycle-prev"><img src="<?= base_url('assets/images/back_button.png'); ?>" alt="Back"></span> <!-- Untuk membuat tanda panah di kiri slider -->
-		<span class="cycle-next"><img src="<?= base_url('assets/images/next_button.png'); ?>" alt="Next"></span><!-- Untuk membuat tanda panah di kanan slider -->
+		<span class="cycle-prev"><img src="<?= base_url(IRVAN . 'assets/images/back_button.png'); ?>" alt="Back"></span> <!-- Untuk membuat tanda panah di kiri slider -->
+		<span class="cycle-next"><img src="<?= base_url(IRVAN . 'assets/images/next_button.png'); ?>" alt="Next"></span><!-- Untuk membuat tanda panah di kanan slider -->
 		<span class="cycle-pager"></span> <!-- Untuk membuat tanda bulat atau link pada slider -->
 		<?php foreach ($slider_gambar['gambar'] as $gambar) : ?>
 			<?php $file_gambar = $slider_gambar['lokasi'] . 'sedang_' . $gambar['gambar']; ?>
-			<?php if(is_file($file_gambar)) : ?>
+			<?php if (is_file($file_gambar)) : ?>
 				<img src="<?= base_url($file_gambar); ?>"
 					<?php if ($slider_gambar['sumber'] != 3): ?>
 						onclick="location.href='<?='artikel/'.buat_slug($gambar); ?>'"

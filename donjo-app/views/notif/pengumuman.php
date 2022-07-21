@@ -32,7 +32,7 @@
 					</div>
 					<center>
 						<div id="indikator" class='text-center'>
-							<img src='<?= base_url()?>assets/images/background/loading.gif'>
+							<img src='<?= base_url(IRVAN)?>assets/images/background/loading.gif'>
 						</div>
 					</center>
 				</div>

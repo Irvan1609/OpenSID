@@ -1,6 +1,6 @@
-<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script>
 	$(function ()
 	{
@@ -16,7 +16,7 @@
 						<div class="form-group">
 							<label for="nama">Nama</label>
 							<select class="form-control input-sm select2 required"  id="id_pend" name="id_pend" style="width:100%;">
-								<?php foreach ($nama AS $data): ?>
+								<?php foreach ($nama as $data): ?>
 									<option value="<?=$data['id'] ?>" ><?= $data['nama']?></option>
 								<?php endforeach; ?>
 							</select>

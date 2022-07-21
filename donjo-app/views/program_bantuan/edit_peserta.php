@@ -1,6 +1,6 @@
-<script type="text/javascript" src="<?= base_url()?>assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/validasi.js"></script>
-<script type="text/javascript" src="<?= base_url()?>assets/js/localization/messages_id.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/validasi.js"></script>
+<script type="text/javascript" src="<?= base_url(IRVAN)?>assets/js/localization/messages_id.js"></script>
 <script>
 	//File Upload
 	$('#file_browser').click(function(e) {
@@ -102,7 +102,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input class="form-control input-sm pull-right required" id="tgl_1" name="kartu_tanggal_lahir" placeholder="Tgl. Lahir" type="text" value="<?= date_format(date_create($kartu_tanggal_lahir),"d-m-Y")?>">
+						<input class="form-control input-sm pull-right required" id="tgl_1" name="kartu_tanggal_lahir" placeholder="Tgl. Lahir" type="text" value="<?= date_format(date_create($kartu_tanggal_lahir), "d-m-Y")?>">
 					</div>
 				</div>
 			</div>

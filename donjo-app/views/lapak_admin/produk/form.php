@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
  * File ini:
@@ -128,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</select>
 									</div>
 								</div>
-								<div class="col-sm-6" id="tampil-persen" <?= jecho($main->tipe_potongan == 1, FALSE, 'style="display:none;"'); ?>>
+								<div class="col-sm-6" id="tampil-persen" <?= jecho($main->tipe_potongan == 1, false, 'style="display:none;"'); ?>>
 									<div class="form-group">
 										<div class="input-group">
 											<input type="number" class="form-control input-sm number required" id="persen" name="persen" onkeyup="cek_persen();" placeholder="Potongan Persen (%)"  style="text-align:right;" min="0" max="100" step="1" value="<?= ($main->tipe_potongan == 1) ? $main->potongan : 0; ?>"/>
@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 								</div>
 
-								<div class="col-sm-6" id="tampil-nominal" <?= jecho($main->tipe_potongan == 2, FALSE, 'style="display:none;"'); ?>>
+								<div class="col-sm-6" id="tampil-nominal" <?= jecho($main->tipe_potongan == 2, false, 'style="display:none;"'); ?>>
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon input-sm ">Rp.</span>
@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<?php if (is_file(LOKASI_PRODUK . $foto[$i])): ?>
 										<img class="img-responsive" src="<?= base_url(LOKASI_PRODUK . $foto[$i]); ?>" alt="Foto Produk">
 									<?php else: ?>
-										<img class="img-responsive" src="<?= base_url('assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
+										<img class="img-responsive" src="<?= base_url(IRVAN . 'assets/images/404-image-not-found.jpg') ?>" alt="Foto Produk"/>
 									<?php endif; ?>
 									<div class="input-group input-group-sm">
 										<input type="hidden" name="old_foto_<?= $ii; ?>" value="<?= $foto[$i]; ?>">

@@ -52,14 +52,14 @@
 								<div class="form-group">
 									<label for="c_desa" class="col-sm-3 control-label">Nomor C-DESA</label>
 									<div class="col-sm-8">
-										<input class="form-control input-sm angka required" type="text" placeholder="Nomor Surat C-DESA" name="c_desa" value="<?= ($cdesa['nomor']) ? sprintf("%04s", $cdesa["nomor"]) : NULL ?>" disabled>
+										<input class="form-control input-sm angka required" type="text" placeholder="Nomor Surat C-DESA" name="c_desa" value="<?= ($cdesa['nomor']) ? sprintf("%04s", $cdesa["nomor"]) : null ?>" disabled>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="nama_kepemilikan" class="col-sm-3 control-label">Nama Pemilik Tertulis di C-Desa</label>
 									<div class="col-sm-8">
-										<input class="form-control input-sm nama required" type="text" placeholder="Nama pemilik di Surat C-DESA" name="nama_kepemilikan" value="<?= ($cdesa["nama_kepemilikan"]) ? sprintf("%04s", $cdesa["nama_kepemilikan"]) : NULL ?>" disabled>
+										<input class="form-control input-sm nama required" type="text" placeholder="Nama pemilik di Surat C-DESA" name="nama_kepemilikan" value="<?= ($cdesa["nama_kepemilikan"]) ? sprintf("%04s", $cdesa["nama_kepemilikan"]) : null ?>" disabled>
 									</div>
 								</div>
 							</div>
@@ -556,5 +556,5 @@
 	}
 </script>
 
-<script src="<?= base_url()?>assets/js/leaflet.filelayer.js"></script>
-<script src="<?= base_url()?>assets/js/togeojson.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.filelayer.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/togeojson.js"></script>

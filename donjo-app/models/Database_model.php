@@ -1104,7 +1104,7 @@ class Database_model extends CI_Model {
 			$this->db->query($query);
 			// Impor klasifikasi dari berkas csv
 			$this->load->model('klasifikasi_model');
-			$this->klasifikasi_model->impor(FCPATH . 'assets/import/klasifikasi_surat.csv');
+			$this->klasifikasi_model->impor(IRVAN . 'assets/import/klasifikasi_surat.csv');
 		}
 
 		//Perbaiki url untuk modul Surat Masuk dan Arsip Layanan
@@ -1812,7 +1812,7 @@ class Database_model extends CI_Model {
 			->get('analisis_master')->result_array();
 		if (count($query) == 0)
 		{
-			$file_analisis = FCPATH . 'assets/import/analisis_DDK_Profil_Desa.xls';
+			$file_analisis = IRVAN . 'assets/import/analisis_DDK_Profil_Desa.xls';
 			$this->analisis_import_model->import_excel($file_analisis,'DDK02',$jenis = 1);
 		}
 		// Impor analisis Data Anggota Keluarga kalau belum ada
@@ -1828,7 +1828,7 @@ class Database_model extends CI_Model {
 			->get('analisis_master')->row();
 		if (empty($dak))
 		{
-			$file_analisis = FCPATH . 'assets/import/analisis_DAK_Profil_Desa.xls';
+			$file_analisis = IRVAN . 'assets/import/analisis_DAK_Profil_Desa.xls';
 			$id_dak = $this->analisis_import_model->import_excel($file_analisis,'DAK02', $jenis = 1);
 		} else $id_dak = $dak->id;
 		// Tambah kolom is_teks pada analisis_indikator
@@ -3628,7 +3628,7 @@ class Database_model extends CI_Model {
 			";
 			$this->db->query($query);
 			// Isi dengan daftar icon yang ada di folder assets/images/gis/point
-			$simbol_folder = FCPATH . 'assets/images/gis/point';
+			$simbol_folder = IRVAN . 'assets/images/gis/point';
 			$list_gis_simbol = scandir($simbol_folder);
 			foreach ($list_gis_simbol as $simbol) {
 				if ($simbol['0'] == '.') continue;
@@ -3782,9 +3782,9 @@ class Database_model extends CI_Model {
 		}
 		$this->db->simple_query('SET FOREIGN_KEY_CHECKS=1');
 		// Tambahkan kembali Analisis DDK Profil Desa dan Analisis DAK Profil Desa
-		$file_analisis = FCPATH . 'assets/import/analisis_DDK_Profil_Desa.xls';
+		$file_analisis = IRVAN . 'assets/import/analisis_DDK_Profil_Desa.xls';
 		$this->analisis_import_model->import_excel($file_analisis, 'DDK02', $jenis = 1);
-		$file_analisis = FCPATH . 'assets/import/analisis_DAK_Profil_Desa.xls';
+		$file_analisis = IRVAN . 'assets/import/analisis_DAK_Profil_Desa.xls';
 		$this->analisis_import_model->import_excel($file_analisis, 'DAK02', $jenis = 1);
 
 		// Kosongkan folder desa dan copy isi folder desa-contoh

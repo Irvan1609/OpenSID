@@ -3,7 +3,7 @@
 	<head>
 		<title>Cetak Laporan Kelompok Rentan</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="<?= base_url()?>assets/css/report.css" rel="stylesheet" type="text/css">
+		<link href="<?= base_url(IRVAN)?>assets/css/report.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div id="container">
@@ -86,17 +86,17 @@
 					</thead>
 					<tbody>
 						<?php
-							$bayi=0;
-							$balita=0;
-							$sd=0;
-							$smp=0;
-							$sma=0;
-							$lansia=0;
-							$cacat=0;
-							$sakit_L=0;
-							$sakit_P=0;
-							$hamil=0;
-						?>
+                            $bayi=0;
+		$balita=0;
+		$sd=0;
+		$smp=0;
+		$sma=0;
+		$lansia=0;
+		$cacat=0;
+		$sakit_L=0;
+		$sakit_P=0;
+		$hamil=0;
+		?>
 						<?php foreach ($main as $data): ?>
 							<tr>
 								<td align="right"><?= $data['dusunnya']?></td>
@@ -115,17 +115,17 @@
 								<td align="right"><?= $data['sakit_P']?></td>
 								<td align="right"><?= $data['hamil']?></td>
 								<?php
-									$bayi=$bayi+$data['bayi'];
-									$balita=$balita+$data['balita'];
-									$sd=$sd+$data['sd'];
-									$smp=$smp+$data['smp'];
-									$sma=$sma+$data['sma'];
-									$lansia=$lansia+$data['lansia'];
-									$cacat=$cacat+$data['cacat'];
-									$sakit_L=$sakit_L+$data['sakit_L'];
-									$sakit_P=$sakit_P+$data['sakit_P'];
-									$hamil=$hamil+$data['hamil'];
-								?>
+		            $bayi=$bayi+$data['bayi'];
+						    $balita=$balita+$data['balita'];
+						    $sd=$sd+$data['sd'];
+						    $smp=$smp+$data['smp'];
+						    $sma=$sma+$data['sma'];
+						    $lansia=$lansia+$data['lansia'];
+						    $cacat=$cacat+$data['cacat'];
+						    $sakit_L=$sakit_L+$data['sakit_L'];
+						    $sakit_P=$sakit_P+$data['sakit_P'];
+						    $hamil=$hamil+$data['hamil'];
+						    ?>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>

@@ -75,10 +75,10 @@
 							<div class="form-group ">
 								<label for="jenis_lokasi" class="col-sm-3 control-label">Lokasi Tanah</label>
 								<div class="btn-group col-xs-12 col-sm-8" data-toggle="buttons">
-									<label class="btn btn-info btn-flat btn-sm col-xs-6 col-sm-5 col-lg-3 form-check-label <?= $persil["lokasi"] ? NULL : 'active' ?>">
+									<label class="btn btn-info btn-flat btn-sm col-xs-6 col-sm-5 col-lg-3 form-check-label <?= $persil["lokasi"] ? null : 'active' ?>">
 										<input type="radio" name="jenis_lokasi" class="form-check-input" value="1" autocomplete="off" onchange="pilih_lokasi(this.value);"> Pilih Lokasi
 									</label>
-									<label class="btn btn-info btn-flat btn-sm col-xs-6 col-sm-5 col-lg-3 form-check-label <?= $persil["lokasi"] ? 'active' : NULL ?>">
+									<label class="btn btn-info btn-flat btn-sm col-xs-6 col-sm-5 col-lg-3 form-check-label <?= $persil["lokasi"] ? 'active' : null ?>">
 										<input type="radio" name="jenis_lokasi" class="form-check-input" value="2" autocomplete="off" onchange="pilih_lokasi(this.value);"> Tulis Manual
 									</label>
 								</div>
@@ -320,5 +320,5 @@
 
 </script>
 
-<script src="<?= base_url()?>assets/js/leaflet.filelayer.js"></script>
-<script src="<?= base_url()?>assets/js/togeojson.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/leaflet.filelayer.js"></script>
+<script src="<?= base_url(IRVAN)?>assets/js/togeojson.js"></script>
